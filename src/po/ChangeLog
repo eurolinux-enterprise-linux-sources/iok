@@ -1,0 +1,63 @@
+*****NOTE: I am stopping Changelog entries here as its not possible to add *****
+*****      each and every update in po directory                           *****
+
+2009-03-10 Silvio Pierro <perplesso82@gmail.com> 
+
+        * po/it.po: Added Italian Translation
+
+2009-03-05 Piotr Drąg <piotrdrag@gmail.com>
+
+        * po/pl.po: Updated Polish translation
+
+2009-03-04 A S Alam <aalam@redhat.com> 
+
+        * po/pa.po: Adding Punjabi Translation
+
+2009-02-26 Richard van der Luit <zuma@xs4all.nl> 
+
+        * po/nl.po: Updated Dutch Translation to the new version
+
+2009-02-19 Fabian Affolter <fabian@bernewireless.net>
+
+        * po/de.po: Updated German translation
+
+2009-03-08 Domingo Becker <domingobecker@gmail.com> 
+
+        * po/es.po: updated Spanish translation
+
+2009-01-16 daniel cabrera <h.daniel.cabrera@gmail.com>
+
+       * es.po: Updated Spanish translation
+
+2009-01-16 Richard van der Luit <zuma@xs4all.nl>
+
+      * nl.po: translated newest release, much better translation all
+               together
+
+2009-01-15 CHAI Zhenhua <watter1985@163.com>
+ 
+	* zh_CN.po: Initial Chinese translation 
+          
+2009-01-15 Taylon Silmer Lacerda Silva 
+
+       * pt_BR.po: Updated Brazilian Portuguese translation 
+
+2009-01-15 Piotr Drąg <piotrdrag@gmail.com> 
+
+      * pl.po: Updated Polish translation 
+
+2009-01-12 Taylon Silmer <taylonsilva@gmail.com> 
+
+	* pt_BR.po:  Brazilian portuguese translation
+
+2009-01-10 Fabian Affolter <fabian@bernewireless.net>
+       
+        * de.po: Initial German translation
+
+2009-01-09 Piotr Drąg <piotrdrag@gmail.com> 
+
+	* pl.po: Initial Polish translation 
+
+2009-01-10 Richard van der Luit <zuma@xs4all.nl>
+
+	* nl.po: Initial Dutch translation 

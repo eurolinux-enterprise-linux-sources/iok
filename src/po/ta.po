@@ -1,0 +1,181 @@
+# translation of iok.trunk.ta.po to Tamil
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# I. Felix <ifelix@redhat.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: iok.trunk.ta\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-07-20 14:47+0530\n"
+"PO-Revision-Date: 2009-08-31 22:40+0530\n"
+"Last-Translator: I. Felix <ifelix@redhat.com>\n"
+"Language-Team: Tamil <fedora-trans-ta@redhat.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\\n\n"
+"\n"
+"\n"
+"\n"
+"\n"
+
+#: ../iok.desktop.in.h:1
+msgid "Enter Indic characters with a virtual keyboard"
+msgstr "இந்திய எழுத்துக்களை ஒரு மெய்நிகர் விசைப்பலகையுடன் உள்ளிடவும்"
+
+#: ../iok.desktop.in.h:2
+msgid "Indic Onscreen Keyboard"
+msgstr "இந்திய ஆன்ஸ்க்ரீன் விசைப்பலகை"
+
+#: ../src/interface.c:2478
+msgid "Select the language in which you want to write"
+msgstr "நீங்கள் எழுதுவதற்கு எந்த மொழி வேண்டுமென தேர்ந்தெடுக்கவும்"
+
+#: ../src/interface.c:2480 ../src/interface.c:9870
+msgid "Change to English Keyboard"
+msgstr "ஆங்கில விசைப்பலகைக்கு மாற்றவும்"
+
+#: ../src/interface.c:2553
+msgid "ReassignKey"
+msgstr "மறுநியமிக்கப்பட்ட விசை"
+
+#: ../src/interface.c:2563
+msgid "Reassign Keyvalue of Key"
+msgstr "விசையின் விசைமதிப்பை மறுநியமித்தல்"
+
+#: ../src/interface.c:2574
+msgid "to another Key"
+msgstr "மற்றொரு விசைக்கு"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:2589 ../src/interface.c:9367
+msgid "Reassign"
+msgstr "மறுநியமம்"
+
+#: ../src/interface.c:2593
+msgid "Cancel"
+msgstr "ரத்து"
+
+#: ../src/interface.c:2850
+msgid "Open Keymap File"
+msgstr "கீமேப் கோப்பினை திற"
+
+#: ../src/interface.c:2900
+msgid "Write to Keymap File"
+msgstr "கீமேப் கோப்பில் எழுது"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:9325
+msgid "Open"
+msgstr "திற"
+
+#: ../src/interface.c:9327
+msgid "Open a Keymap that is not listed in a combobox"
+msgstr "காம்போ பெட்டியில் பட்டியலிடப்படாத ஒரு கீமேப்பை திற"
+
+#: ../src/interface.c:9329
+msgid "Save"
+msgstr "சேமி"
+
+#: ../src/interface.c:9331
+msgid "Save current state of loaded keymap to a new keymap"
+msgstr "ஏற்றப்பட்ட நடப்பு நிலை கீமேப்பை புதிய கீமேப்பால் சேமி"
+
+#: ../src/interface.c:9334
+msgid "Quit"
+msgstr "வெளியேறு"
+
+#: ../src/interface.c:9336
+msgid "Close iok application"
+msgstr "iok பயன்பாட்டை மூடவும்"
+
+#: ../src/interface.c:9369
+msgid "Reassign key value of some key to some other key"
+msgstr "சில விசையின் விசை மதிப்பை வேறு சிர விசைக்கு மீண்டும் ஒதுக்கு"
+
+#: ../src/interface.c:9371
+msgid "Swap"
+msgstr "துடைத்தல்"
+
+#: ../src/interface.c:9373
+msgid "Swap key values between any 2 keys in loaded keymap"
+msgstr "ஏற்றப்பட்ட கீமேப்பிலும் எந்த 2 விசைகளுக்கிடையேயும் மாற்று விசை மதிப்புகள்"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:9393
+msgid "About"
+msgstr "பற்றி"
+
+#: ../src/interface.c:9395
+msgid "About iok application"
+msgstr "iok பயன்பாடு பற்றி"
+
+#: ../src/interface.c:9411
+msgid "Keymap"
+msgstr "கீமேப்"
+
+#: ../src/interface.c:9414
+msgid "Keys"
+msgstr "விசைகள்"
+
+#: ../src/interface.c:9417
+msgid "Help"
+msgstr "உதவி"
+
+#: ../src/interface.c:9600
+msgid "Backspace"
+msgstr "Backspace"
+
+#: ../src/interface.c:9616
+msgid "Tab"
+msgstr "Tab"
+
+#: ../src/interface.c:9708
+msgid "Caps"
+msgstr "Caps "
+
+#: ../src/interface.c:9779
+msgid "Enter"
+msgstr "Enter"
+
+#: ../src/interface.c:9794 ../src/interface.c:9859
+msgid "Shift"
+msgstr "Shift"
+
+#: ../src/interface.c:9873
+msgid "Space"
+msgstr "இடைவெளி"
+
+#: ../src/interface.c:9880
+msgid ""
+"Select the language in which you want to write. This list contains keymaps "
+"in order as inscript then user defined then xkb and then any keymaps opened "
+"that are not default listed"
+msgstr ""
+"நீங்கள் எழுத வேண்டிய மொழியை தேர்ந்தெடுக்கவும். இந்த பட்டியல் கீமேப்களின் வரிசையை இன்ஸ்கிரிப்ட் "
+"பின் பயனர் குறிப்பிடும் xkb என கொண்டிருக்கும் பின் திறக்கப்பட்ட கீமேப்கள் முன்னிருப்பாக "
+"பட்டியலிடப்படாது"
+
+#. TRANSLATORS: Replace this string with your names, one name per line.
+#: ../src/interface.c:11460
+msgid "translator-credits"
+msgstr "I. Felix <ifelix@redhat.com>"
+
+#: ../src/interface.c:11466
+msgid "iok"
+msgstr "iok"
+
+#: ../src/interface.c:11467
+msgid "GPLv2 or later\n"
+msgstr "GPLv2 அல்லது பின்னர்\n"
+
+#: ../src/support.c:90 ../src/support.c:114
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "pixmap கோப்பினை காண முடியவில்லை: %s"
+

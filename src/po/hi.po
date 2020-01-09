@@ -1,0 +1,179 @@
+# translation of iok.trunk.po to Hindi
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Rajesh Ranjan <rranjan@redhat.com>, 2009.
+# Rajesh Ranjan <rajesh672@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: iok.trunk\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-07-20 14:47+0530\n"
+"PO-Revision-Date: 2009-07-29 11:01+0530\n"
+"Last-Translator: Rajesh Ranjan <rajesh672@gmail.com>\n"
+"Language-Team: Hindi <hindi.sf.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
+
+#: ../iok.desktop.in.h:1
+msgid "Enter Indic characters with a virtual keyboard"
+msgstr "वर्चुअल कुंजीपट से भारतीय वर्ण दाखिल करें"
+
+#: ../iok.desktop.in.h:2
+msgid "Indic Onscreen Keyboard"
+msgstr "इंडिक ऑनस्क्रीन कुंजीपट"
+
+#: ../src/interface.c:2478
+msgid "Select the language in which you want to write"
+msgstr "वह भाषा चुनें जिसमें आप लिखना चाहते हैं"
+
+#: ../src/interface.c:2480 ../src/interface.c:9870
+msgid "Change to English Keyboard"
+msgstr "अंग्रेजी कुंजीपट में बदलें"
+
+#: ../src/interface.c:2553
+msgid "ReassignKey"
+msgstr "कुंजी फिर नियत करें"
+
+#: ../src/interface.c:2563
+msgid "Reassign Keyvalue of Key"
+msgstr "कुंजी का कुंजीमान फिर नियत करें"
+
+#: ../src/interface.c:2574
+msgid "to another Key"
+msgstr "किसी दूसरे कुंजी में"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:2589 ../src/interface.c:9367
+msgid "Reassign"
+msgstr "फिर नियत करें"
+
+#: ../src/interface.c:2593
+msgid "Cancel"
+msgstr "रद्द करें"
+
+#: ../src/interface.c:2850
+msgid "Open Keymap File"
+msgstr "कुंजी मैप फाइल खोलें"
+
+#: ../src/interface.c:2900
+msgid "Write to Keymap File"
+msgstr "कुंजीमैप फाइल में लिखें"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:9325
+msgid "Open"
+msgstr "खोलें"
+
+#: ../src/interface.c:9327
+msgid "Open a Keymap that is not listed in a combobox"
+msgstr "कोई कुंजी मानचित्र खोलें जो कि कोंबो बॉक्स में सूचीबद्ध नहीं है"
+
+#: ../src/interface.c:9329
+msgid "Save"
+msgstr "सहेजें"
+
+#: ../src/interface.c:9331
+msgid "Save current state of loaded keymap to a new keymap"
+msgstr "किसी नये कुंजी मानचित्र में लोड किए कुंजीमानचित्र की मौजूदा स्थिति सहेजें"
+
+#: ../src/interface.c:9334
+msgid "Quit"
+msgstr "बाहर"
+
+#: ../src/interface.c:9336
+msgid "Close iok application"
+msgstr "iok अनुप्रयोग चुनें"
+
+#: ../src/interface.c:9369
+msgid "Reassign key value of some key to some other key"
+msgstr "कुछ दूसरे कुंजी में कुछ कुंजी के कुंजी मान फिर नियत करें"
+
+#: ../src/interface.c:9371
+msgid "Swap"
+msgstr "स्वैप करें"
+
+#: ../src/interface.c:9373
+msgid "Swap key values between any 2 keys in loaded keymap"
+msgstr "किसी 2 कुंजी के बीच लोडेड कुंजीमानचित्र में कुंजी मान स्वैप करें"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:9393
+msgid "About"
+msgstr "परिचय"
+
+#: ../src/interface.c:9395
+msgid "About iok application"
+msgstr "iok अनुप्रयोग का परिचय"
+
+#: ../src/interface.c:9411
+msgid "Keymap"
+msgstr "कुंजी मानचित्र"
+
+#: ../src/interface.c:9414
+msgid "Keys"
+msgstr "कुंजी"
+
+#: ../src/interface.c:9417
+msgid "Help"
+msgstr "मदद"
+
+#: ../src/interface.c:9600
+msgid "Backspace"
+msgstr "Backspace"
+
+#: ../src/interface.c:9616
+msgid "Tab"
+msgstr "Tab"
+
+#: ../src/interface.c:9708
+msgid "Caps"
+msgstr "Caps"
+
+#: ../src/interface.c:9779
+msgid "Enter"
+msgstr "Enter"
+
+#: ../src/interface.c:9794 ../src/interface.c:9859
+msgid "Shift"
+msgstr "Shift"
+
+#: ../src/interface.c:9873
+msgid "Space"
+msgstr "Space"
+
+#: ../src/interface.c:9880
+msgid ""
+"Select the language in which you want to write. This list contains keymaps "
+"in order as inscript then user defined then xkb and then any keymaps opened "
+"that are not default listed"
+msgstr ""
+"वह भाषा चुनें जिसमें आप लिखना चाहते हैं. यह सूची inscript रूप में कुंजीमानचित्र समाहित करती "
+"है बनिस्पत xkb पर परिभाषित के अलावा और कुंजी मानचित्र खुला है जो कि तयशुदा रूप से "
+"सूचीबद्ध नहीं है"
+
+#. TRANSLATORS: Replace this string with your names, one name per line.
+#: ../src/interface.c:11460
+msgid "translator-credits"
+msgstr "राजेश रंजन (rranjan@redhat.com)"
+
+#: ../src/interface.c:11466
+msgid "iok"
+msgstr "iok"
+
+#: ../src/interface.c:11467
+msgid "GPLv2 or later\n"
+msgstr "GPLv2 या पश्चातवर्ती\n"
+
+#: ../src/support.c:90 ../src/support.c:114
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "पिक्समैप फाइल नहीं पा सकता: %s"
+

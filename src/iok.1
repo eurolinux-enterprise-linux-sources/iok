@@ -1,0 +1,44 @@
+.TH IOK 1 "February 9, 2010"
+.SH NAME
+\fBiok\fR\- Indic Onscreen Keyboard
+.SH SYNOPSIS
+.B iok
+.RB [ \-a ]
+.RB [ \-h ]
+.RB [ \-n
+.IR LANGCODE ]
+.SH DESCRIPTION
+.PP
+ 	Indic Onscreen Keyboard currently shows Inscript keymaps for 13 
+Indian languages. The languages are Assamese, Bengali, Gujarati, Hindi,
+Kannada, Maithili, Marathi, Malayalam, Punjabi, Oriya, Sindhi, Tamil, Telugu.
+.PP
+	Using drop down menu you can select any of above supported 
+Indian language.Drop down menu listing depends on available inscript 
+keymaps at location /usr/share/m17n/. You can then start directly 
+clicking on keys appearing in iok graphical interface. 
+It will not only show you characters for English keys on your
+QWERTY keyboard from selected inscript keymap but also allows you to
+send those characters to currently active window. 
+.PP
+To see menus and combo box in iok UI, use "iok -a" command. 
+To start iok in any indic language use "iok -n <LANGCODE>" 
+e.g. for Hindi use "iok -n hi". 
+
+This project is available at http://fedorahosted.org/iok/ or http://iok.sourceforge.net
+
+.SH OPTIONS
+.TP
+.BI \-a
+It shows the menus and combo box in iok UI
+.TP
+.BI \-h
+It show the help
+.TP
+.BI \-n  " LANGCODE"
+In the place of LANGCODE to specify a particular language code.
+Shows IOK UI for that particular language.
+.PP
+.SH AUTHOR
+Suji A <suji87.msc@gmail.com> , Parag <pnemade@fedoraproject.org>
+.PP

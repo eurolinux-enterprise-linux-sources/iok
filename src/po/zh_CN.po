@@ -1,0 +1,181 @@
+# translation of iok.trunk.po to Simplified Chinese
+# CHAI Zhenhua<watter1985@163.com>, 2009.
+# Leah Liu <lliu@redhat.com>, 2009.
+# Chinese(Simplified) translation of iok
+# Copyright (C) 2008 iok
+# This file is distributed under the same license as the iok package.
+msgid ""
+msgstr ""
+"Project-Id-Version: iok.trunk\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-07-20 14:47+0530\n"
+"PO-Revision-Date: 2009-12-08 09:07+1000\n"
+"Last-Translator: Leah Liu <lliu@redhat.com>\n"
+"Language-Team: Simplified Chinese <zh@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Chinese\n"
+"X-Poedit-Country: CHINA\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: ../iok.desktop.in.h:1
+msgid "Enter Indic characters with a virtual keyboard"
+msgstr "在虚拟键盘中输入印度语字符"
+
+#: ../iok.desktop.in.h:2
+msgid "Indic Onscreen Keyboard"
+msgstr "印度语屏幕键盘"
+
+#: ../src/interface.c:2478
+msgid "Select the language in which you want to write"
+msgstr "请选择您书写使用的语言"
+
+#: ../src/interface.c:2480 ../src/interface.c:9870
+msgid "Change to English Keyboard"
+msgstr "更改至英文键盘"
+
+#: ../src/interface.c:2553
+msgid "ReassignKey"
+msgstr "重设按键"
+
+#: ../src/interface.c:2563
+msgid "Reassign Keyvalue of Key"
+msgstr "将键"
+
+#: ../src/interface.c:2574
+msgid "to another Key"
+msgstr "置换到"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:2589 ../src/interface.c:9367
+msgid "Reassign"
+msgstr "重设"
+
+#: ../src/interface.c:2593
+msgid "Cancel"
+msgstr "取消"
+
+#: ../src/interface.c:2850
+msgid "Open Keymap File"
+msgstr "打开 Keymap 文件"
+
+#: ../src/interface.c:2900
+msgid "Write to Keymap File"
+msgstr "写入 Keymap 文件"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:9325
+msgid "Open"
+msgstr "打开"
+
+#: ../src/interface.c:9327
+msgid "Open a Keymap that is not listed in a combobox"
+msgstr "打开没有列在 combobox 中的 Keymap"
+
+#: ../src/interface.c:9329
+msgid "Save"
+msgstr "保存"
+
+#: ../src/interface.c:9331
+msgid "Save current state of loaded keymap to a new keymap"
+msgstr "将目前载入的 keymap 状态保存到一个新的 keymap"
+
+#: ../src/interface.c:9334
+msgid "Quit"
+msgstr "退出"
+
+#: ../src/interface.c:9336
+msgid "Close iok application"
+msgstr "关闭 iok 程序"
+
+#: ../src/interface.c:9369
+msgid "Reassign key value of some key to some other key"
+msgstr "将一些键的键值重新分配给其它键"
+
+#: ../src/interface.c:9371
+msgid "Swap"
+msgstr "交换"
+
+#: ../src/interface.c:9373
+msgid "Swap key values between any 2 keys in loaded keymap"
+msgstr "在载入的 keymap 中交换任意两个键的键值"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:9393
+msgid "About"
+msgstr "关于"
+
+#: ../src/interface.c:9395
+msgid "About iok application"
+msgstr "关于 iok 程序"
+
+#: ../src/interface.c:9411
+msgid "Keymap"
+msgstr "Keymap"
+
+#: ../src/interface.c:9414
+msgid "Keys"
+msgstr "键"
+
+#: ../src/interface.c:9417
+msgid "Help"
+msgstr "帮助"
+
+#: ../src/interface.c:9600
+msgid "Backspace"
+msgstr "Backspace"
+
+#: ../src/interface.c:9616
+msgid "Tab"
+msgstr "Tab"
+
+#: ../src/interface.c:9708
+msgid "Caps"
+msgstr "Caps"
+
+#: ../src/interface.c:9779
+msgid "Enter"
+msgstr "Enter"
+
+#: ../src/interface.c:9794 ../src/interface.c:9859
+msgid "Shift"
+msgstr "Shift"
+
+#: ../src/interface.c:9873
+msgid "Space"
+msgstr "空格"
+
+#: ../src/interface.c:9880
+msgid ""
+"Select the language in which you want to write. This list contains keymaps "
+"in order as inscript then user defined then xkb and then any keymaps opened "
+"that are not default listed"
+msgstr ""
+"请选择书写语言。这个列表包含的 keymap 顺序是 inscript，然后是用户定义的，然后"
+"是 xkb，然后是非默认列出但打开的所有 keymap"
+
+#. TRANSLATORS: Replace this string with your names, one name per line.
+#: ../src/interface.c:11460
+msgid "translator-credits"
+msgstr ""
+"译者:\n"
+"        柴振华<watter1985@163.com>"
+
+#: ../src/interface.c:11466
+msgid "iok"
+msgstr "iok"
+
+#: ../src/interface.c:11467
+msgid "GPLv2 or later\n"
+msgstr "GPLv2 或更新\n"
+
+#: ../src/support.c:90 ../src/support.c:114
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "无法找到图像映射文件: %s"
+

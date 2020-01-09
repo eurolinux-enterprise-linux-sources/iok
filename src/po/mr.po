@@ -1,0 +1,176 @@
+# translation of iok.trunk.mr.po to marathi
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Sandeep Shedmake <sandeep.shedmake@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: iok.trunk.mr\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-07-20 14:47+0530\n"
+"PO-Revision-Date: 2009-07-24 14:59+0530\n"
+"Last-Translator: Sandeep Shedmake <sandeep.shedmake@gmail.com>\n"
+"Language-Team: marathi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: ../iok.desktop.in.h:1
+msgid "Enter Indic characters with a virtual keyboard"
+msgstr "आभासी कळफलकसह इंडिक अक्षर प्रविष्ट करा"
+
+#: ../iok.desktop.in.h:2
+msgid "Indic Onscreen Keyboard"
+msgstr "इन्डिक ऑनस्क्रीन किबोर्ड"
+
+#: ../src/interface.c:2478
+msgid "Select the language in which you want to write"
+msgstr "लिहण्याकरीता भाषा निवडा"
+
+#: ../src/interface.c:2480 ../src/interface.c:9870
+msgid "Change to English Keyboard"
+msgstr "इंग्रजी कळफलक वापरा"
+
+#: ../src/interface.c:2553
+msgid "ReassignKey"
+msgstr "ReassignKey"
+
+#: ../src/interface.c:2563
+msgid "Reassign Keyvalue of Key"
+msgstr "कि चे किमूल्य पुन्हा लागू करा"
+
+#: ../src/interface.c:2574
+msgid "to another Key"
+msgstr "इतर कि करीता"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:2589 ../src/interface.c:9367
+msgid "Reassign"
+msgstr "पुन्हा लागू करा"
+
+#: ../src/interface.c:2593
+msgid "Cancel"
+msgstr "रद्द करा"
+
+#: ../src/interface.c:2850
+msgid "Open Keymap File"
+msgstr "किमॅप फाइल उघडा"
+
+#: ../src/interface.c:2900
+msgid "Write to Keymap File"
+msgstr "किमॅप फाइल करीता लिहा"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:9325
+msgid "Open"
+msgstr "उघडा"
+
+#: ../src/interface.c:9327
+msgid "Open a Keymap that is not listed in a combobox"
+msgstr "कॉम्बोबॉक्स अंतर्गत यादीतील न आढळलेले किमॅप उघडा"
+
+#: ../src/interface.c:9329
+msgid "Save"
+msgstr "साठवा"
+
+#: ../src/interface.c:9331
+msgid "Save current state of loaded keymap to a new keymap"
+msgstr "दाखल केलेल्या किमॅपचे वर्तमान स्तर नवीन किमॅप करीता साठवा"
+
+#: ../src/interface.c:9334
+msgid "Quit"
+msgstr "बाहेर पडा"
+
+#: ../src/interface.c:9336
+msgid "Close iok application"
+msgstr "iok ऍप्लीकेशन बंद करा"
+
+#: ../src/interface.c:9369
+msgid "Reassign key value of some key to some other key"
+msgstr "काहिक किचे कि मूल्य इतर कि करीता पुन्ह लागू करा"
+
+#: ../src/interface.c:9371
+msgid "Swap"
+msgstr "स्वॅप करा"
+
+#: ../src/interface.c:9373
+msgid "Swap key values between any 2 keys in loaded keymap"
+msgstr "दाखल केलेले किमॅप अंतर्गत कुठल्याही 2 किज् अंतर्गत कि मूल्य अदला बदल करा"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:9393
+msgid "About"
+msgstr "विषयी"
+
+#: ../src/interface.c:9395
+msgid "About iok application"
+msgstr "iok ऍप्लीकेशन विषयी"
+
+#: ../src/interface.c:9411
+msgid "Keymap"
+msgstr "किमॅप"
+
+#: ../src/interface.c:9414
+msgid "Keys"
+msgstr "किज्"
+
+#: ../src/interface.c:9417
+msgid "Help"
+msgstr "मदत"
+
+#: ../src/interface.c:9600
+msgid "Backspace"
+msgstr "बॅकस्पेस"
+
+#: ../src/interface.c:9616
+msgid "Tab"
+msgstr "टॅब"
+
+#: ../src/interface.c:9708
+msgid "Caps"
+msgstr "कॅप्स्"
+
+#: ../src/interface.c:9779
+msgid "Enter"
+msgstr "एन्टर"
+
+#: ../src/interface.c:9794 ../src/interface.c:9859
+msgid "Shift"
+msgstr "शिफ्ट"
+
+#: ../src/interface.c:9873
+msgid "Space"
+msgstr "स्पेस"
+
+#: ../src/interface.c:9880
+msgid ""
+"Select the language in which you want to write. This list contains keymaps "
+"in order as inscript then user defined then xkb and then any keymaps opened "
+"that are not default listed"
+msgstr ""
+"लिहण्याकरीता भाषा निवडा. या यादीत किमॅप इनस्क्रिप्टच्या क्रमवारी नुरूप, नंतर वापरकर्ता "
+"द्वारे निश्चित, त्यानंतर xkb व शेवटी कुठलिही मुलभूत स्वरूपी यादीत न दर्शवलेल्या किमॅप नुरूप"
+
+#. TRANSLATORS: Replace this string with your names, one name per line.
+#: ../src/interface.c:11460
+msgid "translator-credits"
+msgstr "संदिप शेडमाके <sandeep.shedmake@gmail.com>, 2009."
+
+#: ../src/interface.c:11466
+msgid "iok"
+msgstr "iok"
+
+#: ../src/interface.c:11467
+msgid "GPLv2 or later\n"
+msgstr "GPLv2 किंवा पुढिल\n"
+
+#: ../src/support.c:90 ../src/support.c:114
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "pixmap फाइल आढळले नाही: %s"
+

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+_Name=Indic Onscreen Keyboard
+_Comment=Enter Indic characters with a virtual keyboard
+Exec=iok
+Icon=iok
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Utility;Accessibility;
+NotShowIn=GNOME;

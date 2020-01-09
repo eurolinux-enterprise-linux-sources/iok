@@ -1,0 +1,176 @@
+# translation of iok.po to Gujarati
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Sweta Kothari <swkothar@redhat.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: iok\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-07-20 14:47+0530\n"
+"PO-Revision-Date: 2009-09-17 16:27+0530\n"
+"Last-Translator: Sweta Kothari <swkothar@redhat.com>\n"
+"Language-Team: Gujarati\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: ../iok.desktop.in.h:1
+msgid "Enter Indic characters with a virtual keyboard"
+msgstr "વર્ચ્યુઅલ કિબોર્ડ સાથે ભારતીય અક્ષરોને દાખલ કરો"
+
+#: ../iok.desktop.in.h:2
+msgid "Indic Onscreen Keyboard"
+msgstr "ભારતીય ઓનસ્ક્રીન કિબોર્ડ"
+
+#: ../src/interface.c:2478
+msgid "Select the language in which you want to write"
+msgstr "જે તમે લખવા માંગતા હોય તો તેમાં ભાષાને પસંદ કરો"
+
+#: ../src/interface.c:2480 ../src/interface.c:9870
+msgid "Change to English Keyboard"
+msgstr "અંગ્રેજી કિબોર્ડને બદલો"
+
+#: ../src/interface.c:2553
+msgid "ReassignKey"
+msgstr "કી ફરીથી દાખલ કરો"
+
+#: ../src/interface.c:2563
+msgid "Reassign Keyvalue of Key"
+msgstr "કીની કી કિંમતને ફરીથી દાખલ કરો"
+
+#: ../src/interface.c:2574
+msgid "to another Key"
+msgstr "બીજી કીમા"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:2589 ../src/interface.c:9367
+msgid "Reassign"
+msgstr "ફરીથી દાખલ કરો"
+
+#: ../src/interface.c:2593
+msgid "Cancel"
+msgstr "રદ કરો"
+
+#: ../src/interface.c:2850
+msgid "Open Keymap File"
+msgstr "કીમેપ ફાઇલને ખોલો"
+
+#: ../src/interface.c:2900
+msgid "Write to Keymap File"
+msgstr "કિમેપ ફાઇલમાં લખો"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:9325
+msgid "Open"
+msgstr "ખોલો"
+
+#: ../src/interface.c:9327
+msgid "Open a Keymap that is not listed in a combobox"
+msgstr "કીમેપ ને ખોલો કે જે કોમ્બોબોક્સમાં યાદી થયેલ નથી"
+
+#: ../src/interface.c:9329
+msgid "Save"
+msgstr "સંગ્રહ કરો"
+
+#: ../src/interface.c:9331
+msgid "Save current state of loaded keymap to a new keymap"
+msgstr "કીમેપને નવુ કરવા લોડ થયેલ કીમેપની હાલની સ્થિતિને સંગ્રહો"
+
+#: ../src/interface.c:9334
+msgid "Quit"
+msgstr "બહાર નીકળો"
+
+#: ../src/interface.c:9336
+msgid "Close iok application"
+msgstr "iok કાર્યક્રમને બંધ કરો"
+
+#: ../src/interface.c:9369
+msgid "Reassign key value of some key to some other key"
+msgstr "અમુક બીજી કી માં અમુક કીની કી કિંમતને ફરીથી દાખલ કરો"
+
+#: ../src/interface.c:9371
+msgid "Swap"
+msgstr "અદલાબદલી કરો"
+
+#: ../src/interface.c:9373
+msgid "Swap key values between any 2 keys in loaded keymap"
+msgstr "લોડ થયેલ કીમેપમાં કોઇપણ ૨ કીઓની વચ્ચે કી કિંમતોને અદલાબદલી કરો"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:9393
+msgid "About"
+msgstr "વિશે"
+
+#: ../src/interface.c:9395
+msgid "About iok application"
+msgstr "iok કાર્યક્રમ વિશે"
+
+#: ../src/interface.c:9411
+msgid "Keymap"
+msgstr "કીમેપ"
+
+#: ../src/interface.c:9414
+msgid "Keys"
+msgstr "કીઓ"
+
+#: ../src/interface.c:9417
+msgid "Help"
+msgstr "મદદ"
+
+#: ../src/interface.c:9600
+msgid "Backspace"
+msgstr "બેકસ્પેસ"
+
+#: ../src/interface.c:9616
+msgid "Tab"
+msgstr "ટેબ"
+
+#: ../src/interface.c:9708
+msgid "Caps"
+msgstr "કેપ્સ"
+
+#: ../src/interface.c:9779
+msgid "Enter"
+msgstr "દાખલ કરો"
+
+#: ../src/interface.c:9794 ../src/interface.c:9859
+msgid "Shift"
+msgstr "શિફ્ટ"
+
+#: ../src/interface.c:9873
+msgid "Space"
+msgstr "જગ્યા"
+
+#: ../src/interface.c:9880
+msgid ""
+"Select the language in which you want to write. This list contains keymaps "
+"in order as inscript then user defined then xkb and then any keymaps opened "
+"that are not default listed"
+msgstr ""
+"જે તમે લખવા માંગો છો તે ભાષાને પસંદ કરો. આ યાદી એ ઇનસ્ક્રિપ્ટ પછી વ્યાખ્યાયિત થયેલ "
+"વપરાશકર્તા અને પછી ખોલેલ કોઇપણ કીમેપો તરીકે ક્રમમાં કીમેપોને સમાવે છે"
+
+#. TRANSLATORS: Replace this string with your names, one name per line.
+#: ../src/interface.c:11460
+msgid "translator-credits"
+msgstr "શ્ર્વેતા કોઠારી <swkothar@redhat.com>"
+
+#: ../src/interface.c:11466
+msgid "iok"
+msgstr "iok"
+
+#: ../src/interface.c:11467
+msgid "GPLv2 or later\n"
+msgstr "GPLv2 અથવા પછીની\n"
+
+#: ../src/support.c:90 ../src/support.c:114
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "પિક્સમેપ ફાઇલને શોધી શકાયુ નહિં: %s"
+

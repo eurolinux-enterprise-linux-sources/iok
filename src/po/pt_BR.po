@@ -1,0 +1,521 @@
+# Brazilian Portuguese translation of Iok.
+# This file is distributed under the same license as the Iok package.
+# Taylon Silmer <taylonsilva@gmail.com>, 2008, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Iok\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-07-20 14:47+0530\n"
+"PO-Revision-Date: 2009-09-14 14:31-0300\n"
+"Last-Translator: Taylon <taylonsilva@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <fedora-trans-pt_br@redhat.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-Language: Portuguese\n"
+"X-Poedit-Country: BRAZIL\n"
+
+#: ../iok.desktop.in.h:1
+msgid "Enter Indic characters with a virtual keyboard"
+msgstr "Digite caracteres índicos com um teclado virtual"
+
+#: ../iok.desktop.in.h:2
+msgid "Indic Onscreen Keyboard"
+msgstr "Indic Onscreen Keyboard"
+
+#: ../src/interface.c:2478
+msgid "Select the language in which you want to write"
+msgstr "Selecionar o idioma no qual você deseja escrever"
+
+#: ../src/interface.c:2480 ../src/interface.c:9870
+msgid "Change to English Keyboard"
+msgstr "Altera para o teclado em inglês"
+
+#: ../src/interface.c:2553
+msgid "ReassignKey"
+msgstr "ReatribuirTecla"
+
+#: ../src/interface.c:2563
+msgid "Reassign Keyvalue of Key"
+msgstr "Reatribuir valor da tecla"
+
+#: ../src/interface.c:2574
+msgid "to another Key"
+msgstr "para outra tecla"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:2589 ../src/interface.c:9367
+msgid "Reassign"
+msgstr "Reatribuir"
+
+#: ../src/interface.c:2593
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: ../src/interface.c:2850
+msgid "Open Keymap File"
+msgstr "Abre um arquivo de mapa de teclas"
+
+#: ../src/interface.c:2900
+msgid "Write to Keymap File"
+msgstr "Salva no arquivo de mapa de teclas"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:9325
+msgid "Open"
+msgstr "Abrir"
+
+#: ../src/interface.c:9327
+msgid "Open a Keymap that is not listed in a combobox"
+msgstr "Abre um mapa de teclas que não está listado na caixa de seleção"
+
+#: ../src/interface.c:9329
+msgid "Save"
+msgstr "Salvar"
+
+#: ../src/interface.c:9331
+msgid "Save current state of loaded keymap to a new keymap"
+msgstr "Salva o estado atual do mapa de teclas carregado em um novo mapa"
+
+#: ../src/interface.c:9334
+msgid "Quit"
+msgstr "Sair"
+
+#: ../src/interface.c:9336
+msgid "Close iok application"
+msgstr "Fecha a aplicação iok"
+
+#: ../src/interface.c:9369
+msgid "Reassign key value of some key to some other key"
+msgstr "Reatribui o valor de alguma tecla para alguma outra tecla"
+
+#: ../src/interface.c:9371
+msgid "Swap"
+msgstr "Trocar"
+
+#: ../src/interface.c:9373
+msgid "Swap key values between any 2 keys in loaded keymap"
+msgstr "Troca o valor entre duas teclas no mapa de teclas carregado"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:9393
+msgid "About"
+msgstr "Sobre"
+
+#: ../src/interface.c:9395
+msgid "About iok application"
+msgstr "Sobre a aplicação iok"
+
+#: ../src/interface.c:9411
+msgid "Keymap"
+msgstr "Mapa de teclas"
+
+#: ../src/interface.c:9414
+msgid "Keys"
+msgstr "Teclas"
+
+#: ../src/interface.c:9417
+msgid "Help"
+msgstr "Ajuda"
+
+#: ../src/interface.c:9600
+msgid "Backspace"
+msgstr "Backspace"
+
+#: ../src/interface.c:9616
+msgid "Tab"
+msgstr "Tab"
+
+#: ../src/interface.c:9708
+msgid "Caps"
+msgstr "Caps"
+
+#: ../src/interface.c:9779
+msgid "Enter"
+msgstr "Enter"
+
+#: ../src/interface.c:9794 ../src/interface.c:9859
+msgid "Shift"
+msgstr "Shift"
+
+#: ../src/interface.c:9873
+msgid "Space"
+msgstr "Espaço"
+
+#: ../src/interface.c:9880
+msgid ""
+"Select the language in which you want to write. This list contains keymaps "
+"in order as inscript then user defined then xkb and then any keymaps opened "
+"that are not default listed"
+msgstr ""
+"Selecione o idioma no qual você deseja escrever. Esta lista contém mapas de "
+"teclas pela ordem de inscrição, depois pela definida pelo usuário, depois "
+"pelo xkb e então qualquer mapa de teclas aberto que não esteja listado por "
+"padrão."
+
+#. TRANSLATORS: Replace this string with your names, one name per line.
+#: ../src/interface.c:11460
+msgid "translator-credits"
+msgstr "Taylon Silmer <taylonsilva@gmail.com>"
+
+#: ../src/interface.c:11466
+msgid "iok"
+msgstr "iok"
+
+#: ../src/interface.c:11467
+msgid "GPLv2 or later\n"
+msgstr "GPLv2 ou superior\n"
+
+#: ../src/support.c:90 ../src/support.c:114
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "Não foi possível encontrar o arquivo pixmap: %s"
+
+#~ msgid "to English"
+#~ msgstr "Ir para inglês"
+
+#~ msgid "OpenMap"
+#~ msgstr "AbrirMapeamento"
+
+#~ msgid "WriteMap"
+#~ msgstr "SalvarMapeamento"
+
+#~ msgid ""
+#~ "~\n"
+#~ "`"
+#~ msgstr ""
+#~ "~\n"
+#~ "`"
+
+#~ msgid ""
+#~ "!\n"
+#~ "1"
+#~ msgstr ""
+#~ "!\n"
+#~ "1"
+
+#~ msgid ""
+#~ "@\n"
+#~ "2"
+#~ msgstr ""
+#~ "@\n"
+#~ "2"
+
+#~ msgid ""
+#~ "#\n"
+#~ "3"
+#~ msgstr ""
+#~ "#\n"
+#~ "3"
+
+#~ msgid ""
+#~ "$\n"
+#~ "4"
+#~ msgstr ""
+#~ "$\n"
+#~ "4"
+
+#~ msgid ""
+#~ "%\n"
+#~ "5"
+#~ msgstr ""
+#~ "%\n"
+#~ "5"
+
+#~ msgid ""
+#~ "^\n"
+#~ "6"
+#~ msgstr ""
+#~ "^\n"
+#~ "6"
+
+#~ msgid ""
+#~ "&\n"
+#~ "7"
+#~ msgstr ""
+#~ "&\n"
+#~ "7"
+
+#~ msgid ""
+#~ "*\n"
+#~ "8"
+#~ msgstr ""
+#~ "*\n"
+#~ "8"
+
+#~ msgid ""
+#~ "(\n"
+#~ "9"
+#~ msgstr ""
+#~ "(\n"
+#~ "9"
+
+#~ msgid ""
+#~ ")\n"
+#~ "0"
+#~ msgstr ""
+#~ ")\n"
+#~ "0"
+
+#~ msgid ""
+#~ "_\n"
+#~ "-"
+#~ msgstr ""
+#~ "_\n"
+#~ "-"
+
+#~ msgid ""
+#~ "+\n"
+#~ "="
+#~ msgstr ""
+#~ "+\n"
+#~ "="
+
+#~ msgid ""
+#~ "Q\n"
+#~ "q"
+#~ msgstr ""
+#~ "Q\n"
+#~ "q"
+
+#~ msgid ""
+#~ "W\n"
+#~ "w"
+#~ msgstr ""
+#~ "W\n"
+#~ "w"
+
+#~ msgid ""
+#~ "E\n"
+#~ "e"
+#~ msgstr ""
+#~ "E\n"
+#~ "e"
+
+#~ msgid ""
+#~ "R\n"
+#~ "r"
+#~ msgstr ""
+#~ "R\n"
+#~ "r"
+
+#~ msgid ""
+#~ "T\n"
+#~ "t"
+#~ msgstr ""
+#~ "T\n"
+#~ "t"
+
+#~ msgid ""
+#~ "Y\n"
+#~ "y"
+#~ msgstr ""
+#~ "Y\n"
+#~ "y"
+
+#~ msgid ""
+#~ "U\n"
+#~ "u"
+#~ msgstr ""
+#~ "U\n"
+#~ "u"
+
+#~ msgid ""
+#~ "I\n"
+#~ "i"
+#~ msgstr ""
+#~ "I\n"
+#~ "i"
+
+#~ msgid ""
+#~ "O\n"
+#~ "o"
+#~ msgstr ""
+#~ "O\n"
+#~ "o"
+
+#~ msgid ""
+#~ "P\n"
+#~ "p"
+#~ msgstr ""
+#~ "P\n"
+#~ "p"
+
+#~ msgid ""
+#~ "{\n"
+#~ "["
+#~ msgstr ""
+#~ "{\n"
+#~ "["
+
+#~ msgid ""
+#~ "}\n"
+#~ "]"
+#~ msgstr ""
+#~ "}\n"
+#~ "]"
+
+#~ msgid ""
+#~ "|\n"
+#~ "\\"
+#~ msgstr ""
+#~ "|\n"
+#~ "\\"
+
+#~ msgid ""
+#~ "A\n"
+#~ "a"
+#~ msgstr ""
+#~ "A\n"
+#~ "a"
+
+#~ msgid ""
+#~ "S\n"
+#~ "s"
+#~ msgstr ""
+#~ "S\n"
+#~ "s"
+
+#~ msgid ""
+#~ "D\n"
+#~ "d"
+#~ msgstr ""
+#~ "D\n"
+#~ "d"
+
+#~ msgid ""
+#~ "F\n"
+#~ "f"
+#~ msgstr ""
+#~ "F\n"
+#~ "f"
+
+#~ msgid ""
+#~ "G\n"
+#~ "g"
+#~ msgstr ""
+#~ "G\n"
+#~ "g"
+
+#~ msgid ""
+#~ "H\n"
+#~ "h"
+#~ msgstr ""
+#~ "H\n"
+#~ "h"
+
+#~ msgid ""
+#~ "J\n"
+#~ "j"
+#~ msgstr ""
+#~ "J\n"
+#~ "j"
+
+#~ msgid ""
+#~ "K\n"
+#~ "k"
+#~ msgstr ""
+#~ "K\n"
+#~ "k"
+
+#~ msgid ""
+#~ "L\n"
+#~ "l"
+#~ msgstr ""
+#~ "L\n"
+#~ "l"
+
+#~ msgid ""
+#~ ":\n"
+#~ ";"
+#~ msgstr ""
+#~ ":\n"
+#~ ";"
+
+#~ msgid ""
+#~ "\"\n"
+#~ "'"
+#~ msgstr ""
+#~ "\"\n"
+#~ "'"
+
+#~ msgid ""
+#~ "Z\n"
+#~ "z"
+#~ msgstr ""
+#~ "Z\n"
+#~ "z"
+
+#~ msgid ""
+#~ "X\n"
+#~ "x"
+#~ msgstr ""
+#~ "X\n"
+#~ "x"
+
+#~ msgid ""
+#~ "C\n"
+#~ "c"
+#~ msgstr ""
+#~ "C\n"
+#~ "c"
+
+#~ msgid ""
+#~ "V\n"
+#~ "v"
+#~ msgstr ""
+#~ "V\n"
+#~ "v"
+
+#~ msgid ""
+#~ "B\n"
+#~ "b"
+#~ msgstr ""
+#~ "B\n"
+#~ "b"
+
+#~ msgid ""
+#~ "N\n"
+#~ "n"
+#~ msgstr ""
+#~ "N\n"
+#~ "n"
+
+#~ msgid ""
+#~ "M\n"
+#~ "m"
+#~ msgstr ""
+#~ "M\n"
+#~ "m"
+
+#~ msgid ""
+#~ "<\n"
+#~ ","
+#~ msgstr ""
+#~ "<\n"
+#~ ","
+
+#~ msgid ""
+#~ ">\n"
+#~ "."
+#~ msgstr ""
+#~ ">\n"
+#~ "."
+
+#~ msgid ""
+#~ "?\n"
+#~ "/"
+#~ msgstr ""
+#~ "?\n"
+#~ "/"
+
+#~ msgid "swap_window"
+#~ msgstr "troca_janela"
+
+#~ msgid "Key 2"
+#~ msgstr "Tecla 2"
