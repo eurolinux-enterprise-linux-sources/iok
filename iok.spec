@@ -1,12 +1,14 @@
 Name:           iok
 Version:        1.3.10
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Indic Onscreen Virtual Keyboard
 Group:          Applications/System
 License:        GPLv2+
 URL:            http://iok.sourceforge.net
 Source0:        https://fedorahosted.org/releases/i/o/iok/%{name}-%{version}.tar.gz
 Patch0:         iok-1.3.10-translations.patch
+##See https://bugzilla.redhat.com/show_bug.cgi?id=636756
+Patch1:         iok-1.3.10-oriya-translations.patch    
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  desktop-file-utils libXtst-devel
 BuildRequires:  gtk2-devel gettext libxml2-devel
@@ -21,6 +23,7 @@ can even try to parse non-inscript keymaps and show them in iok.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %configure
@@ -52,6 +55,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Wed Dec 22 2010 Parag Nemade <pnemade AT redhat.com>- 1.3.10-3
+- Resolves:rh#636756:[or_IN][VM] iok is out of VM's Screen
+
 * Thu Jun 03 2010 Parag Nemade <pnemade AT redhat.com>- 1.3.10-2
 - Resolves:rh#589213:[iok][ALL_LANG] Translation updates
 
