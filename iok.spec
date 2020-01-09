@@ -1,6 +1,6 @@
 Name:           iok
 Version:        1.3.13
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Indic Onscreen Virtual Keyboard
 Group:          Applications/System
 License:        GPLv2+
@@ -8,6 +8,8 @@ URL:            http://iok.sourceforge.net
 Source0:        https://fedorahosted.org/releases/i/o/iok/%{name}-%{version}.tar.gz
 Patch0:         iok-1.3.13-configure.patch
 Patch1:         iok-1.3.13-increase-size-xkb-name-array.patch
+Patch2:         iok-1.3.13-save-file-enhancements.patch
+Patch3:         iok-1.3.13_translation_bz_819795.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  desktop-file-utils libXtst-devel
 BuildRequires:  gtk2-devel gettext libxml2-devel
@@ -23,6 +25,8 @@ can even try to parse non-inscript keymaps and show them in iok.
 %setup -q
 %patch0 -p1
 %patch1 -p0
+%patch2 -p1
+%patch3 -p1
 
 %build
 %configure
@@ -54,6 +58,12 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue Jul 24 2012 Parag Nemade <pnemade AT redhat DOT com>- 1.3.13-3
+- Resolves:rh#814548: Save File option should suggests a predefined file name format
+- Resolves:rh#814521: iok does not fetch any .mim file name which does not contain "inscript2" word.
+- Resolves:rh#814541: Predefined naming convention followed when save File name, but no clue of that to user 
+- Resolves:rh#819795: Translation tracker for iok  
+
 * Tue Mar 06 2012 Parag Nemade <pnemade AT redhat DOT com>- 1.3.13-2
 - Resolves:rh#798592 - iok crashed while selecting 'xkb-Malayalam (enhanced Inscript with Rupee Sign)'
 

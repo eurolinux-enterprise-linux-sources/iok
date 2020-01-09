@@ -1,0 +1,421 @@
+diff -urN iok-1.3.13.old/src/interface.c iok-1.3.13/src/interface.c
+--- iok-1.3.13.old/src/interface.c	2012-06-29 11:40:20.827633560 +0530
++++ iok-1.3.13/src/interface.c	2012-06-29 15:41:55.303463792 +0530
+@@ -176,7 +176,6 @@
+ GtkWidget *btn_reassign_reakey;
+ GtkWidget *btn_cancel_reakey;
+ 
+-GtkWidget *Write_Map;
+ GtkWidget *lbl_wrmap1;
+ GtkWidget *wrmap_entry;
+ GtkWidget *btn_writemap;
+@@ -187,7 +186,7 @@
+ GtkWidget *menu_items,*separator_item,*open_item,*save_item,*advopt_item,*quit_item,*reassign_item,*swap_item,*about_item;
+ GtkTooltips *tooltips;
+ 
+-char *mlinecpy,*langname;
++char *mlinecpy,*langname,*scriptname,*mapname;
+ 
+ char *row1 = "1234567890-+";
+ char *row2 = "qwertyuiop[]";
+@@ -196,7 +195,32 @@
+ 
+ gboolean enable_dnd=0;
+ 
+-char *maplist[50];
++char *maplist[100];
++
++char *lc_code[][2] = {
++    {"as" ,  "Assamese"},
++    {"bn" ,  "Bengali"},
++    {"brx" , "Bodo"},
++    {"doi",  "Dogri"},
++    {"gu" ,  "Gujarati"},
++    {"hi" , "Hindi"},
++    {"kn" , "Kannada"},
++    {"kok" , "Konkani"},
++    {"ks" , "Kashmiri"},
++    {"mai", "Maithili"},
++    {"ml" , "Malayalam"},
++    {"mni", "Manipuri"},
++    {"mr" , "Marathi"},
++    {"ne", "Nepali"},
++    {"or" , "Oriya"},
++    {"pa" , "Panjabi"},
++    {"sa" , "Sanskrit"},
++    {"sat", "Santali"},
++    {"sd" , "Sindhi"},
++    {"ta" , "Tamil"},
++    {"te" , "Telugu"},
++    {NULL, NULL}
++};
+ 
+ char *spl_sym[][2]= {
+     {"apostrophe", "U0027"},
+@@ -232,6 +256,8 @@
+     {"gur_visarga", "U0020"},
+     {"less", "U003C"},
+     {"greater", "U003E"},
++    {"backslash", "U005C"},
++    {"bar", "U007C"},
+     {NULL,NULL}
+ };
+ 
+@@ -294,7 +320,7 @@
+ typedef struct
+ {
+     char keyname[1];
+-    wchar_t keyvalue[3];
++    wchar_t keyvalue[4];
+ } Mappings;
+ 
+ 
+@@ -1564,7 +1590,7 @@
+                                                               GTK_BUTTONS_CLOSE,
+                                                               NULL);
+                             gtk_message_dialog_set_markup (GTK_MESSAGE_DIALOG (mdialog),
+-                                                           "This keymap file does not map uniquely to a keyboard and therefore cannot be displayed correctly");
++                                                           _("This keymap file does not map uniquely to a keyboard and therefore cannot be displayed correctly"));
+                             gtk_dialog_run (GTK_DIALOG (mdialog));
+                             gtk_widget_destroy (mdialog);
+                             gtk_combo_box_set_active  ((GtkComboBox *)combo_mim,0);
+@@ -2746,21 +2772,37 @@
+     gtk_widget_destroy(swap_dialog);
+ }
+ 
+-static void on_btn_writemap_clicked(gchar *filenameprefix)
++static void on_btn_writemap_clicked(gchar *lcn,gchar *filenameprefix)
+ {
+-    char *current_mim,*lc,imname[256];
++    char *current_mim,imname[256];
+     FILE *fpm;
+-    char *home_dir;
++    char *home_dir,*fnameprefix,*pre_token,*fname_print,*lang_print;
+     char nfilepath[80],hdirpath[80];
+     struct stat buf;
+-    int ret=0;
++    int ret=0,j=0;
+ 
+     home_dir=getenv("HOME");
+ 
+-    current_mim = (char *)gtk_combo_box_get_active_text((GtkComboBox *)combo_mim);
++    current_mim= gtk_combo_box_get_active_text((GtkComboBox *)combo_mim);
++    fnameprefix=(char *)malloc(30*sizeof(char));
++    memset(fnameprefix,'\0',30);
++    fname_print=(char *)malloc(30*sizeof(char));
++    memset(fname_print,'\0',30);
++
++    strcpy(fname_print,filenameprefix);
++    if(strstr(filenameprefix,"-inscript.mim")!=NULL) {
++        pre_token=strtok(filenameprefix,"-");
++        pre_token=strtok(NULL,"-");
++
++        strcpy(fnameprefix,pre_token);
++        sprintf(imname,"(input-method %s %s-inscript)\n\n",lcn,fnameprefix);
++        sprintf(nfilepath,"%s/.m17n.d/%s-%s-inscript.mim",home_dir,lcn,fnameprefix);
++    }
++    else {
++        sprintf(imname,"(input-method %s %s-inscript2)\n\n",lcn,filenameprefix);
++        sprintf(nfilepath,"%s/.m17n.d/%s-inscript2.mim",home_dir,fnameprefix);
++    }
+ 
+-    lc=get_iso_code(current_mim);
+-    sprintf(imname,"(input-method %s %s-inscript)\n\n",lc,filenameprefix);
+     strcpy(hdirpath,home_dir);
+     strcat(hdirpath,"/.m17n.d/");
+ 
+@@ -2770,13 +2812,21 @@
+         ret=mkdir(hdirpath,0755);
+         if (ret!=0)
+             exit(0);
+-
+     }
+ 
+-    sprintf(nfilepath,"%s/.m17n.d/%s-%s-inscript.mim",home_dir,lc,filenameprefix);
+     nfilepath[strlen(nfilepath)]='\0';
+     fpm = fopen(nfilepath, "w+");
+ 
++    fputs(";; ",fpm);
++    fputs(fname_print,fpm);
++    fputs(" -- ",fpm);
++    for (j=0; j<20; j++) {
++        if (strcmp(filenameprefix,lc_code[j][0])==0) {
++            fputs(lc_code[j][1],fpm);
++        }
++    }
++
++    fputs(" input method\n\n",fpm);
+     fputs(imname,fpm);
+     fputs("(description \"This is custom keyboard layout created by iok application.\")\n\n",fpm);
+     if (strstr(current_mim,"as")!=NULL)
+@@ -2840,25 +2890,24 @@
+     fputs("  (init\n",fpm);
+     fputs("    (trans)))\n",fpm);
+     fclose(fpm);
+-    gtk_widget_hide(Write_Map);
+ 
+ }
+ 
+-void open_file(char *mapname)
++void open_file(char *keymapname)
+ {
+     int maplen=0, FOUND=0;
+-    char omimfile[15];
++    char omimfile[16];
+     char *result=NULL;
+     gchar *cmim;
+ 
+-    result = strtok(mapname,"/");
+-    while ( strcmp(result,"m17n")!=0) {
+-        result = strtok( NULL, "/" );
+-    }
++    char *getfilename = strrchr(keymapname, '/');
++    if (getfilename == NULL)
++        getfilename = keymapname;
++    else
++        getfilename++;
+ 
+-    result = strtok( NULL, "/" );
+-    maplen=strlen(result);
+-    strncpy(omimfile,result,maplen-4);
++    maplen=strlen(getfilename);
++    strncpy(omimfile,getfilename,maplen-4);
+     omimfile[maplen-4]='\0';
+ 
+     cmim= gtk_combo_box_get_active_text((GtkComboBox *)combo_mim);
+@@ -2922,9 +2971,9 @@
+ static void on_bt_wrmap_clicked( GtkWidget *widget,
+                                  gpointer   data )
+ {
+-    GtkWidget *dialog;
+-    char *home_dir;
+-    char sdirpath[80];
++    GtkWidget *dialog, *m_dia;
++    char *home_dir,*lc,*cur_mim,*find_lc;
++    char sdirpath[80],setfilename[80];
+     struct stat buf;
+     int ret=0;
+ 
+@@ -2947,28 +2996,64 @@
+                                           GTK_STOCK_SAVE, GTK_RESPONSE_ACCEPT,
+                                           NULL);
+ 
+-    gtk_file_chooser_set_current_folder( GTK_FILE_CHOOSER( dialog ) ,sdirpath);
+-    GtkFileFilter *filter = gtk_file_filter_new();
+-    gtk_file_filter_set_name(filter, "m17n Keymap file (*.mim)");
+-    gtk_file_filter_add_pattern(filter, "*.mim");
+-    g_object_set_data( G_OBJECT( filter ), "id", GINT_TO_POINTER( 0 ) );
+-    gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog), filter);
++    cur_mim= gtk_combo_box_get_active_text((GtkComboBox *)combo_mim);
+ 
+-    if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
++    if(strstr(cur_mim,"xkb-")!=NULL)
+     {
+-        char *filename;
+-
+-        filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+-        gtk_widget_destroy (dialog);
+-
+-        on_btn_writemap_clicked (basename(filename));
+-        g_free (filename);
++        m_dia = gtk_message_dialog_new (GTK_WINDOW(IndicMapper),
++                                        GTK_DIALOG_DESTROY_WITH_PARENT,
++                                        GTK_MESSAGE_ERROR,
++                                        GTK_BUTTONS_CLOSE,
++                                        NULL);
++        gtk_message_dialog_set_markup (GTK_MESSAGE_DIALOG (m_dia),
++                                       _("This application supports only for Inscript type keymaps therefore no custom xkb keymaps can be created."));
++        gtk_dialog_run (GTK_DIALOG (m_dia));
++        gtk_widget_destroy (m_dia);
+     }
+     else
+     {
+-        gtk_widget_destroy (dialog);
+-    }
++        find_lc=strtok(cur_mim,"-");
++        lc=get_iso_code(find_lc);
++        sprintf(setfilename,"%s-custom-inscript.mim",lc);
++
++        gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), setfilename);
++
++        GtkFileFilter *filter = gtk_file_filter_new();
++        gtk_file_filter_set_name(filter, "m17n Keymap file (*.mim)");
++        gtk_file_filter_add_pattern(filter, "*.mim");
++        g_object_set_data( G_OBJECT( filter ), "id", GINT_TO_POINTER( 0 ) );
++        gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog), filter);
++
++        m_dia = gtk_message_dialog_new (GTK_WINDOW(IndicMapper),
++                                        GTK_DIALOG_DESTROY_WITH_PARENT,
++                                        GTK_MESSAGE_ERROR,
++                                        GTK_BUTTONS_CLOSE,
++                                        NULL);
++        gtk_message_dialog_set_markup (GTK_MESSAGE_DIALOG (m_dia),
++                                       _("This application supports saving the inscript keymaps using filename as \"locale_code-custom_name-inscript.mim\" only. If you are planning to change the default keymap name then use only this pattern."));
+ 
++        gtk_dialog_run (GTK_DIALOG (m_dia));
++        gtk_widget_destroy (m_dia);
++
++        if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
++        {
++            char *filename;
++
++            filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
++            gtk_widget_destroy (dialog);
++
++            // ToDo: Write 2 hyphen validation in filename if sucess then call clicked
++            if(strstr(cur_mim,"xkb-")!=NULL)
++                on_btn_writemap_clicked ("xkb",basename(filename));
++            else
++                on_btn_writemap_clicked (lc,basename(filename));
++            g_free (filename);
++        }
++        else
++        {
++            gtk_widget_destroy (dialog);
++        }
++    }
+ }
+ 
+ 
+@@ -9359,6 +9444,7 @@
+ 
+     hbox6 = gtk_hbox_new (FALSE, 5);
+     gtk_widget_show (hbox6);
++    gtk_box_set_homogeneous(GTK_BOX (hbox6), TRUE);
+     gtk_box_pack_start (GTK_BOX (vbox1), hbox6, TRUE, TRUE, 0);
+     gtk_container_set_border_width (GTK_CONTAINER (hbox6), 2);
+ 
+@@ -9367,17 +9453,14 @@
+ 
+     /* Create the menu items */
+     open_item = gtk_menu_item_new_with_mnemonic (_("Open"));
+-    tooltips = gtk_tooltips_new ();
+-    gtk_tooltips_set_tip (tooltips, open_item, _("Open a Keymap that is not listed in a combobox"), NULL);
++    gtk_widget_set_tooltip_text (open_item, _("Open a Keymap that is not listed in a combobox"));
+ 
+     save_item = gtk_menu_item_new_with_mnemonic (_("Save"));
+-    tooltips = gtk_tooltips_new ();
+-    gtk_tooltips_set_tip (tooltips, save_item, _("Save current state of loaded keymap to a new keymap"), NULL);
++    gtk_widget_set_tooltip_text (save_item, _("Save current state of loaded keymap to a new keymap"));
+ 
+     separator_item = gtk_separator_menu_item_new ();
+     quit_item = gtk_menu_item_new_with_mnemonic (_("Quit"));
+-    tooltips = gtk_tooltips_new ();
+-    gtk_tooltips_set_tip (tooltips, quit_item, _("Close iok application"), NULL);
++    gtk_widget_set_tooltip_text (quit_item, _("Close iok application"));
+ 
+     /* Add them to the menu */
+     gtk_menu_shell_append (GTK_MENU_SHELL (file_menu), open_item);
+@@ -9409,12 +9492,10 @@
+ 
+     /* Create the menu items */
+     reassign_item = gtk_menu_item_new_with_mnemonic (_("Reassign"));
+-    tooltips = gtk_tooltips_new ();
+-    gtk_tooltips_set_tip (tooltips, reassign_item, _("Reassign key value of some key to some other key"), NULL);
++    gtk_widget_set_tooltip_text (reassign_item, _("Reassign key value of some key to some other key"));
+ 
+     swap_item = gtk_menu_item_new_with_mnemonic (_("Swap"));
+-    tooltips = gtk_tooltips_new ();
+-    gtk_tooltips_set_tip (tooltips, swap_item, _("Swap key values between any 2 keys in loaded keymap"), NULL);
++    gtk_widget_set_tooltip_text (swap_item, _("Swap key values between any 2 keys in loaded keymap"));
+ 
+     /* Add them to the menu */
+     gtk_menu_shell_append (GTK_MENU_SHELL (keys_menu), reassign_item);
+@@ -9436,8 +9517,7 @@
+ 
+     /* Create the menu items */
+     about_item = gtk_menu_item_new_with_mnemonic (_("About"));
+-    tooltips = gtk_tooltips_new ();
+-    gtk_tooltips_set_tip (tooltips, about_item, _("About iok application"), NULL);
++    gtk_widget_set_tooltip_text (about_item, _("About iok application"));
+ 
+ 
+     /* Add them to the menu */
+@@ -9455,21 +9535,22 @@
+ 
+     file_item = gtk_menu_item_new_with_mnemonic(_("Keymap"));
+     gtk_menu_item_set_submenu (GTK_MENU_ITEM (file_item), file_menu);
+-    gtk_menu_bar_append (GTK_MENU_BAR (menu_bar), file_item);
++    gtk_menu_shell_append ((GtkMenuShell *)menu_bar, file_item);
+     keys_item = gtk_menu_item_new_with_mnemonic(_("Keys"));
+     gtk_menu_item_set_submenu (GTK_MENU_ITEM (keys_item), keys_menu);
+-    gtk_menu_bar_append (GTK_MENU_BAR (menu_bar), keys_item);
++    gtk_menu_shell_append ((GtkMenuShell *) menu_bar, keys_item);
+     help_item = gtk_menu_item_new_with_mnemonic(_("Help"));
+     gtk_menu_item_set_submenu (GTK_MENU_ITEM (help_item), help_menu);
+-    gtk_menu_bar_append (GTK_MENU_BAR (menu_bar), help_item);
++    gtk_menu_shell_append ((GtkMenuShell *)menu_bar, help_item);
+ 
+     gtk_widget_show (file_item);
+     gtk_widget_show (keys_item);
+     gtk_widget_show (help_item);
+ 
+     /*Start row1 Esc,F1,F2,F3,F4,F5,F6,F7,F8,F9,F10,F11,F12,PrtSc,SLock,Pause */
+-    hbox0 =gtk_hbox_new (FALSE, 5);
++    hbox0 = gtk_hbox_new (FALSE, 0);
+     gtk_widget_show (hbox0);
++    gtk_box_set_homogeneous(GTK_BOX (hbox0), TRUE);
+     gtk_box_pack_start (GTK_BOX (vbox1), hbox0, TRUE, TRUE, 0);
+     table0 = gtk_table_new( 1, 30, TRUE );
+     gtk_container_add( GTK_CONTAINER( hbox0 ), table0 );
+@@ -9559,6 +9640,7 @@
+ 
+     hbox1 = gtk_hbox_new (FALSE, 5);
+     gtk_widget_show (hbox1);
++    gtk_box_set_homogeneous(GTK_BOX (hbox1), TRUE);
+     gtk_box_pack_start (GTK_BOX (vbox1), hbox1, TRUE, TRUE, 0);
+     gtk_container_set_border_width (GTK_CONTAINER (hbox1), 2);
+     table1 = gtk_table_new( 1, 30, TRUE );
+@@ -9653,6 +9735,7 @@
+     left = 3;
+     hbox2 = gtk_hbox_new (FALSE, 5);
+     gtk_widget_show (hbox2);
++    gtk_box_set_homogeneous(GTK_BOX (hbox2), TRUE);
+     gtk_box_pack_start (GTK_BOX (vbox1), hbox2, TRUE, TRUE, 0);
+     gtk_container_set_border_width (GTK_CONTAINER (hbox2), 2);
+     table2 = gtk_table_new( 1, 30, TRUE );
+@@ -9744,6 +9827,7 @@
+     left = 4;
+     hbox3 = gtk_hbox_new (FALSE, 5);
+     gtk_widget_show (hbox3);
++    gtk_box_set_homogeneous(GTK_BOX (hbox3), TRUE);
+     gtk_box_pack_start (GTK_BOX (vbox1), hbox3, TRUE, TRUE, 0);
+     gtk_container_set_border_width (GTK_CONTAINER (hbox3), 2);
+     table3 = gtk_table_new( 1, 30, TRUE );
+@@ -9831,6 +9915,7 @@
+     left = 5;
+     hbox4 = gtk_hbox_new (FALSE, 5);
+     gtk_widget_show (hbox4);
++    gtk_box_set_homogeneous(GTK_BOX (hbox4), TRUE);
+     gtk_box_pack_start (GTK_BOX (vbox1), hbox4, TRUE, TRUE, 0);
+     gtk_container_set_border_width (GTK_CONTAINER (hbox4), 2);
+     table4 = gtk_table_new( 1, 30, TRUE );
+@@ -9911,8 +9996,7 @@
+     gtk_box_pack_start (GTK_BOX (vbox1), hbox9, TRUE, TRUE, 0);
+ 
+     keyswitch_btn = gtk_button_new_with_label ("to English");
+-    tooltips = gtk_tooltips_new ();
+-    gtk_tooltips_set_tip (tooltips, keyswitch_btn, _("Change to English Keyboard"), NULL);
++    gtk_widget_set_tooltip_text (keyswitch_btn, _("Change to English Keyboard"));
+     gtk_box_pack_start (GTK_BOX (hbox9), keyswitch_btn, TRUE, TRUE, 0);
+ 
+     space_btn = gtk_button_new_with_mnemonic (_("Space"));
+@@ -9921,8 +10005,7 @@
+     gtk_widget_set_size_request (space_btn, 325, -1);
+ 
+     combo_mim = gtk_combo_box_new_text ();
+-    tooltips = gtk_tooltips_new ();
+-    gtk_tooltips_set_tip (tooltips, combo_mim, _("Select the language in which you want to write. This list contains keymaps in order as inscript then user defined then xkb and then any keymaps opened that are not default listed"), NULL);
++    gtk_widget_set_tooltip_text (combo_mim, _("Select the language in which you want to write. This list contains keymaps in order as inscript then user defined then xkb and then any keymaps opened that are not default listed"));
+     gtk_box_pack_start (GTK_BOX (hbox9), combo_mim, TRUE, TRUE, 0);
+     g_signal_connect (G_OBJECT (combo_mim), "changed",
+                       G_CALLBACK (on_combo_mim_changed),
+@@ -11533,7 +11616,7 @@
+     gtk_container_set_border_width (GTK_CONTAINER (IndicMapper_aboutdialog), 5);
+     gtk_window_set_destroy_with_parent (GTK_WINDOW (IndicMapper_aboutdialog), TRUE);
+     gtk_about_dialog_set_version (GTK_ABOUT_DIALOG (IndicMapper_aboutdialog), VERSION);
+-    gtk_about_dialog_set_name (GTK_ABOUT_DIALOG (IndicMapper_aboutdialog), _("iok"));
++    gtk_about_dialog_set_program_name (GTK_ABOUT_DIALOG (IndicMapper_aboutdialog), _("iok"));
+     gtk_about_dialog_set_license (GTK_ABOUT_DIALOG (IndicMapper_aboutdialog), _("GPLv2 or later\n"));
+     gtk_about_dialog_set_authors (GTK_ABOUT_DIALOG (IndicMapper_aboutdialog), authors);
+     gtk_about_dialog_set_translator_credits (GTK_ABOUT_DIALOG (IndicMapper_aboutdialog), translators);
