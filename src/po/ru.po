@@ -1,176 +1,177 @@
-# translation of ru.po to
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
+# Translators:
+# Andrew Zaytsev <andzaytsev@gmail.com>, 2010.
 # Yulia Poyarkova <yulia.poyarkova@redhat.com>, 2009.
-# Andrew Zaytsev <andzaytsev@gmail.com>, 2010
 msgid ""
 msgstr ""
-"Project-Id-Version: ru\n"
+"Project-Id-Version: fedorahosted-org-svn-iok-po-iok.pot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-17 17:54+0530\n"
-"PO-Revision-Date: 2009-08-25 13:57+0000\n"
-"Last-Translator: Andrew Zaytsev <andzaytsev@gmail.com>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2010-11-15 10:31+0530\n"
+"PO-Revision-Date: 2011-03-04 04:16+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Russian (http://www.transifex.net/projects/p/fedorahosted-org-svn-iok-po-io/team/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
 #: ../iok.desktop.in.h:1
 msgid "Enter Indic characters with a virtual keyboard"
-msgstr "Введите индийские символы с помощью виртуальной клавиатуры"
+msgstr ""
 
 #: ../iok.desktop.in.h:2
 msgid "Indic Onscreen Keyboard"
-msgstr "Индийская Экранная Клавиатура"
+msgstr ""
 
-#: ../src/interface.c:2473
+#: ../src/interface.c:2518
 msgid "Select the language in which you want to write"
-msgstr "Выберите язык на которым вы хотите писать"
+msgstr ""
 
-#: ../src/interface.c:2475 ../src/interface.c:9866
+#: ../src/interface.c:2520 ../src/interface.c:9889
 msgid "Change to English Keyboard"
-msgstr "Изменить на английскую клавиатуру"
+msgstr ""
 
-#: ../src/interface.c:2548
+#: ../src/interface.c:2593
 msgid "ReassignKey"
-msgstr "Переназначить клавишу"
+msgstr ""
 
-#: ../src/interface.c:2558
+#: ../src/interface.c:2603
 msgid "Reassign Keyvalue of Key"
-msgstr "Переназначить значение клавиши"
+msgstr ""
 
-#: ../src/interface.c:2569
+#: ../src/interface.c:2614
 msgid "to another Key"
-msgstr "другой клавише"
+msgstr ""
 
 #. Don't need to show menus
 #. Create the menu items
-#: ../src/interface.c:2584 ../src/interface.c:9363
+#: ../src/interface.c:2629 ../src/interface.c:9385
 msgid "Reassign"
-msgstr "Переназначить"
+msgstr ""
 
-#: ../src/interface.c:2588
+#: ../src/interface.c:2633
 msgid "Cancel"
-msgstr "Отмена"
+msgstr ""
 
-#: ../src/interface.c:2845
+#: ../src/interface.c:2867
 msgid "Open Keymap File"
-msgstr "Открыть файл раскладки"
+msgstr ""
 
-#: ../src/interface.c:2895
+#: ../src/interface.c:2917
 msgid "Write to Keymap File"
-msgstr "Записать в файл раскладки"
+msgstr ""
 
 #. Don't need to show menus
 #. Create the menu items
-#: ../src/interface.c:9321
+#: ../src/interface.c:9343
 msgid "Open"
-msgstr "Открыть"
+msgstr ""
 
-#: ../src/interface.c:9323
+#: ../src/interface.c:9345
 msgid "Open a Keymap that is not listed in a combobox"
-msgstr "Открыть файл раскладки, которого нет в списке"
+msgstr ""
 
-#: ../src/interface.c:9325
+#: ../src/interface.c:9347
 msgid "Save"
-msgstr "Сохранить"
+msgstr ""
 
-#: ../src/interface.c:9327
+#: ../src/interface.c:9349
 msgid "Save current state of loaded keymap to a new keymap"
-msgstr "Сохранить текущее состояние загруженной раскладки в новую"
+msgstr ""
 
-#: ../src/interface.c:9330
+#: ../src/interface.c:9352
 msgid "Quit"
-msgstr "Выход"
+msgstr ""
 
-#: ../src/interface.c:9332
+#: ../src/interface.c:9354
 msgid "Close iok application"
-msgstr "Закрыть приложение iok"
+msgstr ""
 
-#: ../src/interface.c:9365
+#: ../src/interface.c:9387
 msgid "Reassign key value of some key to some other key"
-msgstr "Переназначить значение одной клавиши другой клавише"
+msgstr ""
 
-#: ../src/interface.c:9367
-msgid "Swap"
-msgstr "Поменять местами"
-
-#: ../src/interface.c:9369
-msgid "Swap key values between any 2 keys in loaded keymap"
-msgstr "Поменять местами 2 клавишы на загруженной раскладке"
-
-#. Don't need to show menus
-#. Create the menu items
 #: ../src/interface.c:9389
-msgid "About"
-msgstr "О"
+msgid "Swap"
+msgstr ""
 
 #: ../src/interface.c:9391
+msgid "Swap key values between any 2 keys in loaded keymap"
+msgstr ""
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:9412
+msgid "About"
+msgstr ""
+
+#: ../src/interface.c:9414
 msgid "About iok application"
-msgstr "О программе iok"
+msgstr ""
 
-#: ../src/interface.c:9407
+#: ../src/interface.c:9430
 msgid "Keymap"
-msgstr "Раскладка"
+msgstr ""
 
-#: ../src/interface.c:9410
+#: ../src/interface.c:9433
 msgid "Keys"
-msgstr "Клавиши"
+msgstr ""
 
-#: ../src/interface.c:9413
+#: ../src/interface.c:9436
 msgid "Help"
-msgstr "Помощь"
+msgstr ""
 
-#: ../src/interface.c:9596
+#: ../src/interface.c:9619
 msgid "Backspace"
-msgstr "Backspace"
+msgstr ""
 
-#: ../src/interface.c:9612
+#: ../src/interface.c:9635
 msgid "Tab"
-msgstr "Tab"
+msgstr ""
 
-#: ../src/interface.c:9704
+#: ../src/interface.c:9727
 msgid "Caps"
-msgstr "Caps"
+msgstr ""
 
-#: ../src/interface.c:9775
+#: ../src/interface.c:9798
 msgid "Enter"
-msgstr "Enter"
+msgstr ""
 
-#: ../src/interface.c:9790 ../src/interface.c:9855
+#: ../src/interface.c:9813 ../src/interface.c:9878
 msgid "Shift"
-msgstr "Shift"
+msgstr ""
 
-#: ../src/interface.c:9869
+#: ../src/interface.c:9892
 msgid "Space"
-msgstr "Пробел"
+msgstr ""
 
-#: ../src/interface.c:9876
+#: ../src/interface.c:9899
 msgid ""
 "Select the language in which you want to write. This list contains keymaps "
 "in order as inscript then user defined then xkb and then any keymaps opened "
 "that are not default listed"
 msgstr ""
-"Выберите язык на котором вы хотите писать. Этот список содержит раскладки "
-"в порядке: inscript, затем определенные пользователем, затем xlb и затем любые открытые раскладки "
-"которые по-умолчанию не в списке"
 
 #. TRANSLATORS: Replace this string with your names, one name per line.
-#: ../src/interface.c:11472
+#: ../src/interface.c:11504
 msgid "translator-credits"
-msgstr "translator-credits"
+msgstr ""
 
-#: ../src/interface.c:11478
+#: ../src/interface.c:11510
 msgid "iok"
-msgstr "iok"
+msgstr ""
 
-#: ../src/interface.c:11479
+#: ../src/interface.c:11511
 msgid "GPLv2 or later\n"
-msgstr "GPLv2 или позже\n"
+msgstr ""
 
 #: ../src/support.c:90 ../src/support.c:114
 #, c-format
 msgid "Couldn't find pixmap file: %s"
-msgstr "Невозможно найти файл карты элементов изображения: %s"
+msgstr ""
+
+

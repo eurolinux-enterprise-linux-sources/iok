@@ -1,14 +1,13 @@
 Name:           iok
-Version:        1.3.10
-Release:        3%{?dist}
+Version:        1.3.13
+Release:        2%{?dist}
 Summary:        Indic Onscreen Virtual Keyboard
 Group:          Applications/System
 License:        GPLv2+
 URL:            http://iok.sourceforge.net
 Source0:        https://fedorahosted.org/releases/i/o/iok/%{name}-%{version}.tar.gz
-Patch0:         iok-1.3.10-translations.patch
-##See https://bugzilla.redhat.com/show_bug.cgi?id=636756
-Patch1:         iok-1.3.10-oriya-translations.patch    
+Patch0:         iok-1.3.13-configure.patch
+Patch1:         iok-1.3.13-increase-size-xkb-name-array.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  desktop-file-utils libXtst-devel
 BuildRequires:  gtk2-devel gettext libxml2-devel
@@ -23,7 +22,7 @@ can even try to parse non-inscript keymaps and show them in iok.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+%patch1 -p0
 
 %build
 %configure
@@ -55,6 +54,15 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue Mar 06 2012 Parag Nemade <pnemade AT redhat DOT com>- 1.3.13-2
+- Resolves:rh#798592 - iok crashed while selecting 'xkb-Malayalam (enhanced Inscript with Rupee Sign)'
+
+* Tue Jan 24 2012 Parag Nemade <pnemade AT redhat DOT com>- 1.3.13-1
+- Resolves:rh#752667 - iok looks for ~/.m17n not ~/.m17n.d
+- Resolves:rh#752668 - input fail on touch-screen with finger, while mouse click is working for iok
+- Resolves:rh#736992 - iok crashed and segfaults occurred while selecting xkb-Hindi Wx keyboard
+- Update to 1.3.13 release
+
 * Wed Dec 22 2010 Parag Nemade <pnemade AT redhat.com>- 1.3.10-3
 - Resolves:rh#636756:[or_IN][VM] iok is out of VM's Screen
 

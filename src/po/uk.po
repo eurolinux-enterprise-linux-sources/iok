@@ -3,152 +3,153 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Sandeep Shedmake <sandeep.shedmake@gmail.com>, 2009.
-# sandeeps <sshedmak@redhat.com>, 2011.
+# Maxim Dzumanenko <dziumanenko@gmail.com>, 2010.
+# Yuri Chornoivan <yurchor@ukr.net>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: fedorahosted-org-svn-iok-po-iok.pot\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-15 10:31+0530\n"
-"PO-Revision-Date: 2011-04-05 07:14+0000\n"
-"Last-Translator: sandeeps <sshedmak@redhat.com>\n"
-"Language-Team: Marathi (http://www.transifex.net/projects/p/fedorahosted-org-svn-iok-po-io/team/mr/)\n"
+"PO-Revision-Date: 2011-03-22 15:15+0000\n"
+"Last-Translator: yurchor <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: mr\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
 #: ../iok.desktop.in.h:1
 msgid "Enter Indic characters with a virtual keyboard"
-msgstr "आभासी कळफलकसह इंडिक अक्षर प्रविष्ट करा"
+msgstr "Введення літер індійських мов за допомогою віртуальної клавіатури"
 
 #: ../iok.desktop.in.h:2
 msgid "Indic Onscreen Keyboard"
-msgstr "इन्डिक ऑनस्क्रीन किबोर्ड"
+msgstr "Індійська екранна клавіатура"
 
 #: ../src/interface.c:2518
 msgid "Select the language in which you want to write"
-msgstr "लिहण्याकरीता भाषा निवडा"
+msgstr "Виберіть мову, якою будете писати"
 
 #: ../src/interface.c:2520 ../src/interface.c:9889
 msgid "Change to English Keyboard"
-msgstr "इंग्रजी कळफलक वापरा"
+msgstr "Змінити розкладку на англійську"
 
 #: ../src/interface.c:2593
 msgid "ReassignKey"
-msgstr "ReassignKey"
+msgstr "Перепризначення клавіші"
 
 #: ../src/interface.c:2603
 msgid "Reassign Keyvalue of Key"
-msgstr "कि चे किमूल्य पुन्हा लागू करा"
+msgstr "Замінити призначення клавіші"
 
 #: ../src/interface.c:2614
 msgid "to another Key"
-msgstr "इतर कि करीता"
+msgstr "на інший символ"
 
 #. Don't need to show menus
 #. Create the menu items
 #: ../src/interface.c:2629 ../src/interface.c:9385
 msgid "Reassign"
-msgstr "पुन्हा लागू करा"
+msgstr "Перепризначити"
 
 #: ../src/interface.c:2633
 msgid "Cancel"
-msgstr "रद्द करा"
+msgstr "Скасувати"
 
 #: ../src/interface.c:2867
 msgid "Open Keymap File"
-msgstr "किमॅप फाइल उघडा"
+msgstr "Відкрити файл карти символів"
 
 #: ../src/interface.c:2917
 msgid "Write to Keymap File"
-msgstr "किमॅप फाइल करीता लिहा"
+msgstr "Запис до файла карти символів"
 
 #. Don't need to show menus
 #. Create the menu items
 #: ../src/interface.c:9343
 msgid "Open"
-msgstr "उघडा"
+msgstr "Відкрити"
 
 #: ../src/interface.c:9345
 msgid "Open a Keymap that is not listed in a combobox"
-msgstr "कॉम्बोबॉक्स अंतर्गत यादीतील न आढळलेले किमॅप उघडा"
+msgstr "Відкрити карту символів, якої немає у списку"
 
 #: ../src/interface.c:9347
 msgid "Save"
-msgstr "साठवा"
+msgstr "Зберегти"
 
 #: ../src/interface.c:9349
 msgid "Save current state of loaded keymap to a new keymap"
-msgstr "दाखल केलेल्या किमॅपचे वर्तमान स्तर नवीन किमॅप करीता साठवा"
+msgstr ""
+"Зберегти поточний стан завантаженої розкладки до нового файла розкладки"
 
 #: ../src/interface.c:9352
 msgid "Quit"
-msgstr "बाहेर पडा"
+msgstr "Вийти"
 
 #: ../src/interface.c:9354
 msgid "Close iok application"
-msgstr "iok ऍप्लीकेशन बंद करा"
+msgstr "Завершити роботу програми iok"
 
 #: ../src/interface.c:9387
 msgid "Reassign key value of some key to some other key"
-msgstr "काहिक किचे कि मूल्य इतर कि करीता पुन्ह लागू करा"
+msgstr "Перепризначити символ певної клавіші на іншу клавішу"
 
 #: ../src/interface.c:9389
 msgid "Swap"
-msgstr "स्वॅप करा"
+msgstr "Поміняти"
 
 #: ../src/interface.c:9391
 msgid "Swap key values between any 2 keys in loaded keymap"
 msgstr ""
-"दाखल केलेले किमॅप अंतर्गत कुठल्याही 2 किज् अंतर्गत कि मूल्य अदला बदल करा"
+"Поміняти місцями символи на будь-яких двох клавішах завантаженої розкладки"
 
 #. Don't need to show menus
 #. Create the menu items
 #: ../src/interface.c:9412
 msgid "About"
-msgstr "विषयी"
+msgstr "Про програму"
 
 #: ../src/interface.c:9414
 msgid "About iok application"
-msgstr "iok ऍप्लीकेशन विषयी"
+msgstr "Про програму iok"
 
 #: ../src/interface.c:9430
 msgid "Keymap"
-msgstr "किमॅप"
+msgstr "Карта символів"
 
 #: ../src/interface.c:9433
 msgid "Keys"
-msgstr "किज्"
+msgstr "Клавіші"
 
 #: ../src/interface.c:9436
 msgid "Help"
-msgstr "मदत"
+msgstr "Довідка"
 
 #: ../src/interface.c:9619
 msgid "Backspace"
-msgstr "बॅकस्पेस"
+msgstr "Backspace"
 
 #: ../src/interface.c:9635
 msgid "Tab"
-msgstr "टॅब"
+msgstr "Tab"
 
 #: ../src/interface.c:9727
 msgid "Caps"
-msgstr "कॅप्स्"
+msgstr "Caps"
 
 #: ../src/interface.c:9798
 msgid "Enter"
-msgstr "एन्टर"
+msgstr "Enter"
 
 #: ../src/interface.c:9813 ../src/interface.c:9878
 msgid "Shift"
-msgstr "शिफ्ट"
+msgstr "Shift"
 
 #: ../src/interface.c:9892
 msgid "Space"
-msgstr "स्पेस"
+msgstr "Пробіл"
 
 #: ../src/interface.c:9899
 msgid ""
@@ -156,14 +157,14 @@ msgid ""
 "in order as inscript then user defined then xkb and then any keymaps opened "
 "that are not default listed"
 msgstr ""
-"लिहण्याकरीता भाषा निवडा. या यादीत किमॅप इनस्क्रिप्टच्या क्रमवारी नुरूप, नंतर"
-" वापरकर्ता द्वारे निश्चित, त्यानंतर xkb व शेवटी कुठलिही मुलभूत स्वरूपी यादीत"
-" न दर्शवलेल्या किमॅप नुरूप"
+"Виберіть мову, запис якою ви будете здійснювати. У цьому списку містять "
+"розкладки у порядку абетки, потім розкладки користувача, потім розкладки "
+"xkb, а потім всі відкриті розкладки, яких немає у типовому списку."
 
 #. TRANSLATORS: Replace this string with your names, one name per line.
 #: ../src/interface.c:11504
 msgid "translator-credits"
-msgstr "संदिप शेडमाके <sandeep.shedmake@gmail.com>, 2009, 2011."
+msgstr "Юрій Чорноіван <yurchor@ukr.net>"
 
 #: ../src/interface.c:11510
 msgid "iok"
@@ -171,11 +172,11 @@ msgstr "iok"
 
 #: ../src/interface.c:11511
 msgid "GPLv2 or later\n"
-msgstr "GPLv2 किंवा पुढिल\n"
+msgstr "GPL версії 2 або пізнішої\n"
 
 #: ../src/support.c:90 ../src/support.c:114
 #, c-format
 msgid "Couldn't find pixmap file: %s"
-msgstr "pixmap फाइल आढळले नाही: %s"
+msgstr "Не вдалося знайти файл зображення: %s"
 
 

@@ -1,182 +1,181 @@
 # translation of iok.trunk.nl.po to Dutch
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
 # R.E. van der Luit <nippur@fedoraproject.org>, 2009.
-# Geert Warrink <geert.warrink@onsnet.nu>, 2009.
+# Geert Warrink <geert.warrink@onsnet.nu>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: iok.trunk.nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-20 14:47+0530\n"
-"PO-Revision-Date: 2009-09-02 20:53+0200\n"
+"POT-Creation-Date: 2010-02-09 11:52+0530\n"
+"PO-Revision-Date: 2010-06-24 18:05+0200\n"
 "Last-Translator: Geert Warrink <geert.warrink@onsnet.nu>\n"
-"Language-Team: nl <nl@li.org>\n"
+"Language-Team: Fedora\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding:  \n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.5.2\n"
 
 #: ../iok.desktop.in.h:1
 msgid "Enter Indic characters with a virtual keyboard"
-msgstr "Vul Indische karakters in met een virtueel toetsenbord"
+msgstr "Vul Indiase karakters in met een virtueel toetsenbord"
 
 #: ../iok.desktop.in.h:2
 msgid "Indic Onscreen Keyboard"
-msgstr "Indisch toetsenbord op het scherm"
+msgstr "Indiaas toetsenbord op het scherm"
 
-#: ../src/interface.c:2478
+#: ../src/interface.c:2473
 msgid "Select the language in which you want to write"
-msgstr "Selecteer de taal waarin u wilt schrijven"
+msgstr "Selecteer de taal waarin je wilt schrijven"
 
-#: ../src/interface.c:2480 ../src/interface.c:9870
+#: ../src/interface.c:2475 ../src/interface.c:9866
 msgid "Change to English Keyboard"
 msgstr "Wissel naar Engels toetsenbord"
 
-#: ../src/interface.c:2553
+#: ../src/interface.c:2548
 msgid "ReassignKey"
 msgstr "HernoemToets"
 
-#: ../src/interface.c:2563
+#: ../src/interface.c:2558
 msgid "Reassign Keyvalue of Key"
 msgstr "Wijs Waarde van Toets opnieuw toe"
 
-#: ../src/interface.c:2574
+#: ../src/interface.c:2569
 msgid "to another Key"
 msgstr "aan een andere Toets"
 
 #. Don't need to show menus
 #. Create the menu items
-#: ../src/interface.c:2589 ../src/interface.c:9367
+#: ../src/interface.c:2584 ../src/interface.c:9363
 msgid "Reassign"
 msgstr "Hernoem"
 
-#: ../src/interface.c:2593
+#: ../src/interface.c:2588
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: ../src/interface.c:2850
+#: ../src/interface.c:2845
 msgid "Open Keymap File"
-msgstr "Open Toetsenbordbestand"
+msgstr "Open toetsenbord bestand"
 
-#: ../src/interface.c:2900
+#: ../src/interface.c:2895
 msgid "Write to Keymap File"
-msgstr "Schrijf naar toetsenbordbestand"
+msgstr "Schrijf naar toetsenbord bestand"
 
 #. Don't need to show menus
 #. Create the menu items
-#: ../src/interface.c:9325
+#: ../src/interface.c:9321
 msgid "Open"
 msgstr "Open"
 
-#: ../src/interface.c:9327
+#: ../src/interface.c:9323
 msgid "Open a Keymap that is not listed in a combobox"
-msgstr "Open een toetsenbordindeling die niet wordt genoemd in een combobox"
+msgstr "Open een toetsenbord indeling die niet wordt genoemd in een combobox"
 
-#: ../src/interface.c:9329
+#: ../src/interface.c:9325
 msgid "Save"
-msgstr "Bewaar"
+msgstr "Opslaan"
 
-#: ../src/interface.c:9331
+#: ../src/interface.c:9327
 msgid "Save current state of loaded keymap to a new keymap"
 msgstr ""
-"Bewaar de huidige toetsenbordindeling als een nieuwe toetsenbord indeling"
+"Sla de huidige toetsenbord indeling op als een nieuwe toetsenbord indeling"
 
-#: ../src/interface.c:9334
+#: ../src/interface.c:9330
 msgid "Quit"
-msgstr "Sluiten"
+msgstr "Afsluiten"
 
-#: ../src/interface.c:9336
+#: ../src/interface.c:9332
 msgid "Close iok application"
-msgstr "Sluit de iok applicatie"
+msgstr "Sluit de iok toepassing"
 
-#: ../src/interface.c:9369
+#: ../src/interface.c:9365
 msgid "Reassign key value of some key to some other key"
 msgstr "Wijs de waarde van een toets toe aan een andere toets"
 
-#: ../src/interface.c:9371
+#: ../src/interface.c:9367
 msgid "Swap"
 msgstr "Wissel"
 
-#: ../src/interface.c:9373
+#: ../src/interface.c:9369
 msgid "Swap key values between any 2 keys in loaded keymap"
-msgstr "Wissel de waarden tussen 2 toetsen in de geladen toetsenbordindeling"
+msgstr "Wissel de waarden tussen 2 toetsen in de geladen toetsenbord indeling"
 
 #. Don't need to show menus
 #. Create the menu items
-#: ../src/interface.c:9393
+#: ../src/interface.c:9389
 msgid "About"
 msgstr "Over"
 
-#: ../src/interface.c:9395
+#: ../src/interface.c:9391
 msgid "About iok application"
-msgstr "Over de iok applicatie"
+msgstr "Over de iok toepassing"
 
-#: ../src/interface.c:9411
+#: ../src/interface.c:9407
 msgid "Keymap"
-msgstr "Toetsindeling"
+msgstr "Toets indeling"
 
-#: ../src/interface.c:9414
+#: ../src/interface.c:9410
 msgid "Keys"
 msgstr "Toetsen"
 
-#: ../src/interface.c:9417
+#: ../src/interface.c:9413
 msgid "Help"
-msgstr "Help"
+msgstr "Hulp"
 
-#: ../src/interface.c:9600
+#: ../src/interface.c:9596
 msgid "Backspace"
 msgstr "Backspace"
 
-#: ../src/interface.c:9616
+#: ../src/interface.c:9612
 msgid "Tab"
 msgstr "Tab"
 
-#: ../src/interface.c:9708
+#: ../src/interface.c:9704
 msgid "Caps"
 msgstr "Caps"
 
-#: ../src/interface.c:9779
+#: ../src/interface.c:9775
 msgid "Enter"
 msgstr "Enter"
 
-#: ../src/interface.c:9794 ../src/interface.c:9859
+#: ../src/interface.c:9790 ../src/interface.c:9855
 msgid "Shift"
 msgstr "Shift"
 
-#: ../src/interface.c:9873
+#: ../src/interface.c:9869
 msgid "Space"
 msgstr "Spatie"
 
-#: ../src/interface.c:9880
+#: ../src/interface.c:9876
 msgid ""
 "Select the language in which you want to write. This list contains keymaps "
 "in order as inscript then user defined then xkb and then any keymaps opened "
 "that are not default listed"
 msgstr ""
-"Selecteer de taal waarin u wilt schrijven. Deze lijst bevat "
-"toetsenbordindelingen in de volgorde InScript, gebruiker-gedefinieerd, xkb "
-"en als laatste geopende toetsenbordindelingen die niet standaard worden "
-"vermeld."
+"Selecteer de taal waarin je wilt schrijven. Deze lijst bevat toetsenbord "
+"indelingen in de volgorde InScript, gebruiker-gedefinieerd, xkb en als "
+"laatste geopende toetsenbord indelingen die niet standaard worden vermeld."
 
 #. TRANSLATORS: Replace this string with your names, one name per line.
-#: ../src/interface.c:11460
+#: ../src/interface.c:11472
 msgid "translator-credits"
 msgstr "Richard van der Luit"
 
-#: ../src/interface.c:11466
+#: ../src/interface.c:11478
 msgid "iok"
 msgstr "iok"
 
-#: ../src/interface.c:11467
+#: ../src/interface.c:11479
 msgid "GPLv2 or later\n"
 msgstr "GPLv2 of later\n"
 
 #: ../src/support.c:90 ../src/support.c:114
 #, c-format
 msgid "Couldn't find pixmap file: %s"
-msgstr "Kon pixmap-bestand %s niet vinden"
+msgstr "Kon pixmap bestand %s niet vinden"
 
 #~ msgid "to English"
 #~ msgstr "naar Engels"

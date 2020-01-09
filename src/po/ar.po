@@ -1,115 +1,128 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Rui Gouveia <rui.gouveia@gmail.com>, 2010.
+#
+# Fawaz Al-alyan <Fawaz_ksu@yahoo.com>, 2010.
+# Fawaz Al-Alayn <Fawaz_ksu@yahoo.com>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: iok\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-09 11:52+0530\n"
-"PO-Revision-Date: 2010-03-16 21:18+0100\n"
-"Last-Translator: Rui Gouveia <rui.gouveia@gmail.com>\n"
-"Language-Team: trans-pt@fedoraproject.org\n"
-"Language: pt\n"
+"PO-Revision-Date: 2010-07-13 08:52+0300\n"
+"Last-Translator: Fawaz Al-Alayn <Fawaz_ksu@yahoo.com>\n"
+"Language-Team: Arabic <trans-ar@lists.fedoraproject.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.5.2\n"
-"X-Poedit-Language: Portuguese\n"
-"X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-Country: PORTUGAL\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #: ../iok.desktop.in.h:1
 msgid "Enter Indic characters with a virtual keyboard"
-msgstr "Insira caracteres índicos com um teclado virtual"
+msgstr "أدخل الأحرف الهندية بوسطة لوحة المفاتيح الافتراضية"
 
 #: ../iok.desktop.in.h:2
 msgid "Indic Onscreen Keyboard"
-msgstr "Teclado índico no ecrã"
+msgstr "لوحة المفاتيح على الشاشة الخاصة بالهندية"
 
 #: ../src/interface.c:2473
 msgid "Select the language in which you want to write"
-msgstr "Seleccione o idioma no qual pretende escrever"
+msgstr "حدد اللغة التي تريد الكتابة بها"
 
 #: ../src/interface.c:2475 ../src/interface.c:9866
 msgid "Change to English Keyboard"
-msgstr "Alterar para teclado Inglês"
+msgstr "تغيير لوحة المفاتيح إلى اللغة الإنجليزية"
 
 #: ../src/interface.c:2548
 msgid "ReassignKey"
-msgstr "Re-atribuir tecla"
+msgstr "إعادة تعيين الزر"
 
 #: ../src/interface.c:2558
 msgid "Reassign Keyvalue of Key"
-msgstr "Re-atribuir valor da tecla"
+msgstr "إعادة تعيين الـ Keyvalue للزر"
 
 #: ../src/interface.c:2569
 msgid "to another Key"
-msgstr "para outra tecla"
+msgstr "إلى زر آخر"
 
 #. Don't need to show menus
 #. Create the menu items
 #: ../src/interface.c:2584 ../src/interface.c:9363
 msgid "Reassign"
-msgstr "Re-atribuir"
+msgstr "إعادة تعيين"
+
+#: ../src/interface.c:2588
+msgid "Cancel"
+msgstr "إلغاء"
 
 #: ../src/interface.c:2845
 msgid "Open Keymap File"
-msgstr "Abrir ficheiro de mapa de teclado"
+msgstr "افتح ملف الـ Keymap"
 
 #: ../src/interface.c:2895
 msgid "Write to Keymap File"
-msgstr "Escrever para o ficheiro de mapa de teclado"
+msgstr "الكتابة في ملف الـKeymap"
 
 #. Don't need to show menus
 #. Create the menu items
 #: ../src/interface.c:9321
 msgid "Open"
-msgstr "Abrir"
+msgstr "فتح"
 
 #: ../src/interface.c:9323
 msgid "Open a Keymap that is not listed in a combobox"
-msgstr "Abrir um mapa de teclado que não aparece na combobox"
+msgstr "افتح الـ Keymap الذي لم يتم سرده في الـ combobox"
+
+#: ../src/interface.c:9325
+msgid "Save"
+msgstr "حفظ"
 
 #: ../src/interface.c:9327
 msgid "Save current state of loaded keymap to a new keymap"
-msgstr "Gravar o estado actual do mapa de teclado para um novo mapa de teclado"
+msgstr "حفظ الحالة الراهنة للـkeymap المحمل إلى الـ keymap الجديدة"
+
+#: ../src/interface.c:9330
+msgid "Quit"
+msgstr "خروج"
 
 #: ../src/interface.c:9332
 msgid "Close iok application"
-msgstr "Fechar a aplicação iok"
+msgstr "إغلاق تطبيق الـ iok"
 
 #: ../src/interface.c:9365
 msgid "Reassign key value of some key to some other key"
-msgstr "Re-atribuir o valor da uma tecla para uma outra tecla"
+msgstr "إعادة تعيين قيمة الزر لبعض الأزرار إلى بعض الأزرار الأخرى"
+
+#: ../src/interface.c:9367
+msgid "Swap"
+msgstr "مبادلة"
 
 #: ../src/interface.c:9369
 msgid "Swap key values between any 2 keys in loaded keymap"
-msgstr ""
-"Trocar os valores entre duas quaisquer teclas no mapa de teclado carrregado"
+msgstr "مبادلة قيم الزر بين أي مفتاحين في الـ keymap المحملة"
 
 #. Don't need to show menus
 #. Create the menu items
 #: ../src/interface.c:9389
 msgid "About"
-msgstr "Sobre"
+msgstr "عن"
 
 #: ../src/interface.c:9391
 msgid "About iok application"
-msgstr "Sobre a aplicação iok"
+msgstr "عن تطبيق الـ iok"
 
 #: ../src/interface.c:9407
 msgid "Keymap"
-msgstr "Mapa de teclado"
+msgstr "Keymap"
 
 #: ../src/interface.c:9410
 msgid "Keys"
-msgstr "Teclas"
+msgstr "أزرار"
 
 #: ../src/interface.c:9413
 msgid "Help"
-msgstr "Ajuda"
+msgstr "تعليمات"
 
 #: ../src/interface.c:9596
 msgid "Backspace"
@@ -117,23 +130,23 @@ msgstr "Backspace"
 
 #: ../src/interface.c:9612
 msgid "Tab"
-msgstr "Tabulação"
+msgstr "التبويب"
 
 #: ../src/interface.c:9704
 msgid "Caps"
-msgstr "Maiúsculas"
+msgstr "الأحرف الكبيرة"
 
 #: ../src/interface.c:9775
 msgid "Enter"
-msgstr "Enter"
+msgstr "الإدخال"
 
 #: ../src/interface.c:9790 ../src/interface.c:9855
 msgid "Shift"
-msgstr "Shift"
+msgstr "تبديل الأحرف"
 
 #: ../src/interface.c:9869
 msgid "Space"
-msgstr "Espaço"
+msgstr "المسافة"
 
 #: ../src/interface.c:9876
 msgid ""
@@ -141,43 +154,27 @@ msgid ""
 "in order as inscript then user defined then xkb and then any keymaps opened "
 "that are not default listed"
 msgstr ""
-"Seleccione o idioma no qual pretende escrever. Esta lista contém os mapas de "
-"teclado em ordem como \"inscript\", depois em modo de utilizador, depois xkb "
-"e depois qualquer mapa de teclado aberto que não apareça listado por omissão"
+"حدد اللغة التي تريد الكتابة بها. تتضمن هذه القائمة الـ keymaps"
+"بالترتيب مثل الـ inscript ثم التعريف بالمستخدم ثم الـ xkb ومن ثم أي keymaps "
+"مفتوحة"
+"والتي ليست مدرجة افتراضياً"
 
 #. TRANSLATORS: Replace this string with your names, one name per line.
 #: ../src/interface.c:11472
 msgid "translator-credits"
-msgstr ""
-"Duarte Loreto <happyguy_pt@hotmail.com>\n"
-"Paulo Pereira <paumonic@gmail.com>\n"
-"Rui Gouveia <rui.gouveia@gmail.com>"
-
-#: ../src/support.c:90 ../src/support.c:114
-#, c-format
-msgid "Couldn't find pixmap file: %s"
-msgstr "Incapaz de encontrar ficheiro de imagem: %s"
-
-#: ../src/interface.c:2588
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: ../src/interface.c:9367
-msgid "Swap"
-msgstr "Trocar"
-
-#: ../src/interface.c:9325
-msgid "Save"
-msgstr "Gravar"
-
-#: ../src/interface.c:9330
-msgid "Quit"
-msgstr "Sair"
-
-#: ../src/interface.c:11479
-msgid "GPLv2 or later\n"
-msgstr "GPLv2 ou posterior\n"
+msgstr "حقوق المترجم"
 
 #: ../src/interface.c:11478
 msgid "iok"
 msgstr "iok"
+
+#: ../src/interface.c:11479
+msgid "GPLv2 or later\n"
+msgstr "GPLv2 أو أعلى\n"
+
+#: ../src/support.c:90 ../src/support.c:114
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "تعذر العثور على الملف pixmap: %s"
+
+

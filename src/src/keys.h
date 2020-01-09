@@ -2,7 +2,7 @@
 /*
  * iok - Virtual onscreen keyboard for Indic Inscript keymaps.
  * Copyright (C) 2007 Michael Levin <risujin@risujin.org>
- * Copyright (C) 2008-2010 Parag Nemade <panemade@gmail.com>
+ * Copyright (C) 2008-2011 Parag Nemade <panemade@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License

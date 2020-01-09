@@ -1,172 +1,175 @@
-# SOME DESCRIPTIVE TITLE.
+# translation of iok.trunk.ko.po to Korean
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
+# Hyunsok Oh <hoh@redhat.com>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: iok.trunk.ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-20 14:47+0530\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2010-03-29 14:21+0530\n"
+"PO-Revision-Date: 2010-03-31 15:28+1000\n"
+"Last-Translator: Hyunsok Oh <hoh@redhat.com>\n"
+"Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../iok.desktop.in.h:1
 msgid "Enter Indic characters with a virtual keyboard"
-msgstr ""
+msgstr "가상 키보드로 인도 문자를 입력하십시오"
 
 #: ../iok.desktop.in.h:2
 msgid "Indic Onscreen Keyboard"
-msgstr ""
+msgstr "인도어 온스크린 키보드 "
 
-#: ../src/interface.c:2478
+#: ../src/interface.c:2472
 msgid "Select the language in which you want to write"
-msgstr ""
+msgstr "작성할 언어를 선택하십시오"
 
-#: ../src/interface.c:2480 ../src/interface.c:9870
+#: ../src/interface.c:2474 ../src/interface.c:9841
 msgid "Change to English Keyboard"
-msgstr ""
+msgstr "영어 키보드로 변경하십시오"
 
-#: ../src/interface.c:2553
+#: ../src/interface.c:2547
 msgid "ReassignKey"
-msgstr ""
+msgstr "키재할당"
 
-#: ../src/interface.c:2563
+#: ../src/interface.c:2557
 msgid "Reassign Keyvalue of Key"
-msgstr ""
+msgstr "키의 키값을 재할당하십시오"
 
-#: ../src/interface.c:2574
+#: ../src/interface.c:2568
 msgid "to another Key"
-msgstr ""
+msgstr "다른 키로"
 
 #. Don't need to show menus
 #. Create the menu items
-#: ../src/interface.c:2589 ../src/interface.c:9367
+#: ../src/interface.c:2583 ../src/interface.c:9338
 msgid "Reassign"
-msgstr ""
+msgstr "재할당"
 
-#: ../src/interface.c:2593
+#: ../src/interface.c:2587
 msgid "Cancel"
-msgstr ""
+msgstr "취소"
 
-#: ../src/interface.c:2850
+#: ../src/interface.c:2821
 msgid "Open Keymap File"
-msgstr ""
+msgstr "키맵 파일 여십시오"
 
-#: ../src/interface.c:2900
+#: ../src/interface.c:2871
 msgid "Write to Keymap File"
-msgstr ""
+msgstr "키맵 파일을 쓰십시오"
 
 #. Don't need to show menus
 #. Create the menu items
-#: ../src/interface.c:9325
+#: ../src/interface.c:9296
 msgid "Open"
-msgstr ""
+msgstr "열기"
 
-#: ../src/interface.c:9327
+#: ../src/interface.c:9298
 msgid "Open a Keymap that is not listed in a combobox"
-msgstr ""
+msgstr "콤보박스에 표시되지 않은 키맵을 엽니다"
 
-#: ../src/interface.c:9329
+#: ../src/interface.c:9300
 msgid "Save"
-msgstr ""
+msgstr "저장"
 
-#: ../src/interface.c:9331
+#: ../src/interface.c:9302
 msgid "Save current state of loaded keymap to a new keymap"
-msgstr ""
+msgstr "읽어들인 키맵의 현재 상태를 새로운 키맵에 저장합니다"
 
-#: ../src/interface.c:9334
+#: ../src/interface.c:9305
 msgid "Quit"
-msgstr ""
+msgstr "종료"
 
-#: ../src/interface.c:9336
+#: ../src/interface.c:9307
 msgid "Close iok application"
-msgstr ""
+msgstr "iok 어플리케이션을 종료합니다"
 
-#: ../src/interface.c:9369
+#: ../src/interface.c:9340
 msgid "Reassign key value of some key to some other key"
-msgstr ""
+msgstr "몇몇 키의 키값을 다른 키로 재할당합니다"
 
-#: ../src/interface.c:9371
+#: ../src/interface.c:9342
 msgid "Swap"
-msgstr ""
+msgstr "바꾸기"
 
-#: ../src/interface.c:9373
+#: ../src/interface.c:9344
 msgid "Swap key values between any 2 keys in loaded keymap"
-msgstr ""
+msgstr "읽어들인 키맵의 두 키의 키 값을 서로 바꿉니다"
 
 #. Don't need to show menus
 #. Create the menu items
-#: ../src/interface.c:9393
+#: ../src/interface.c:9364
 msgid "About"
-msgstr ""
+msgstr "설명"
 
-#: ../src/interface.c:9395
+#: ../src/interface.c:9366
 msgid "About iok application"
-msgstr ""
+msgstr "iok 어플리케이션에 대한 설명"
 
-#: ../src/interface.c:9411
+#: ../src/interface.c:9382
 msgid "Keymap"
-msgstr ""
+msgstr "키맵"
 
-#: ../src/interface.c:9414
+#: ../src/interface.c:9385
 msgid "Keys"
-msgstr ""
+msgstr "키"
 
-#: ../src/interface.c:9417
+#: ../src/interface.c:9388
 msgid "Help"
-msgstr ""
+msgstr "도움말"
 
-#: ../src/interface.c:9600
+#: ../src/interface.c:9571
 msgid "Backspace"
-msgstr ""
+msgstr "백스페이스"
 
-#: ../src/interface.c:9616
+#: ../src/interface.c:9587
 msgid "Tab"
-msgstr ""
+msgstr "탭"
 
-#: ../src/interface.c:9708
+#: ../src/interface.c:9679
 msgid "Caps"
-msgstr ""
+msgstr "Caps"
 
-#: ../src/interface.c:9779
+#: ../src/interface.c:9750
 msgid "Enter"
-msgstr ""
+msgstr "엔터"
 
-#: ../src/interface.c:9794 ../src/interface.c:9859
+#: ../src/interface.c:9765 ../src/interface.c:9830
 msgid "Shift"
-msgstr ""
+msgstr "시프트"
 
-#: ../src/interface.c:9873
+#: ../src/interface.c:9844
 msgid "Space"
-msgstr ""
+msgstr "스페이스"
 
-#: ../src/interface.c:9880
+#: ../src/interface.c:9851
 msgid ""
 "Select the language in which you want to write. This list contains keymaps "
 "in order as inscript then user defined then xkb and then any keymaps opened "
 "that are not default listed"
 msgstr ""
+"작성할 언어를 선택하십시오. 이 목록은 내부 키맵, 사용자 정의 키맵, xkb에 의"
+"해 정의된 키맵, 그리고 디폴트 목록에 포함되지 않은 열려있는 모든 키맵의 순서"
+"로 이루어져 있습니다."
 
 #. TRANSLATORS: Replace this string with your names, one name per line.
-#: ../src/interface.c:11460
+#: ../src/interface.c:11447
 msgid "translator-credits"
-msgstr ""
+msgstr "오현석<hoh@redhat.com>"
 
-#: ../src/interface.c:11466
+#: ../src/interface.c:11453
 msgid "iok"
-msgstr ""
+msgstr "iok"
 
-#: ../src/interface.c:11467
+#: ../src/interface.c:11454
 msgid "GPLv2 or later\n"
-msgstr ""
+msgstr "GPLv2 또는 그 이후의 라이센스\n"
 
 #: ../src/support.c:90 ../src/support.c:114
 #, c-format
 msgid "Couldn't find pixmap file: %s"
-msgstr ""
+msgstr "pixmap 파일을 찾을 수 없습니다: %s"

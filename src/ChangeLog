@@ -1,7 +1,28 @@
+Release 1.3.13
+---------------------
+- Fix rh#684652: iok looks for ~/.m17n not ~/.m17n.d (patch by Daiki Ueno)
+- Fix rh#734372: too many xkb-(null) in the list
+- Restrict keymap name that ends with inscript.mim
+- Update zanata instance url in zanata.xml 
+
+Release 1.3.12
+---------------------
+- Include updated translations.
+- Fix rh#608256:input fail on touch-screen with finger, while mouse click is
+working for iok
+  Now to use button drag and drop feature, one need to start this 
+  application as "iok -a"
+
+Release 1.3.11
+---------------------
+- Include updated translations.
+- Fix rh#598710: xkb-Tamil Keyboard with Numerals keymap issue
+
 Release 1.3.10
 ---------------------
 - Add missing libX11 DSO check in configure.in
 - Fix warnings from compilation.
+- Fix rh#571316:Fix parsing problem for tam_keyboard_with_numerals layout.
 
 Release 1.3.9
 ---------------------

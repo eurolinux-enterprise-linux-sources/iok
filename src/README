@@ -23,3 +23,6 @@ for single English key to characterpair.
 
 Since iok-1.3.0 release, partial support for some indic xkb layouts has been added. Since iok-1.3.8, nepali
 keymaps are also appearing in keymap list and now iok only run single instance.
+
+Since iok-1.3.12, drag and drop feature used to swap key values is available with iok only when iok is 
+started with advanced options.

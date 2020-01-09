@@ -1,0 +1,12 @@
+diff -urN src/interface.c.old src/interface.c
+--- src/interface.c.old	2011-10-17 09:12:11.000000000 +0530
++++ src/interface.c	2012-03-02 21:10:50.713084510 +0530
+@@ -165,7 +165,7 @@
+ GtkWidget *slabel;
+ wchar_t *tmpkey;
+ 
+-char *gtxtkeya,*gtxtkeyb,toggle_keymap[50],map_to_read[50];
++char *gtxtkeya,*gtxtkeyb,toggle_keymap[80],map_to_read[80];
+ wchar_t *gtxtvaluea,*gtxtvalueb;
+ GtkWidget *Reassign_Key;
+ GtkWidget *lbl_rk1;

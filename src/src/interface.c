@@ -2,7 +2,7 @@
 /*
  *
  * iok - Virtual onscreen keyboard for Indic Inscript keymaps.
- * Copyright (C) 2008-2010 Parag Nemade <panemade@gmail.com>
+ * Copyright (C) 2008-2011 Parag Nemade <panemade@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -165,7 +165,7 @@ GtkWidget *btn_cancel_swap;
 GtkWidget *slabel;
 wchar_t *tmpkey;
 
-char *gtxtkeya,*gtxtkeyb,toggle_keymap[35],map_to_read[35];
+char *gtxtkeya,*gtxtkeyb,toggle_keymap[50],map_to_read[50];
 wchar_t *gtxtvaluea,*gtxtvalueb;
 GtkWidget *Reassign_Key;
 GtkWidget *lbl_rk1;
@@ -194,10 +194,11 @@ char *row2 = "qwertyuiop[]";
 char *row3 = "asdfghjkl;'";
 char *row4 = "<zxcvbnm,./";
 
+gboolean enable_dnd=0;
 
 char *maplist[50];
 
-char *spl_sym[][2]={
+char *spl_sym[][2]= {
     {"apostrophe", "U0027"},
     {"asciitilde", "U007E"},
     {"exclam", "U0021"},
@@ -234,7 +235,7 @@ char *spl_sym[][2]={
     {NULL,NULL}
 };
 
-char *key_map[][3]={
+char *key_map[][3]= {
     {"TLDE", "`", "~"},
 
     {"AE01", "1", "!"},
@@ -316,8 +317,8 @@ char* srch(char *searchkey)
 {
     int nitems=mapcnt;
     int jj=0;
-    for (jj=0;jj<nitems;jj++)
-        if (strcmp(map[jj].keyname,searchkey)==0){
+    for (jj=0; jj<nitems; jj++)
+        if (strcmp(map[jj].keyname,searchkey)==0) {
             if (strcmp((gchar *)map[jj].keyvalue,"‌")==0)
                 return "ZWNJ";
             else if (strcmp((gchar *)map[jj].keyvalue,"‍")==0)
@@ -331,13 +332,13 @@ char* srch(char *searchkey)
 void clear_mappings()
 {
     int clr=0;
-    for (clr=0;clr<94;clr++)
+    for (clr=0; clr<94; clr++)
     {
         memset(map[clr].keyname,'\0',1);
         wmemset(map[clr].keyvalue,'\0',3);
     }
 
-    for (clr=0;clr<50;clr++)
+    for (clr=0; clr<50; clr++)
     {
         memset(xmap[clr].xkeynamel,'\0',1);
         memset(xmap[clr].xkeyvaluel,'\0',1);
@@ -1167,11 +1168,22 @@ void get_xkb_mappings(char *mfile)
             }
             else
             {
-                itoken = strtok(iline, " \t");
-                itoken = strtok(NULL, "=\" ");
-                itoken = strtok(NULL, " ");
-                itoken = strtok(NULL, "\";");
+                char *nntoken;
+                size_t nn=0,nn_cnt=0;
+                itoken=(char *)malloc(65*sizeof(char));
+                memset(itoken,'\0',65);
 
+                nn=strlen(iline);
+                while (nn_cnt < nn)
+                {
+                    if (iline[nn_cnt] == '\"')
+                    {
+                        strncpy(itoken,iline+nn_cnt+1,nn-nn_cnt-4);
+                        break;
+                    }
+                    else
+                        nn_cnt++;
+                }
             }
 
             //Start actual parsing of map
@@ -1193,8 +1205,8 @@ void get_xkb_mappings(char *mfile)
                             ktokenl = strtok(NULL, " ,\t");
                             if (strstr(ktokenl,"U")==NULL )
                             {
-                                for (j=0;j<33;j++)
-                                    if (strcmp(ktokenl,spl_sym[j][0])==0){
+                                for (j=0; j<33; j++)
+                                    if (strcmp(ktokenl,spl_sym[j][0])==0) {
                                         strcpy(ktokenl,spl_sym[j][1]);
                                     }
                             }
@@ -1202,16 +1214,16 @@ void get_xkb_mappings(char *mfile)
                             ktokenu = strtok(NULL, " ,\t]\\");
                             if (strstr(ktokenu,"U")==NULL )
                             {
-                                for (j=0;j<33;j++)
-                                    if (strcmp(ktokenu,spl_sym[j][0])==0){
+                                for (j=0; j<33; j++)
+                                    if (strcmp(ktokenu,spl_sym[j][0])==0) {
                                         strcpy(ktokenu,spl_sym[j][1]);
                                     }
                             }
 
                             if (strstr(ktokenn,"AE")!=NULL || strstr(ktokenn,"AD")!=NULL || strstr(ktokenn,"BKSL")!=NULL || strstr(ktokenn,"AC")!=NULL || (strstr(ktokenn,"AB")!=NULL && strstr(ktokenn,"TAB")==NULL ) || strstr(ktokenn,"TLDE")!=NULL )
                             {
-                                for (j=0;j<47;j++)
-                                    if (strcmp(ktokenn,key_map[j][0])==0){
+                                for (j=0; j<47; j++)
+                                    if (strcmp(ktokenn,key_map[j][0])==0) {
                                         strncpy(xmap[xmapcnt].xkeynamel,key_map[j][1],1);
                                         strncpy(xmap[xmapcnt].xkeynameu,key_map[j][2],1);
                                     }
@@ -1236,7 +1248,7 @@ void get_xkb_mappings(char *mfile)
 
 
     int ii=0,c=0;
-    for (ii=0,c=0;ii<xmapcnt;ii++,c++)
+    for (ii=0,c=0; ii<xmapcnt; ii++,c++)
     {
         char buf[7];
         memset(buf,'\0',7);
@@ -1286,6 +1298,10 @@ void get_xkb_mappings(char *mfile)
     }
 
     mapcnt=xmapcnt*2;
+    gtk_toggle_button_set_active((GtkToggleButton *)l_shift_btn,FALSE);
+    gtk_toggle_button_set_active((GtkToggleButton *)r_shift_btn,FALSE);
+    gtk_toggle_button_set_active((GtkToggleButton *)caps_btn,FALSE);
+
 }
 
 char* get_iso_code(char *lname)
@@ -1394,7 +1410,7 @@ void get_mappings(char *mfile)
         {
             home_dir=getenv("HOME");
             strcpy(hfile_path,home_dir);
-            strcat(hfile_path,"/.m17n/");
+            strcat(hfile_path,"/.m17n.d/");
             strncat(hfile_path,mfile,strlen(mfile));
             strcat(hfile_path,".mim");
 
@@ -1428,8 +1444,8 @@ void get_mappings(char *mfile)
 
             int pat=0;
             pline=strchr(line,'(');
-            if (pline != NULL && strstr(pline,"\(\"V\") \(\"W\") \(\"Y\") \(\"Z\")")== NULL){
-                for (pat=0;pat<4;pat++)
+            if (pline != NULL && strstr(pline,"\(\"V\") \(\"W\") \(\"Y\") \(\"Z\")")== NULL) {
+                for (pat=0; pat<4; pat++)
                 {
                     pline=strchr(pline+1,'(');
                     if (pline == NULL)
@@ -1440,37 +1456,37 @@ void get_mappings(char *mfile)
             if (pline == NULL && strstr(line,"(\"")!= NULL && strstr(line,"delete")==NULL)
             {
                 tokcnt=0;
-                if (strstr(line,"(\"(\"")!=NULL){
+                if (strstr(line,"(\"(\"")!=NULL) {
                     char delim1[]="\" )";
                     strncpy(map[mapcnt].keyname,"(",1);
                     res1=strtok( line, delim1 );
-                    if (res1[0]=='?'&& strlen(res1)!=1){
+                    if (res1[0]=='?'&& strlen(res1)!=1) {
                         ptr=strchr(res1,'?');
                         *ptr++='\0';
                         strcpy(map[mapcnt].keyvalue,ptr);
                     }
-                    else{
+                    else {
                         strcpy(map[mapcnt].keyvalue,res1);
                     }
                     mapcnt++;
 
                 }
-                if (strstr(line,"(\")\"")!=NULL){
+                if (strstr(line,"(\")\"")!=NULL) {
                     char delim1[]="\" (";
                     strncpy(map[mapcnt].keyname,")",1);
                     res1=strtok( line, delim1 );
-                    if (res1[0]=='?'&& strlen(res1)!=1){
+                    if (res1[0]=='?'&& strlen(res1)!=1) {
                         ptr=strchr(res1,'?');
                         *ptr++='\0';
                         strcpy(map[mapcnt].keyvalue,ptr);
                     }
-                    else{
+                    else {
                         strcpy(map[mapcnt].keyvalue,res1);
                     }
                     mapcnt++;
                 }
 
-                if (strstr(line,"(\"\\\"")!=NULL){
+                if (strstr(line,"(\"\\\"")!=NULL) {
                     char delim1[]="\\\" ()";
                     strncpy(map[mapcnt].keyname,"\"",1);
                     res1=strtok( line, delim1 );
@@ -1479,32 +1495,32 @@ void get_mappings(char *mfile)
                         strcpy(map[mapcnt].keyvalue,"\"");
                         mapcnt++;
                     }
-                    else if (res1[0]=='?'&& strlen(res1)!=1){
+                    else if (res1[0]=='?'&& strlen(res1)!=1) {
                         ptr=strchr(res1,'?');
                         *ptr++='\0';
                         strcpy(map[mapcnt].keyvalue,ptr);
                     }
-                    else{
+                    else {
                         strcpy(map[mapcnt].keyvalue,res1);
                     }
                     mapcnt++;
                 }
 
-                if (strstr(line,"(\"\\\\\"")!=NULL){
+                if (strstr(line,"(\"\\\\\"")!=NULL) {
                     char delim1[]="\"\\ ()";
                     strncpy(map[mapcnt].keyname,"\\",1);
                     res1=strtok( line, delim1 );
 
-                    if (res1==NULL){
+                    if (res1==NULL) {
                         strcpy(map[mapcnt].keyvalue,"\\");
-                    }else if (res1[0]=='?'&& strlen(res1)!=1){
+                    } else if (res1[0]=='?'&& strlen(res1)!=1) {
                         ptr=strchr(res1,'?');
                         *ptr++='\0';
                         strcpy(map[mapcnt].keyvalue,ptr);
                     }
-                    else if (res1[0]=='?'&& strlen(res1)==1){
+                    else if (res1[0]=='?'&& strlen(res1)==1) {
                         strcpy(map[mapcnt].keyvalue,"\\");
-                    }else {
+                    } else {
                         strcpy(map[mapcnt].keyvalue,res1);
                     }
                     mapcnt++;
@@ -1515,31 +1531,31 @@ void get_mappings(char *mfile)
                 while ( result != NULL && tokcnt<2 ) {
                     if (strstr(result," (")!=NULL || strstr(result,"\\")!=NULL)
                         result = strtok( NULL, delims );
-                    else{
-                        if (tokcnt == 0){
+                    else {
+                        if (tokcnt == 0) {
                             if (strlen(result)>1)
                                 tokcnt=2;
                             else
                                 strncpy(map[mapcnt].keyname,result,1);
                         }
-                        if (tokcnt == 1){
-                            if (result[0]=='?'&& strlen(result)!=1){
+                        if (tokcnt == 1) {
+                            if (result[0]=='?'&& strlen(result)!=1) {
                                 ptr=strchr(result,'?');
                                 *ptr++='\0';
                                 strcpy(map[mapcnt].keyvalue,ptr);
                             }
-                            else if (result[0]=='\\'){
+                            else if (result[0]=='\\') {
                                 ptr=strchr(result,'?');
                                 *ptr++='\0';
                                 strcpy(map[mapcnt].keyvalue,ptr);
                             }
-                            else{
+                            else {
                                 strcpy(map[mapcnt].keyvalue,result);
                             }
                             mapcnt++;
                         }
 
-                        if (tokcnt == 2 && strlen(result)>2){
+                        if (tokcnt == 2 && strlen(result)>2) {
                             GtkWidget *mdialog;
 
                             mdialog = gtk_message_dialog_new (GTK_WINDOW(IndicMapper),
@@ -1568,6 +1584,51 @@ void get_mappings(char *mfile)
         load_mappings();
 NotValidKeymap:
         fclose(fp);
+    }
+}
+void print_xkb_map()
+{
+    int i=0;
+    for (i=0; i< 47; i++)
+    {
+        printf("    Key <%s> { [",key_map[i][0]);
+        int n1,c1,len1;
+        wchar_t *wp1,*wp2,*wp3,*wp4;
+        char p1[MB_CUR_MAX+1],p2[MB_CUR_MAX+1],p3[MB_CUR_MAX+1],p4[MB_CUR_MAX+1];
+        char unichar1[5],unichar2[5],unichar3[5],unichar4[5];
+        char *entry_text1,*entry_text2,*entry_text3,*entry_text4;
+
+        entry_text1=srch(key_map[i][1]);
+        n1 = strlen(entry_text1) * sizeof(wchar_t);
+        wp1 = (wchar_t *)malloc(n1);
+        len1 = mbstowcs(wp1, entry_text1, n1);
+        if (strcmp(entry_text1,"ZWNJ")!=0 && strcmp(entry_text1,"ZWJ")!=0)
+        {
+            for (c1=0; c1<len1; c1++) {
+                int x1;
+                x1 = wctomb(p1, wp1[c1]);
+                if (x1>0) p1[x1]=0;
+                sprintf(unichar1, "%04X", wp1[c1]);
+
+                printf(" U%04X",strtol(unichar1, 0, 16));
+            }
+        }
+        entry_text2=srch(key_map[i][2]);
+
+        n1 = strlen(entry_text2) * sizeof(wchar_t);
+        wp2 = (wchar_t *)malloc(n1);
+        len1 = mbstowcs(wp2, entry_text2, n1);
+        if (strcmp(entry_text2,"ZWNJ")!=0 && strcmp(entry_text2,"ZWJ")!=0)
+        {
+            for (c1=0; c1<len1; c1++) {
+                int x1;
+                x1 = wctomb(p2, wp2[c1]);
+                if (x1>0) p2[x1]=0;
+                sprintf(unichar2, "%04X", wp2[c1]);
+                printf(", U%04X",strtol(unichar2, 0, 16));
+            }
+        }
+        printf("] };\n");
     }
 }
 
@@ -1614,7 +1675,7 @@ void set_default_map_name(char *lcode)
             }
         }
 
-        for ( ii=0;ii<mimcnt;ii++)
+        for ( ii=0; ii<mimcnt; ii++)
         {
             if (strcmp(maplist[ii],langname)==0)
             {
@@ -1636,7 +1697,7 @@ void add_xkbmaplist()
     FILE *ifp;
     int i=0,j=0;
     char iline[80];
-    char xkfile[35];
+    char xkfile[65];
     char *ntoken;
 
     ifp= fopen("/usr/share/X11/xkb/symbols/in", "r");
@@ -1660,13 +1721,24 @@ void add_xkbmaplist()
             }
             if (strcmp(iline,"\tname[Group1]=\"India\";\n")!=0)
             {
-                char *itoken;
-                itoken = strtok(iline, " \t");
-                itoken = strtok(NULL, "=\" ");
-                itoken = strtok(NULL, " ");
-                itoken = strtok(NULL, "\";");
+                char *itoken,*nntoken;
+                size_t nn=0,nn_cnt=0;
+                itoken=(char *)malloc(65*sizeof(char));
+                memset(itoken,'\0',65);
+
+                nn=strlen(iline);
+                while (nn_cnt < nn)
+                {
+                    if (iline[nn_cnt] == '\"')
+                    {
+                        strncpy(itoken,iline+nn_cnt+1,nn-nn_cnt-4);
+                        break;
+                    }
+                    else
+                        nn_cnt++;
+                }
                 sprintf(xkfile,"xkb-%s", itoken);
-                if (strstr(xkfile,"Typewriter")==NULL && strstr(xkfile, "Urdu")==NULL)
+                if (strstr(xkfile,"typewriter")==NULL && strstr(xkfile, "Urdu")==NULL && strstr(xkfile, "English")==NULL)
                 {
                     gtk_combo_box_append_text ((GtkComboBox *)combo_mim, xkfile);
                     maplist[mimcnt]= (char *) malloc(strlen(xkfile)+1);
@@ -1699,7 +1771,7 @@ void add_mimfilelist()
         while (cnt<n)
         {
             mimlen=strlen(namelist[cnt]->d_name);
-            if ((mimlen>=6) && (strstr(namelist[cnt]->d_name,".mim")!=NULL) && (namelist[cnt]->d_name[mimlen-1]=='m') && (strstr(namelist[cnt]->d_name,"inscript")!=NULL))
+            if ((mimlen>=6) && (strstr(namelist[cnt]->d_name,".mim")!=NULL) && (namelist[cnt]->d_name[mimlen-1]=='m') && (strstr(namelist[cnt]->d_name,"inscript.mim")!=NULL))
             {
                 char mline[80],*token,fpath[256];
                 FILE *mfp;
@@ -1745,7 +1817,7 @@ void add_mimfilelist()
     cnt=0;
     home_dir=getenv("HOME");
     strcpy(custom_dir_path,home_dir);
-    strcat(custom_dir_path,"/.m17n/");
+    strcat(custom_dir_path,"/.m17n.d/");
 
     n = scandir(custom_dir_path, &namelist, 0, alphasort);
     if (n < 0)
@@ -1755,7 +1827,7 @@ void add_mimfilelist()
         while (cnt<n)
         {
             mimlen=strlen(namelist[cnt]->d_name);
-            if ((mimlen>=6) && (strstr(namelist[cnt]->d_name,".mim")!=NULL) && (namelist[cnt]->d_name[mimlen-1]=='m') && (strstr(namelist[cnt]->d_name,"inscript")!=NULL))
+            if ((mimlen>=6) && (strstr(namelist[cnt]->d_name,".mim")!=NULL) && (namelist[cnt]->d_name[mimlen-1]=='m') && (strstr(namelist[cnt]->d_name,"inscript.mim")!=NULL))
             {
                 strncpy(mimfile,namelist[cnt]->d_name,mimlen-4);
                 mimfile[mimlen-4]='\0';
@@ -1773,7 +1845,7 @@ void add_mimfilelist()
 void clear_mimfilelist()
 {
 
-    for ( ii=0;ii<mimcnt;ii++)
+    for ( ii=0; ii<mimcnt; ii++)
         gtk_combo_box_remove_text((GtkComboBox *)combo_mim,ii);
     add_mimfilelist();
 }
@@ -2473,7 +2545,7 @@ static void on_keyswitch_btn_clicked( GtkWidget *widget,
         tooltips = gtk_tooltips_new ();
         gtk_tooltips_set_tip (tooltips, keyswitch_btn, _("Change to English Keyboard"), NULL);
 
-        for ( ii=0;ii<mimcnt;ii++)
+        for ( ii=0; ii<mimcnt; ii++)
         {
             if (strcmp(maplist[ii],map_to_read+3)==0)
             {
@@ -2521,7 +2593,7 @@ static void on_btn_reassign_reakey_clicked( GtkWidget *widget,
 
     if (strlen(gtxtvaluea)>=1 && strlen(gtxtvalueb)>=1 )
     {
-        for (ii=0;ii<mapcnt;ii++){
+        for (ii=0; ii<mapcnt; ii++) {
             if (strcmp(map[ii].keyname,gtxtkeyb)==0)
                 strcpy(map[ii].keyvalue,gtxtvaluea);
         }
@@ -2660,7 +2732,7 @@ static void on_bt_swapkey_clicked( GtkWidget *widget,
 
         tmpkey=(char *) malloc((sizeof(char) * strlen(gtxtvaluea))+1);
         strcpy(tmpkey,gtxtvaluea);
-        for (ii=0;ii<mapcnt;ii++){
+        for (ii=0; ii<mapcnt; ii++) {
             if (strcmp(map[ii].keyname,gtxtkeya)==0)
                 strcpy(map[ii].keyvalue,gtxtvalueb);
             if (strcmp(map[ii].keyname,gtxtkeyb)==0)
@@ -2686,11 +2758,11 @@ static void on_btn_writemap_clicked(gchar *filenameprefix)
     home_dir=getenv("HOME");
 
     current_mim = (char *)gtk_combo_box_get_active_text((GtkComboBox *)combo_mim);
- 
+
     lc=get_iso_code(current_mim);
     sprintf(imname,"(input-method %s %s-inscript)\n\n",lc,filenameprefix);
     strcpy(hdirpath,home_dir);
-    strcat(hdirpath,"/.m17n/");
+    strcat(hdirpath,"/.m17n.d/");
 
     if ( stat (hdirpath , &buf ) != 0 )
     {
@@ -2701,7 +2773,7 @@ static void on_btn_writemap_clicked(gchar *filenameprefix)
 
     }
 
-    sprintf(nfilepath,"%s/.m17n/%s-%s-inscript.mim",home_dir,lc,filenameprefix);
+    sprintf(nfilepath,"%s/.m17n.d/%s-%s-inscript.mim",home_dir,lc,filenameprefix);
     nfilepath[strlen(nfilepath)]='\0';
     fpm = fopen(nfilepath, "w+");
 
@@ -2733,7 +2805,7 @@ static void on_btn_writemap_clicked(gchar *filenameprefix)
         fputs("(title \"ਕ\")\n",fpm);
     if (strstr(current_mim,"sat")!=NULL)
         fputs("(title \"क\")\n",fpm);
-   if (strstr(current_mim,"sd@devanagari")!=NULL)
+    if (strstr(current_mim,"sd@devanagari")!=NULL)
         fputs("(title \"क\")\n",fpm);
     if (strstr(current_mim,"ta")!=NULL)
         fputs("(title \"க\")\n",fpm);
@@ -2744,17 +2816,17 @@ static void on_btn_writemap_clicked(gchar *filenameprefix)
     fputs(" (trans\n",fpm);
     fputs("\n",fpm);
 
-    for (ii=0;ii<mapcnt;ii++){
-        if (strcmp(map[ii].keyname,"\"")==0 && strcmp((gchar *)map[ii].keyvalue,"\"")!=0){
+    for (ii=0; ii<mapcnt; ii++) {
+        if (strcmp(map[ii].keyname,"\"")==0 && strcmp((gchar *)map[ii].keyvalue,"\"")!=0) {
             sprintf(line, "  (\"\\%s\" \"%s\")\n", map[ii].keyname,map[ii].keyvalue);
         }
-        else if (strcmp(map[ii].keyname,"\"")==0 && strcmp((gchar *)map[ii].keyvalue,"\"")==0){
+        else if (strcmp(map[ii].keyname,"\"")==0 && strcmp((gchar *)map[ii].keyvalue,"\"")==0) {
             sprintf(line, "  (\"\\%s\" \"\\%s\")\n", map[ii].keyname,map[ii].keyvalue);
         }
-        else if (strcmp(map[ii].keyname,"\\")==0 && strcmp((gchar *)map[ii].keyvalue,"\\")!=0 ){
+        else if (strcmp(map[ii].keyname,"\\")==0 && strcmp((gchar *)map[ii].keyvalue,"\\")!=0 ) {
             sprintf(line, "  (\"\\%s\" \"%s\")\n", map[ii].keyname,map[ii].keyvalue);
         }
-        else if (strcmp(map[ii].keyname,"\\")==0 && strcmp((gchar *)map[ii].keyvalue,"\\")==0 ){
+        else if (strcmp(map[ii].keyname,"\\")==0 && strcmp((gchar *)map[ii].keyvalue,"\\")==0 ) {
             sprintf(line, "  (\"\\%s\" \"\\%s\")\n", map[ii].keyname,map[ii].keyvalue);
         }
         else {
@@ -2794,7 +2866,7 @@ void open_file(char *mapname)
     if (strcmp(cmim,"English")==0 && strcmp(gtk_button_get_label((GtkButton *)keyswitch_btn),"to English")!=0)
         on_keyswitch_btn_clicked((gpointer) keyswitch_btn, NULL);
 
-    for ( ii=0;ii<mimcnt;ii++)
+    for ( ii=0; ii<mimcnt; ii++)
     {
         if (strcmp(maplist[ii],omimfile)==0)
         {
@@ -2858,7 +2930,7 @@ static void on_bt_wrmap_clicked( GtkWidget *widget,
 
     home_dir=getenv("HOME");
     strcpy(sdirpath,home_dir);
-    strcat(sdirpath,"/.m17n/");
+    strcat(sdirpath,"/.m17n.d/");
 
     if ( stat (sdirpath , &buf ) != 0 )
     {
@@ -2937,7 +3009,7 @@ on_bt_back_quote_drag_data_received             (GtkWidget       *widget,
         GtkSelectionData *selection_data,
         guint            target_type,
         guint            time,
-        gpointer         user_data){
+        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -2969,7 +3041,7 @@ on_bt_back_quote_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label((GtkButton *)swidget,ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -2987,8 +3059,8 @@ on_bt_back_quote_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -3012,7 +3084,7 @@ on_bt_back_quote_drag_drop  (GtkWidget       *widget,
                              gint             x,
                              gint             y,
                              guint            time,
-                             gpointer         user_data){
+                             gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -3072,7 +3144,7 @@ on_bt_1_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -3104,7 +3176,7 @@ on_bt_1_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label((GtkButton *)swidget,ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -3122,8 +3194,8 @@ on_bt_1_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -3147,7 +3219,7 @@ on_bt_1_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -3207,7 +3279,7 @@ on_bt_2_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -3239,7 +3311,7 @@ on_bt_2_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label((GtkButton *)swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp((char *)map[ii].keyvalue,_sdata)==0)
                 {
@@ -3257,8 +3329,8 @@ on_bt_2_drag_data_received             (GtkWidget       *widget,
                     strcpy((char *)map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     wcscpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -3282,7 +3354,7 @@ on_bt_2_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -3342,7 +3414,7 @@ on_bt_3_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -3374,7 +3446,7 @@ on_bt_3_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp((char *)map[ii].keyvalue,_sdata)==0)
                 {
@@ -3392,8 +3464,8 @@ on_bt_3_drag_data_received             (GtkWidget       *widget,
                     strcpy((char *)map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     wcscpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -3417,7 +3489,7 @@ on_bt_3_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -3477,7 +3549,7 @@ on_bt_4_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -3509,7 +3581,7 @@ on_bt_4_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -3527,8 +3599,8 @@ on_bt_4_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -3552,7 +3624,7 @@ on_bt_4_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -3612,7 +3684,7 @@ on_bt_5_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -3644,7 +3716,7 @@ on_bt_5_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -3662,8 +3734,8 @@ on_bt_5_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -3687,7 +3759,7 @@ on_bt_5_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -3747,7 +3819,7 @@ on_bt_6_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -3779,7 +3851,7 @@ on_bt_6_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -3797,8 +3869,8 @@ on_bt_6_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -3822,7 +3894,7 @@ on_bt_6_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -3882,7 +3954,7 @@ on_bt_7_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -3914,7 +3986,7 @@ on_bt_7_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -3932,8 +4004,8 @@ on_bt_7_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -3957,7 +4029,7 @@ on_bt_7_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -4017,7 +4089,7 @@ on_bt_8_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -4049,7 +4121,7 @@ on_bt_8_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -4067,8 +4139,8 @@ on_bt_8_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -4092,7 +4164,7 @@ on_bt_8_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -4152,7 +4224,7 @@ on_bt_9_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -4184,7 +4256,7 @@ on_bt_9_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -4202,8 +4274,8 @@ on_bt_9_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -4227,7 +4299,7 @@ on_bt_9_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -4287,7 +4359,7 @@ on_bt_0_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -4319,7 +4391,7 @@ on_bt_0_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -4337,8 +4409,8 @@ on_bt_0_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -4362,7 +4434,7 @@ on_bt_0_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -4422,7 +4494,7 @@ on_bt_dash_drag_data_received             (GtkWidget       *widget,
         GtkSelectionData *selection_data,
         guint            target_type,
         guint            time,
-        gpointer         user_data){
+        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -4454,7 +4526,7 @@ on_bt_dash_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -4472,8 +4544,8 @@ on_bt_dash_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -4497,7 +4569,7 @@ on_bt_dash_drag_drop  (GtkWidget       *widget,
                        gint             x,
                        gint             y,
                        guint            time,
-                       gpointer         user_data){
+                       gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -4557,7 +4629,7 @@ on_bt_equal_drag_data_received             (GtkWidget       *widget,
         GtkSelectionData *selection_data,
         guint            target_type,
         guint            time,
-        gpointer         user_data){
+        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -4589,7 +4661,7 @@ on_bt_equal_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -4607,8 +4679,8 @@ on_bt_equal_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -4632,7 +4704,7 @@ on_bt_equal_drag_drop  (GtkWidget       *widget,
                         gint             x,
                         gint             y,
                         guint            time,
-                        gpointer         user_data){
+                        gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -4692,7 +4764,7 @@ on_bt_q_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -4724,7 +4796,7 @@ on_bt_q_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -4742,8 +4814,8 @@ on_bt_q_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -4767,7 +4839,7 @@ on_bt_q_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -4827,7 +4899,7 @@ on_bt_w_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -4859,7 +4931,7 @@ on_bt_w_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -4877,8 +4949,8 @@ on_bt_w_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -4902,7 +4974,7 @@ on_bt_w_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -4962,7 +5034,7 @@ on_bt_e_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -4994,7 +5066,7 @@ on_bt_e_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -5012,8 +5084,8 @@ on_bt_e_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -5037,7 +5109,7 @@ on_bt_e_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -5097,7 +5169,7 @@ on_bt_r_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -5129,7 +5201,7 @@ on_bt_r_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -5147,8 +5219,8 @@ on_bt_r_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -5172,7 +5244,7 @@ on_bt_r_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -5232,7 +5304,7 @@ on_bt_t_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -5264,7 +5336,7 @@ on_bt_t_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -5282,8 +5354,8 @@ on_bt_t_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -5307,7 +5379,7 @@ on_bt_t_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -5367,7 +5439,7 @@ on_bt_y_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -5399,7 +5471,7 @@ on_bt_y_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -5417,8 +5489,8 @@ on_bt_y_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -5442,7 +5514,7 @@ on_bt_y_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -5502,7 +5574,7 @@ on_bt_u_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -5534,7 +5606,7 @@ on_bt_u_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -5552,8 +5624,8 @@ on_bt_u_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -5577,7 +5649,7 @@ on_bt_u_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -5637,7 +5709,7 @@ on_bt_i_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -5669,7 +5741,7 @@ on_bt_i_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -5687,8 +5759,8 @@ on_bt_i_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -5712,7 +5784,7 @@ on_bt_i_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -5772,7 +5844,7 @@ on_bt_o_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -5804,7 +5876,7 @@ on_bt_o_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -5822,8 +5894,8 @@ on_bt_o_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -5847,7 +5919,7 @@ on_bt_o_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -5907,7 +5979,7 @@ on_bt_p_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -5939,7 +6011,7 @@ on_bt_p_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -5957,8 +6029,8 @@ on_bt_p_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -5982,7 +6054,7 @@ on_bt_p_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -6042,7 +6114,7 @@ on_bt_sq_bra_left_drag_data_received             (GtkWidget       *widget,
         GtkSelectionData *selection_data,
         guint            target_type,
         guint            time,
-        gpointer         user_data){
+        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -6074,7 +6146,7 @@ on_bt_sq_bra_left_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -6092,8 +6164,8 @@ on_bt_sq_bra_left_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -6117,7 +6189,7 @@ on_bt_sq_bra_left_drag_drop  (GtkWidget       *widget,
                               gint             x,
                               gint             y,
                               guint            time,
-                              gpointer         user_data){
+                              gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -6177,7 +6249,7 @@ on_bt_sq_bra_right_drag_data_received             (GtkWidget       *widget,
         GtkSelectionData *selection_data,
         guint            target_type,
         guint            time,
-        gpointer         user_data){
+        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -6209,7 +6281,7 @@ on_bt_sq_bra_right_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -6227,8 +6299,8 @@ on_bt_sq_bra_right_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -6252,7 +6324,7 @@ on_bt_sq_bra_right_drag_drop  (GtkWidget       *widget,
                                gint             x,
                                gint             y,
                                guint            time,
-                               gpointer         user_data){
+                               gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -6312,7 +6384,7 @@ on_bt_win_slash_drag_data_received             (GtkWidget       *widget,
         GtkSelectionData *selection_data,
         guint            target_type,
         guint            time,
-        gpointer         user_data){
+        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -6344,7 +6416,7 @@ on_bt_win_slash_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -6362,8 +6434,8 @@ on_bt_win_slash_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -6387,7 +6459,7 @@ on_bt_win_slash_drag_drop  (GtkWidget       *widget,
                             gint             x,
                             gint             y,
                             guint            time,
-                            gpointer         user_data){
+                            gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -6447,7 +6519,7 @@ on_bt_a_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -6479,7 +6551,7 @@ on_bt_a_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -6497,8 +6569,8 @@ on_bt_a_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -6522,7 +6594,7 @@ on_bt_a_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -6582,7 +6654,7 @@ on_bt_s_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -6614,7 +6686,7 @@ on_bt_s_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -6632,8 +6704,8 @@ on_bt_s_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -6657,7 +6729,7 @@ on_bt_s_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -6717,7 +6789,7 @@ on_bt_d_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -6749,7 +6821,7 @@ on_bt_d_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -6767,8 +6839,8 @@ on_bt_d_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -6792,7 +6864,7 @@ on_bt_d_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -6852,7 +6924,7 @@ on_bt_f_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -6884,7 +6956,7 @@ on_bt_f_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -6902,8 +6974,8 @@ on_bt_f_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -6927,7 +6999,7 @@ on_bt_f_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -6987,7 +7059,7 @@ on_bt_g_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -7019,7 +7091,7 @@ on_bt_g_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -7037,8 +7109,8 @@ on_bt_g_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -7062,7 +7134,7 @@ on_bt_g_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -7122,7 +7194,7 @@ on_bt_h_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -7154,7 +7226,7 @@ on_bt_h_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -7172,8 +7244,8 @@ on_bt_h_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -7197,7 +7269,7 @@ on_bt_h_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -7257,7 +7329,7 @@ on_bt_j_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -7289,7 +7361,7 @@ on_bt_j_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -7307,8 +7379,8 @@ on_bt_j_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -7332,7 +7404,7 @@ on_bt_j_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -7392,7 +7464,7 @@ on_bt_k_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -7424,7 +7496,7 @@ on_bt_k_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -7442,8 +7514,8 @@ on_bt_k_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -7467,7 +7539,7 @@ on_bt_k_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -7527,7 +7599,7 @@ on_bt_l_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -7559,7 +7631,7 @@ on_bt_l_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -7577,8 +7649,8 @@ on_bt_l_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -7602,7 +7674,7 @@ on_bt_l_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -7662,7 +7734,7 @@ on_bt_semi_colon_drag_data_received             (GtkWidget       *widget,
         GtkSelectionData *selection_data,
         guint            target_type,
         guint            time,
-        gpointer         user_data){
+        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -7694,7 +7766,7 @@ on_bt_semi_colon_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -7712,8 +7784,8 @@ on_bt_semi_colon_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -7737,7 +7809,7 @@ on_bt_semi_colon_drag_drop  (GtkWidget       *widget,
                              gint             x,
                              gint             y,
                              guint            time,
-                             gpointer         user_data){
+                             gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -7797,7 +7869,7 @@ on_bt_quote_drag_data_received             (GtkWidget       *widget,
         GtkSelectionData *selection_data,
         guint            target_type,
         guint            time,
-        gpointer         user_data){
+        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -7829,7 +7901,7 @@ on_bt_quote_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -7847,8 +7919,8 @@ on_bt_quote_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -7872,7 +7944,7 @@ on_bt_quote_drag_drop  (GtkWidget       *widget,
                         gint             x,
                         gint             y,
                         guint            time,
-                        gpointer         user_data){
+                        gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -7932,7 +8004,7 @@ on_bt_z_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -7964,7 +8036,7 @@ on_bt_z_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -7982,8 +8054,8 @@ on_bt_z_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -8007,7 +8079,7 @@ on_bt_z_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -8067,7 +8139,7 @@ on_bt_x_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -8099,7 +8171,7 @@ on_bt_x_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -8117,8 +8189,8 @@ on_bt_x_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -8142,7 +8214,7 @@ on_bt_x_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -8202,7 +8274,7 @@ on_bt_c_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -8234,7 +8306,7 @@ on_bt_c_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -8252,8 +8324,8 @@ on_bt_c_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -8277,7 +8349,7 @@ on_bt_c_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -8337,7 +8409,7 @@ on_bt_v_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -8369,7 +8441,7 @@ on_bt_v_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -8387,8 +8459,8 @@ on_bt_v_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -8412,7 +8484,7 @@ on_bt_v_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -8472,7 +8544,7 @@ on_bt_b_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -8504,7 +8576,7 @@ on_bt_b_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -8522,8 +8594,8 @@ on_bt_b_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -8547,7 +8619,7 @@ on_bt_b_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -8607,7 +8679,7 @@ on_bt_n_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -8639,7 +8711,7 @@ on_bt_n_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -8657,8 +8729,8 @@ on_bt_n_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -8682,7 +8754,7 @@ on_bt_n_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -8742,7 +8814,7 @@ on_bt_m_drag_data_received             (GtkWidget       *widget,
                                         GtkSelectionData *selection_data,
                                         guint            target_type,
                                         guint            time,
-                                        gpointer         user_data){
+                                        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -8774,7 +8846,7 @@ on_bt_m_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -8792,8 +8864,8 @@ on_bt_m_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -8817,7 +8889,7 @@ on_bt_m_drag_drop  (GtkWidget       *widget,
                     gint             x,
                     gint             y,
                     guint            time,
-                    gpointer         user_data){
+                    gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -8877,7 +8949,7 @@ on_bt_coma_drag_data_received             (GtkWidget       *widget,
         GtkSelectionData *selection_data,
         guint            target_type,
         guint            time,
-        gpointer         user_data){
+        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -8909,7 +8981,7 @@ on_bt_coma_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -8927,8 +8999,8 @@ on_bt_coma_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -8952,7 +9024,7 @@ on_bt_coma_drag_drop  (GtkWidget       *widget,
                        gint             x,
                        gint             y,
                        guint            time,
-                       gpointer         user_data){
+                       gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -9012,7 +9084,7 @@ on_bt_dot_drag_data_received             (GtkWidget       *widget,
         GtkSelectionData *selection_data,
         guint            target_type,
         guint            time,
-        gpointer         user_data){
+        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -9044,7 +9116,7 @@ on_bt_dot_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -9062,8 +9134,8 @@ on_bt_dot_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -9087,7 +9159,7 @@ on_bt_dot_drag_drop  (GtkWidget       *widget,
                       gint             x,
                       gint             y,
                       guint            time,
-                      gpointer         user_data){
+                      gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -9147,7 +9219,7 @@ on_bt_linux_slash_drag_data_received             (GtkWidget       *widget,
         GtkSelectionData *selection_data,
         guint            target_type,
         guint            time,
-        gpointer         user_data){
+        gpointer         user_data) {
 
     int ii=0;
     gchar   *_sdata;
@@ -9179,7 +9251,7 @@ on_bt_linux_slash_drag_data_received             (GtkWidget       *widget,
             gtk_button_set_label((GtkButton *)widget,_sdata);
             swidget = (GtkButton *)gtk_drag_get_source_widget(context);
             gtk_button_set_label(swidget,(char *)ktxt);
-            for (ii=0;ii<mapcnt;ii++)
+            for (ii=0; ii<mapcnt; ii++)
             {
                 if (strcmp(map[ii].keyvalue,_sdata)==0)
                 {
@@ -9197,8 +9269,8 @@ on_bt_linux_slash_drag_data_received             (GtkWidget       *widget,
                     strcpy(map[ii].keyvalue,_sdata);
                 }
             }
-            for (ii=0;ii<mapcnt;ii++){
-                if (strcmp(map[ii].keyname,sbtname)==0){
+            for (ii=0; ii<mapcnt; ii++) {
+                if (strcmp(map[ii].keyname,sbtname)==0) {
                     strcpy(map[ii].keyvalue,ktxt);
                 }
             }
@@ -9222,7 +9294,7 @@ on_bt_linux_slash_drag_drop  (GtkWidget       *widget,
                               gint             x,
                               gint             y,
                               guint            time,
-                              gpointer         user_data){
+                              gpointer         user_data) {
 
     gboolean        is_valid_drop_site;
     GdkAtom         target_type;
@@ -9252,6 +9324,7 @@ _print_usage (FILE *fp, gchar *name)
              "Usage:\n"
              " %s --help            Show this message\n"
              "    --open -n          Set keymap file\n"
+             "    --gen-xkb -g        Generate xkb keymap file\n"
              "    --advanced -a        Show advanced options\n",
              name);
 }
@@ -9354,6 +9427,7 @@ create_IndicMapper (int argc, char **argv)
     g_signal_connect_swapped (G_OBJECT (swap_item), "activate",
                               G_CALLBACK (on_bt_swapkey_clicked),
                               (gpointer) swap_item);
+
 
     gtk_widget_show (reassign_item);
     gtk_widget_show (swap_item);
@@ -9873,12 +9947,19 @@ create_IndicMapper (int argc, char **argv)
     gtk_combo_box_set_active  ((GtkComboBox *)combo_mim,0);
 
 
-    while ((c = getopt (argc, argv, "an:")) != -1) {
+    while ((c = getopt (argc, argv, "ag:n:?")) != -1) {
         switch (c) {
         case 'a':
             gtk_widget_show (menu_bar);
             gtk_widget_show (combo_mim);
             gtk_widget_show (keyswitch_btn);
+            enable_dnd=1;
+            break;
+        case 'g':
+            ltoken=optarg;
+            set_default_map_name(ltoken);
+            print_xkb_map();
+            exit(0);
             break;
         case 'n':
             ltoken=optarg;
@@ -10050,1322 +10131,1324 @@ create_IndicMapper (int argc, char **argv)
     g_signal_connect (G_OBJECT (bt_f12), "clicked",
                       G_CALLBACK (on_bt_f12_clicked), (gpointer) bt_f12);
 
-    gtk_drag_dest_set
-    (
-        bt_back_quote,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_back_quote,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_back_quote, "drag_data_get",
-                      G_CALLBACK (on_bt_back_quote_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_back_quote, "drag_data_received",
-                      G_CALLBACK (on_bt_back_quote_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_back_quote, "drag_drop",
-                      G_CALLBACK (on_bt_back_quote_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_1,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_1,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_1, "drag_data_get",
-                      G_CALLBACK (on_bt_1_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_1, "drag_data_received",
-                      G_CALLBACK (on_bt_1_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_1, "drag_drop",
-                      G_CALLBACK (on_bt_1_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_2,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_2,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_2, "drag_data_get",
-                      G_CALLBACK (on_bt_2_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_2, "drag_data_received",
-                      G_CALLBACK (on_bt_2_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_2, "drag_drop",
-                      G_CALLBACK (on_bt_2_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_3,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_3,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_3, "drag_data_get",
-                      G_CALLBACK (on_bt_3_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_3, "drag_data_received",
-                      G_CALLBACK (on_bt_3_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_3, "drag_drop",
-                      G_CALLBACK (on_bt_3_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_4,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_4,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_4, "drag_data_get",
-                      G_CALLBACK (on_bt_4_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_4, "drag_data_received",
-                      G_CALLBACK (on_bt_4_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_4, "drag_drop",
-                      G_CALLBACK (on_bt_4_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_5,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_5,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_5, "drag_data_get",
-                      G_CALLBACK (on_bt_5_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_5, "drag_data_received",
-                      G_CALLBACK (on_bt_5_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_5, "drag_drop",
-                      G_CALLBACK (on_bt_5_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_6,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_6,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_6, "drag_data_get",
-                      G_CALLBACK (on_bt_6_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_6, "drag_data_received",
-                      G_CALLBACK (on_bt_6_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_6, "drag_drop",
-                      G_CALLBACK (on_bt_6_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_7,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_7,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_7, "drag_data_get",
-                      G_CALLBACK (on_bt_7_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_7, "drag_data_received",
-                      G_CALLBACK (on_bt_7_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_7, "drag_drop",
-                      G_CALLBACK (on_bt_7_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_8,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_8,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_8, "drag_data_get",
-                      G_CALLBACK (on_bt_8_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_8, "drag_data_received",
-                      G_CALLBACK (on_bt_8_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_8, "drag_drop",
-                      G_CALLBACK (on_bt_8_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_9,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_9,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_9, "drag_data_get",
-                      G_CALLBACK (on_bt_9_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_9, "drag_data_received",
-                      G_CALLBACK (on_bt_9_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_9, "drag_drop",
-                      G_CALLBACK (on_bt_9_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_0,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_0,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_0, "drag_data_get",
-                      G_CALLBACK (on_bt_0_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_0, "drag_data_received",
-                      G_CALLBACK (on_bt_0_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_0, "drag_drop",
-                      G_CALLBACK (on_bt_0_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_dash,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_dash,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_dash, "drag_data_get",
-                      G_CALLBACK (on_bt_dash_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_dash, "drag_data_received",
-                      G_CALLBACK (on_bt_dash_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_dash, "drag_drop",
-                      G_CALLBACK (on_bt_dash_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_equal,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_equal,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_equal, "drag_data_get",
-                      G_CALLBACK (on_bt_equal_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_equal, "drag_data_received",
-                      G_CALLBACK (on_bt_equal_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_equal, "drag_drop",
-                      G_CALLBACK (on_bt_equal_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_q,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_q,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_q, "drag_data_get",
-                      G_CALLBACK (on_bt_q_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_q, "drag_data_received",
-                      G_CALLBACK (on_bt_q_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_q, "drag_drop",
-                      G_CALLBACK (on_bt_q_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_w,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_w,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_w, "drag_data_get",
-                      G_CALLBACK (on_bt_w_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_w, "drag_data_received",
-                      G_CALLBACK (on_bt_w_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_w, "drag_drop",
-                      G_CALLBACK (on_bt_w_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_e,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_e,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_e, "drag_data_get",
-                      G_CALLBACK (on_bt_e_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_e, "drag_data_received",
-                      G_CALLBACK (on_bt_e_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_e, "drag_drop",
-                      G_CALLBACK (on_bt_e_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_r,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_r,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_r, "drag_data_get",
-                      G_CALLBACK (on_bt_r_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_r, "drag_data_received",
-                      G_CALLBACK (on_bt_r_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_r, "drag_drop",
-                      G_CALLBACK (on_bt_r_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_t,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_t,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_t, "drag_data_get",
-                      G_CALLBACK (on_bt_t_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_t, "drag_data_received",
-                      G_CALLBACK (on_bt_t_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_t, "drag_drop",
-                      G_CALLBACK (on_bt_t_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_y,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_y,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_y, "drag_data_get",
-                      G_CALLBACK (on_bt_y_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_y, "drag_data_received",
-                      G_CALLBACK (on_bt_y_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_y, "drag_drop",
-                      G_CALLBACK (on_bt_y_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_u,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_u,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_u, "drag_data_get",
-                      G_CALLBACK (on_bt_u_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_u, "drag_data_received",
-                      G_CALLBACK (on_bt_u_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_u, "drag_drop",
-                      G_CALLBACK (on_bt_u_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_i,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_i,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_i, "drag_data_get",
-                      G_CALLBACK (on_bt_i_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_i, "drag_data_received",
-                      G_CALLBACK (on_bt_i_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_i, "drag_drop",
-                      G_CALLBACK (on_bt_i_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_o,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_o,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_o, "drag_data_get",
-                      G_CALLBACK (on_bt_o_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_o, "drag_data_received",
-                      G_CALLBACK (on_bt_o_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_o, "drag_drop",
-                      G_CALLBACK (on_bt_o_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_p,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_p,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_p, "drag_data_get",
-                      G_CALLBACK (on_bt_p_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_p, "drag_data_received",
-                      G_CALLBACK (on_bt_p_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_p, "drag_drop",
-                      G_CALLBACK (on_bt_p_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_sq_bra_left,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_sq_bra_left,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_sq_bra_left, "drag_data_get",
-                      G_CALLBACK (on_bt_sq_bra_left_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_sq_bra_left, "drag_data_received",
-                      G_CALLBACK (on_bt_sq_bra_left_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_sq_bra_left, "drag_drop",
-                      G_CALLBACK (on_bt_sq_bra_left_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_sq_bra_right,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_sq_bra_right,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_sq_bra_right, "drag_data_get",
-                      G_CALLBACK (on_bt_sq_bra_right_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_sq_bra_right, "drag_data_received",
-                      G_CALLBACK (on_bt_sq_bra_right_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_sq_bra_right, "drag_drop",
-                      G_CALLBACK (on_bt_sq_bra_right_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_win_slash,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_win_slash,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_win_slash, "drag_data_get",
-                      G_CALLBACK (on_bt_win_slash_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_win_slash, "drag_data_received",
-                      G_CALLBACK (on_bt_win_slash_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_win_slash, "drag_drop",
-                      G_CALLBACK (on_bt_win_slash_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_a,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_a,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_a, "drag_data_get",
-                      G_CALLBACK (on_bt_a_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_a, "drag_data_received",
-                      G_CALLBACK (on_bt_a_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_a, "drag_drop",
-                      G_CALLBACK (on_bt_a_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_s,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_s,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_s, "drag_data_get",
-                      G_CALLBACK (on_bt_s_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_s, "drag_data_received",
-                      G_CALLBACK (on_bt_s_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_s, "drag_drop",
-                      G_CALLBACK (on_bt_s_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_d,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_d,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_d, "drag_data_get",
-                      G_CALLBACK (on_bt_d_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_d, "drag_data_received",
-                      G_CALLBACK (on_bt_d_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_d, "drag_drop",
-                      G_CALLBACK (on_bt_d_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_f,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_f,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_f, "drag_data_get",
-                      G_CALLBACK (on_bt_f_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_f, "drag_data_received",
-                      G_CALLBACK (on_bt_f_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_f, "drag_drop",
-                      G_CALLBACK (on_bt_f_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_g,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_g,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_g, "drag_data_get",
-                      G_CALLBACK (on_bt_g_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_g, "drag_data_received",
-                      G_CALLBACK (on_bt_g_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_g, "drag_drop",
-                      G_CALLBACK (on_bt_g_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_h,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_h,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_h, "drag_data_get",
-                      G_CALLBACK (on_bt_h_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_h, "drag_data_received",
-                      G_CALLBACK (on_bt_h_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_h, "drag_drop",
-                      G_CALLBACK (on_bt_h_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_j,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_j,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_j, "drag_data_get",
-                      G_CALLBACK (on_bt_j_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_j, "drag_data_received",
-                      G_CALLBACK (on_bt_j_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_j, "drag_drop",
-                      G_CALLBACK (on_bt_j_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_k,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_k,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_k, "drag_data_get",
-                      G_CALLBACK (on_bt_k_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_k, "drag_data_received",
-                      G_CALLBACK (on_bt_k_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_k, "drag_drop",
-                      G_CALLBACK (on_bt_k_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_l,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_l,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_l, "drag_data_get",
-                      G_CALLBACK (on_bt_l_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_l, "drag_data_received",
-                      G_CALLBACK (on_bt_l_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_l, "drag_drop",
-                      G_CALLBACK (on_bt_l_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_semi_colon,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_semi_colon,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_semi_colon, "drag_data_get",
-                      G_CALLBACK (on_bt_semi_colon_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_semi_colon, "drag_data_received",
-                      G_CALLBACK (on_bt_semi_colon_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_semi_colon, "drag_drop",
-                      G_CALLBACK (on_bt_semi_colon_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_quote,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_quote,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_quote, "drag_data_get",
-                      G_CALLBACK (on_bt_quote_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_quote, "drag_data_received",
-                      G_CALLBACK (on_bt_quote_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_quote, "drag_drop",
-                      G_CALLBACK (on_bt_quote_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_z,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_z,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_z, "drag_data_get",
-                      G_CALLBACK (on_bt_z_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_z, "drag_data_received",
-                      G_CALLBACK (on_bt_z_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_z, "drag_drop",
-                      G_CALLBACK (on_bt_z_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_x,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_x,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_x, "drag_data_get",
-                      G_CALLBACK (on_bt_x_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_x, "drag_data_received",
-                      G_CALLBACK (on_bt_x_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_x, "drag_drop",
-                      G_CALLBACK (on_bt_x_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_c,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_c,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_c, "drag_data_get",
-                      G_CALLBACK (on_bt_c_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_c, "drag_data_received",
-                      G_CALLBACK (on_bt_c_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_c, "drag_drop",
-                      G_CALLBACK (on_bt_c_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_v,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_v,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_v, "drag_data_get",
-                      G_CALLBACK (on_bt_v_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_v, "drag_data_received",
-                      G_CALLBACK (on_bt_v_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_v, "drag_drop",
-                      G_CALLBACK (on_bt_v_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_b,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_b,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_b, "drag_data_get",
-                      G_CALLBACK (on_bt_b_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_b, "drag_data_received",
-                      G_CALLBACK (on_bt_b_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_b, "drag_drop",
-                      G_CALLBACK (on_bt_b_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_n,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_n,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_n, "drag_data_get",
-                      G_CALLBACK (on_bt_n_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_n, "drag_data_received",
-                      G_CALLBACK (on_bt_n_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_n, "drag_drop",
-                      G_CALLBACK (on_bt_n_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_m,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_m,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_m, "drag_data_get",
-                      G_CALLBACK (on_bt_m_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_m, "drag_data_received",
-                      G_CALLBACK (on_bt_m_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_m, "drag_drop",
-                      G_CALLBACK (on_bt_m_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_coma,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_coma,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_coma, "drag_data_get",
-                      G_CALLBACK (on_bt_coma_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_coma, "drag_data_received",
-                      G_CALLBACK (on_bt_coma_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_coma, "drag_drop",
-                      G_CALLBACK (on_bt_coma_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_dot,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_dot,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_dot, "drag_data_get",
-                      G_CALLBACK (on_bt_dot_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_dot, "drag_data_received",
-                      G_CALLBACK (on_bt_dot_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_dot, "drag_drop",
-                      G_CALLBACK (on_bt_dot_drag_drop),
-                      NULL),
-
-    gtk_drag_dest_set
-    (
-        bt_linux_slash,
-        GTK_DEST_DEFAULT_MOTION
-        | GTK_DEST_DEFAULT_HIGHLIGHT,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-
-    gtk_drag_source_set
-    (
-        bt_linux_slash,
-        GDK_BUTTON1_MASK,
-        target_list,
-        n_targets,
-        GDK_ACTION_COPY
-    ),
-    g_signal_connect ((gpointer) bt_linux_slash, "drag_data_get",
-                      G_CALLBACK (on_bt_linux_slash_drag_data_get),
-                      NULL),
-    g_signal_connect ((gpointer) bt_linux_slash, "drag_data_received",
-                      G_CALLBACK (on_bt_linux_slash_drag_data_received),
-                      NULL),
-    g_signal_connect ((gpointer) bt_linux_slash, "drag_drop",
-                      G_CALLBACK (on_bt_linux_slash_drag_drop),
-                      NULL),
-
+    if (enable_dnd)
+    {
+        gtk_drag_dest_set
+        (
+            bt_back_quote,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_back_quote,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_back_quote, "drag_data_get",
+                          G_CALLBACK (on_bt_back_quote_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_back_quote, "drag_data_received",
+                          G_CALLBACK (on_bt_back_quote_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_back_quote, "drag_drop",
+                          G_CALLBACK (on_bt_back_quote_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_1,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_1,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_1, "drag_data_get",
+                          G_CALLBACK (on_bt_1_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_1, "drag_data_received",
+                          G_CALLBACK (on_bt_1_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_1, "drag_drop",
+                          G_CALLBACK (on_bt_1_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_2,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_2,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_2, "drag_data_get",
+                          G_CALLBACK (on_bt_2_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_2, "drag_data_received",
+                          G_CALLBACK (on_bt_2_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_2, "drag_drop",
+                          G_CALLBACK (on_bt_2_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_3,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_3,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_3, "drag_data_get",
+                          G_CALLBACK (on_bt_3_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_3, "drag_data_received",
+                          G_CALLBACK (on_bt_3_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_3, "drag_drop",
+                          G_CALLBACK (on_bt_3_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_4,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_4,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_4, "drag_data_get",
+                          G_CALLBACK (on_bt_4_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_4, "drag_data_received",
+                          G_CALLBACK (on_bt_4_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_4, "drag_drop",
+                          G_CALLBACK (on_bt_4_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_5,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_5,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_5, "drag_data_get",
+                          G_CALLBACK (on_bt_5_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_5, "drag_data_received",
+                          G_CALLBACK (on_bt_5_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_5, "drag_drop",
+                          G_CALLBACK (on_bt_5_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_6,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_6,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_6, "drag_data_get",
+                          G_CALLBACK (on_bt_6_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_6, "drag_data_received",
+                          G_CALLBACK (on_bt_6_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_6, "drag_drop",
+                          G_CALLBACK (on_bt_6_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_7,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_7,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_7, "drag_data_get",
+                          G_CALLBACK (on_bt_7_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_7, "drag_data_received",
+                          G_CALLBACK (on_bt_7_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_7, "drag_drop",
+                          G_CALLBACK (on_bt_7_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_8,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_8,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_8, "drag_data_get",
+                          G_CALLBACK (on_bt_8_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_8, "drag_data_received",
+                          G_CALLBACK (on_bt_8_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_8, "drag_drop",
+                          G_CALLBACK (on_bt_8_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_9,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_9,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_9, "drag_data_get",
+                          G_CALLBACK (on_bt_9_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_9, "drag_data_received",
+                          G_CALLBACK (on_bt_9_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_9, "drag_drop",
+                          G_CALLBACK (on_bt_9_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_0,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_0,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_0, "drag_data_get",
+                          G_CALLBACK (on_bt_0_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_0, "drag_data_received",
+                          G_CALLBACK (on_bt_0_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_0, "drag_drop",
+                          G_CALLBACK (on_bt_0_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_dash,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_dash,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_dash, "drag_data_get",
+                          G_CALLBACK (on_bt_dash_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_dash, "drag_data_received",
+                          G_CALLBACK (on_bt_dash_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_dash, "drag_drop",
+                          G_CALLBACK (on_bt_dash_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_equal,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_equal,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_equal, "drag_data_get",
+                          G_CALLBACK (on_bt_equal_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_equal, "drag_data_received",
+                          G_CALLBACK (on_bt_equal_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_equal, "drag_drop",
+                          G_CALLBACK (on_bt_equal_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_q,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_q,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_q, "drag_data_get",
+                          G_CALLBACK (on_bt_q_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_q, "drag_data_received",
+                          G_CALLBACK (on_bt_q_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_q, "drag_drop",
+                          G_CALLBACK (on_bt_q_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_w,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_w,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_w, "drag_data_get",
+                          G_CALLBACK (on_bt_w_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_w, "drag_data_received",
+                          G_CALLBACK (on_bt_w_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_w, "drag_drop",
+                          G_CALLBACK (on_bt_w_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_e,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_e,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_e, "drag_data_get",
+                          G_CALLBACK (on_bt_e_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_e, "drag_data_received",
+                          G_CALLBACK (on_bt_e_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_e, "drag_drop",
+                          G_CALLBACK (on_bt_e_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_r,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_r,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_r, "drag_data_get",
+                          G_CALLBACK (on_bt_r_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_r, "drag_data_received",
+                          G_CALLBACK (on_bt_r_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_r, "drag_drop",
+                          G_CALLBACK (on_bt_r_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_t,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_t,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_t, "drag_data_get",
+                          G_CALLBACK (on_bt_t_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_t, "drag_data_received",
+                          G_CALLBACK (on_bt_t_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_t, "drag_drop",
+                          G_CALLBACK (on_bt_t_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_y,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_y,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_y, "drag_data_get",
+                          G_CALLBACK (on_bt_y_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_y, "drag_data_received",
+                          G_CALLBACK (on_bt_y_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_y, "drag_drop",
+                          G_CALLBACK (on_bt_y_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_u,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_u,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_u, "drag_data_get",
+                          G_CALLBACK (on_bt_u_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_u, "drag_data_received",
+                          G_CALLBACK (on_bt_u_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_u, "drag_drop",
+                          G_CALLBACK (on_bt_u_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_i,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_i,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_i, "drag_data_get",
+                          G_CALLBACK (on_bt_i_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_i, "drag_data_received",
+                          G_CALLBACK (on_bt_i_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_i, "drag_drop",
+                          G_CALLBACK (on_bt_i_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_o,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_o,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_o, "drag_data_get",
+                          G_CALLBACK (on_bt_o_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_o, "drag_data_received",
+                          G_CALLBACK (on_bt_o_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_o, "drag_drop",
+                          G_CALLBACK (on_bt_o_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_p,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_p,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_p, "drag_data_get",
+                          G_CALLBACK (on_bt_p_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_p, "drag_data_received",
+                          G_CALLBACK (on_bt_p_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_p, "drag_drop",
+                          G_CALLBACK (on_bt_p_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_sq_bra_left,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_sq_bra_left,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_sq_bra_left, "drag_data_get",
+                          G_CALLBACK (on_bt_sq_bra_left_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_sq_bra_left, "drag_data_received",
+                          G_CALLBACK (on_bt_sq_bra_left_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_sq_bra_left, "drag_drop",
+                          G_CALLBACK (on_bt_sq_bra_left_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_sq_bra_right,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_sq_bra_right,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_sq_bra_right, "drag_data_get",
+                          G_CALLBACK (on_bt_sq_bra_right_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_sq_bra_right, "drag_data_received",
+                          G_CALLBACK (on_bt_sq_bra_right_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_sq_bra_right, "drag_drop",
+                          G_CALLBACK (on_bt_sq_bra_right_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_win_slash,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_win_slash,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_win_slash, "drag_data_get",
+                          G_CALLBACK (on_bt_win_slash_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_win_slash, "drag_data_received",
+                          G_CALLBACK (on_bt_win_slash_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_win_slash, "drag_drop",
+                          G_CALLBACK (on_bt_win_slash_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_a,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_a,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_a, "drag_data_get",
+                          G_CALLBACK (on_bt_a_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_a, "drag_data_received",
+                          G_CALLBACK (on_bt_a_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_a, "drag_drop",
+                          G_CALLBACK (on_bt_a_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_s,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_s,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_s, "drag_data_get",
+                          G_CALLBACK (on_bt_s_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_s, "drag_data_received",
+                          G_CALLBACK (on_bt_s_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_s, "drag_drop",
+                          G_CALLBACK (on_bt_s_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_d,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_d,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_d, "drag_data_get",
+                          G_CALLBACK (on_bt_d_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_d, "drag_data_received",
+                          G_CALLBACK (on_bt_d_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_d, "drag_drop",
+                          G_CALLBACK (on_bt_d_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_f,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_f,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_f, "drag_data_get",
+                          G_CALLBACK (on_bt_f_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_f, "drag_data_received",
+                          G_CALLBACK (on_bt_f_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_f, "drag_drop",
+                          G_CALLBACK (on_bt_f_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_g,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_g,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_g, "drag_data_get",
+                          G_CALLBACK (on_bt_g_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_g, "drag_data_received",
+                          G_CALLBACK (on_bt_g_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_g, "drag_drop",
+                          G_CALLBACK (on_bt_g_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_h,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_h,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_h, "drag_data_get",
+                          G_CALLBACK (on_bt_h_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_h, "drag_data_received",
+                          G_CALLBACK (on_bt_h_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_h, "drag_drop",
+                          G_CALLBACK (on_bt_h_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_j,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_j,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_j, "drag_data_get",
+                          G_CALLBACK (on_bt_j_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_j, "drag_data_received",
+                          G_CALLBACK (on_bt_j_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_j, "drag_drop",
+                          G_CALLBACK (on_bt_j_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_k,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_k,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_k, "drag_data_get",
+                          G_CALLBACK (on_bt_k_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_k, "drag_data_received",
+                          G_CALLBACK (on_bt_k_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_k, "drag_drop",
+                          G_CALLBACK (on_bt_k_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_l,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_l,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_l, "drag_data_get",
+                          G_CALLBACK (on_bt_l_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_l, "drag_data_received",
+                          G_CALLBACK (on_bt_l_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_l, "drag_drop",
+                          G_CALLBACK (on_bt_l_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_semi_colon,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_semi_colon,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_semi_colon, "drag_data_get",
+                          G_CALLBACK (on_bt_semi_colon_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_semi_colon, "drag_data_received",
+                          G_CALLBACK (on_bt_semi_colon_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_semi_colon, "drag_drop",
+                          G_CALLBACK (on_bt_semi_colon_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_quote,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_quote,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_quote, "drag_data_get",
+                          G_CALLBACK (on_bt_quote_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_quote, "drag_data_received",
+                          G_CALLBACK (on_bt_quote_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_quote, "drag_drop",
+                          G_CALLBACK (on_bt_quote_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_z,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_z,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_z, "drag_data_get",
+                          G_CALLBACK (on_bt_z_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_z, "drag_data_received",
+                          G_CALLBACK (on_bt_z_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_z, "drag_drop",
+                          G_CALLBACK (on_bt_z_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_x,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_x,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_x, "drag_data_get",
+                          G_CALLBACK (on_bt_x_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_x, "drag_data_received",
+                          G_CALLBACK (on_bt_x_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_x, "drag_drop",
+                          G_CALLBACK (on_bt_x_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_c,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_c,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_c, "drag_data_get",
+                          G_CALLBACK (on_bt_c_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_c, "drag_data_received",
+                          G_CALLBACK (on_bt_c_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_c, "drag_drop",
+                          G_CALLBACK (on_bt_c_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_v,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_v,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_v, "drag_data_get",
+                          G_CALLBACK (on_bt_v_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_v, "drag_data_received",
+                          G_CALLBACK (on_bt_v_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_v, "drag_drop",
+                          G_CALLBACK (on_bt_v_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_b,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_b,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_b, "drag_data_get",
+                          G_CALLBACK (on_bt_b_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_b, "drag_data_received",
+                          G_CALLBACK (on_bt_b_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_b, "drag_drop",
+                          G_CALLBACK (on_bt_b_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_n,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_n,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_n, "drag_data_get",
+                          G_CALLBACK (on_bt_n_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_n, "drag_data_received",
+                          G_CALLBACK (on_bt_n_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_n, "drag_drop",
+                          G_CALLBACK (on_bt_n_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_m,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_m,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_m, "drag_data_get",
+                          G_CALLBACK (on_bt_m_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_m, "drag_data_received",
+                          G_CALLBACK (on_bt_m_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_m, "drag_drop",
+                          G_CALLBACK (on_bt_m_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_coma,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_coma,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_coma, "drag_data_get",
+                          G_CALLBACK (on_bt_coma_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_coma, "drag_data_received",
+                          G_CALLBACK (on_bt_coma_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_coma, "drag_drop",
+                          G_CALLBACK (on_bt_coma_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_dot,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_dot,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_dot, "drag_data_get",
+                          G_CALLBACK (on_bt_dot_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_dot, "drag_data_received",
+                          G_CALLBACK (on_bt_dot_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_dot, "drag_drop",
+                          G_CALLBACK (on_bt_dot_drag_drop),
+                          NULL);
+
+        gtk_drag_dest_set
+        (
+            bt_linux_slash,
+            GTK_DEST_DEFAULT_MOTION
+            | GTK_DEST_DEFAULT_HIGHLIGHT,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+
+        gtk_drag_source_set
+        (
+            bt_linux_slash,
+            GDK_BUTTON1_MASK,
+            target_list,
+            n_targets,
+            GDK_ACTION_COPY
+        );
+        g_signal_connect ((gpointer) bt_linux_slash, "drag_data_get",
+                          G_CALLBACK (on_bt_linux_slash_drag_data_get),
+                          NULL);
+        g_signal_connect ((gpointer) bt_linux_slash, "drag_data_received",
+                          G_CALLBACK (on_bt_linux_slash_drag_data_received),
+                          NULL);
+        g_signal_connect ((gpointer) bt_linux_slash, "drag_drop",
+                          G_CALLBACK (on_bt_linux_slash_drag_drop),
+                          NULL);
+    }
 
     /* Store pointers to all widgets, for use by lookup_widget(). */
     GLADE_HOOKUP_OBJECT_NO_REF (IndicMapper, IndicMapper, "IndicMapper");

@@ -1,158 +1,162 @@
-# translation of iok.trunk.po to
-# Italian translation of iok.
-# Copyright (C) 2009 Red Hat, Inc.
+# Swedish messages for iok.
+# Copyright © 2010 Free Software Foundation, Inc.
 # This file is distributed under the same license as the iok package.
-# 
-# 
-# Pierro Silvio <perplesso82@gmail.com>, 2009.
-# mario_santagiuliana <mario at marionline.it>, 2010.
+# Göran Uddeborg <goeran@uddeborg.se>, 2010.
+#
+# $Revision: 1.3 $
 msgid ""
 msgstr ""
-"Project-Id-Version: iok.trunk\n"
+"Project-Id-Version: iok master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-09 11:52+0530\n"
-"PO-Revision-Date: 2010-03-24 01:28+0100\n"
-"Last-Translator: mario_santagiuliana <mario at marionline.it>\n"
-"Language-Team: Italian <fedora-trans-it at redhat.com>\n"
+"PO-Revision-Date: 2010-09-08 21:51+0200\n"
+"Last-Translator: Göran Uddeborg <goeran@uddeborg.se>\n"
+"Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.0\n"
 
 #: ../iok.desktop.in.h:1
 msgid "Enter Indic characters with a virtual keyboard"
-msgstr "Inserisci caratteri indiani tramite tastiera virtuale"
+msgstr "Mata in indiska tecken med ett virtuellt tangentbord"
 
 #: ../iok.desktop.in.h:2
 msgid "Indic Onscreen Keyboard"
-msgstr "Tastiera indiana su schermo"
+msgstr "Indiskt tangentbord på skärmen"
 
 #: ../src/interface.c:2473
 msgid "Select the language in which you want to write"
-msgstr "Selezionare la lingua con cui si desidera scrivere"
+msgstr "Välj språket du vill skriva på"
 
 #: ../src/interface.c:2475 ../src/interface.c:9866
 msgid "Change to English Keyboard"
-msgstr "Passa alla tastiera inglese"
+msgstr "Byt till engelskt tangentbord"
 
 #: ../src/interface.c:2548
 msgid "ReassignKey"
-msgstr "RiassegnaTasti"
+msgstr "Ändra tangent"
 
 #: ../src/interface.c:2558
 msgid "Reassign Keyvalue of Key"
-msgstr "Riassegna il valore del tasto"
+msgstr "Ändra tangentvärde för tangent"
 
 #: ../src/interface.c:2569
 msgid "to another Key"
-msgstr "ad un altro tasto"
+msgstr "till en annan tangent"
 
 #. Don't need to show menus
 #. Create the menu items
 #: ../src/interface.c:2584 ../src/interface.c:9363
 msgid "Reassign"
-msgstr "Riassegna"
+msgstr "Ändra"
 
 #: ../src/interface.c:2588
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Avbryt"
 
 #: ../src/interface.c:2845
 msgid "Open Keymap File"
-msgstr "Apri file di mappatura"
+msgstr "Öppna tangentmappningsfil"
 
 #: ../src/interface.c:2895
 msgid "Write to Keymap File"
-msgstr "Scrivi sul file di mappatura"
+msgstr "Skriv till tangentmappningsfil"
 
 #. Don't need to show menus
 #. Create the menu items
 #: ../src/interface.c:9321
 msgid "Open"
-msgstr "Apri"
+msgstr "Öppna"
 
 #: ../src/interface.c:9323
 msgid "Open a Keymap that is not listed in a combobox"
-msgstr "Apri una mappatura che non è elencata in combobox"
+msgstr "Öppna en tangentmappning som inte är listad i en combobox"
 
 #: ../src/interface.c:9325
 msgid "Save"
-msgstr "Salva"
+msgstr "Spara"
 
 #: ../src/interface.c:9327
 msgid "Save current state of loaded keymap to a new keymap"
-msgstr "Salva lo stato corrente della mappatura caricata su una nuova mappatura"
+msgstr "Spara nuvarande tillstånd av inlästa tangentmappningar till en ny tangentmappning"
 
 #: ../src/interface.c:9330
 msgid "Quit"
-msgstr "Esci"
+msgstr "Avsluta"
 
 #: ../src/interface.c:9332
 msgid "Close iok application"
-msgstr "Chiudi l'applicazione iok"
+msgstr "Stäng iok-programmet"
 
 #: ../src/interface.c:9365
 msgid "Reassign key value of some key to some other key"
-msgstr "Riassegna il valore di alcuni tasti a altri tasti"
+msgstr "Ändra tangentvärdet på någon tangent till någon annan tangent"
 
 #: ../src/interface.c:9367
 msgid "Swap"
-msgstr "Scambia"
+msgstr "Växla"
 
 #: ../src/interface.c:9369
 msgid "Swap key values between any 2 keys in loaded keymap"
-msgstr "Scambia i valori fra due tasti nella mappatura caricata"
+msgstr "Växla tangentvärden mellan 2 tangenter i en inläst tangentmappning"
 
 #. Don't need to show menus
 #. Create the menu items
 #: ../src/interface.c:9389
 msgid "About"
-msgstr "Informazioni"
+msgstr "Om"
 
 #: ../src/interface.c:9391
 msgid "About iok application"
-msgstr "Informazioni su iok"
+msgstr "Om iok-programmet"
 
 #: ../src/interface.c:9407
 msgid "Keymap"
-msgstr "Mappatura tasti"
+msgstr "Tangentmappning"
 
 #: ../src/interface.c:9410
 msgid "Keys"
-msgstr "Tasti"
+msgstr "Tangenter"
 
 #: ../src/interface.c:9413
 msgid "Help"
-msgstr "Aiuto"
+msgstr "Hjälp"
 
 #: ../src/interface.c:9596
 msgid "Backspace"
-msgstr "Backspace"
+msgstr "Backsteg"
 
 #: ../src/interface.c:9612
 msgid "Tab"
-msgstr "Tab"
+msgstr "Tabulator"
 
 #: ../src/interface.c:9704
 msgid "Caps"
-msgstr "Caps"
+msgstr "Skiftlås"
 
 #: ../src/interface.c:9775
 msgid "Enter"
-msgstr "Invio"
+msgstr "Retur"
 
 #: ../src/interface.c:9790 ../src/interface.c:9855
 msgid "Shift"
-msgstr "Maiusc"
+msgstr "Skift"
 
 #: ../src/interface.c:9869
 msgid "Space"
-msgstr "Spazio"
+msgstr "Mellanslag"
 
 #: ../src/interface.c:9876
-msgid "Select the language in which you want to write. This list contains keymaps in order as inscript then user defined then xkb and then any keymaps opened that are not default listed"
-msgstr "Selezionare la lingua con cui si desidera scrivere. Questa lista contiene mappature di tastiera in ordine inscript, poi definite dall'utente, poi xkb e poi qualsiasi mappatura aperta e che non è elencata in modo predefinito"
+msgid ""
+"Select the language in which you want to write. This list contains keymaps "
+"in order as inscript then user defined then xkb and then any keymaps opened "
+"that are not default listed"
+msgstr "Välj vilket språg du vill skriva på.  Denna lista inenhåller tangentmappar i ordningen inscript sedan användardefinierade sedan xkb och sedan  eventuella tangentmappar öppnade som inte är i standardlistorna"
+
+#. TRANSLATORS: Replace this string with your names, one name per line.
+#: ../src/interface.c:11472
+msgid "translator-credits"
+msgstr "Göran Uddeborg <goeran@uddeborg.se>"
 
 #: ../src/interface.c:11478
 msgid "iok"
@@ -160,20 +164,9 @@ msgstr "iok"
 
 #: ../src/interface.c:11479
 msgid "GPLv2 or later\n"
-msgstr "GPLv2 o successiva\n"
+msgstr "GPLv2 eller senare\n"
 
 #: ../src/support.c:90 ../src/support.c:114
 #, c-format
 msgid "Couldn't find pixmap file: %s"
-msgstr "Impossibile trovare il file pixmap: %s"
-
-#. TRANSLATORS: Replace this string with your names, one name per line.
-#: ../src/interface.c:11472
-msgid "translator-credits"
-msgstr ""
-"Pierro Silvio <perplesso82 gmail.com>, 2009.\r\n"
-"Andrea La Fauci <andrea.lafauci@weproudlymanage.com>, 2010.\r\n"
-"Francesco Tombolini <tombo@adamantio.net>, 2010."
-
-#~ msgid "to English"
-#~ msgstr "in Inglese"
+msgstr "Hittade inte bildfilen: %s"
