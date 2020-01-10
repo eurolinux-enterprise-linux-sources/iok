@@ -1,0 +1,356 @@
+diff -urN iok-2.1.3.old/po/as.po iok-2.1.3/po/as.po
+--- iok-2.1.3.old/po/as.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/as.po	2014-01-14 10:27:05.765024405 +0530
+@@ -1,7 +1,7 @@
+ # ngoswami <ngoswami@fedoraproject.org>, 2012. #zanata
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+ "PO-Revision-Date: 2012-07-05 05:19-0400\n"
+diff -urN iok-2.1.3.old/po/bho.po iok-2.1.3/po/bho.po
+--- iok-2.1.3.old/po/bho.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/bho.po	2014-01-14 10:29:08.936688532 +0530
+@@ -3,16 +3,15 @@
+ # This file is distributed under the same license as the PACKAGE package.
+ # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+ #
+-#, fuzzy
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+ "Language-Team: Bhojpuri <LL@li.org>\n"
+-"Language: \n"
++"Language: bho\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=utf-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+diff -urN iok-2.1.3.old/po/bn_IN.po iok-2.1.3/po/bn_IN.po
+--- iok-2.1.3.old/po/bn_IN.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/bn_IN.po	2014-01-14 10:27:05.769024395 +0530
+@@ -1,7 +1,7 @@
+ # runab <runab@redhat.com>, 2012. #zanata
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+ "PO-Revision-Date: 2012-07-04 08:59-0400\n"
+diff -urN iok-2.1.3.old/po/brx.po iok-2.1.3/po/brx.po
+--- iok-2.1.3.old/po/brx.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/brx.po	2014-01-14 10:29:24.596644163 +0530
+@@ -3,16 +3,15 @@
+ # This file is distributed under the same license as the PACKAGE package.
+ # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+ #
+-#, fuzzy
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+ "Language-Team: Bodo <LL@li.org>\n"
+-"Language: \n"
++"Language: brx\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=utf-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+diff -urN iok-2.1.3.old/po/doi.po iok-2.1.3/po/doi.po
+--- iok-2.1.3.old/po/doi.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/doi.po	2014-01-14 10:29:15.415670169 +0530
+@@ -3,16 +3,15 @@
+ # This file is distributed under the same license as the PACKAGE package.
+ # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+ #
+-#, fuzzy
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+ "Language-Team: Dogri <LL@li.org>\n"
+-"Language: \n"
++"Language: doi\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=utf-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+diff -urN iok-2.1.3.old/po/gu.po iok-2.1.3/po/gu.po
+--- iok-2.1.3.old/po/gu.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/gu.po	2014-01-14 10:27:05.797024319 +0530
+@@ -1,7 +1,7 @@
+ # swkothar <swkothar@redhat.com>, 2012. #zanata
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+ "PO-Revision-Date: 2012-07-05 04:11-0400\n"
+diff -urN iok-2.1.3.old/po/hi.po iok-2.1.3/po/hi.po
+--- iok-2.1.3.old/po/hi.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/hi.po	2014-01-14 10:27:05.799024314 +0530
+@@ -1,7 +1,7 @@
+ # rajesh <rajesh@fedoraproject.org>, 2012. #zanata
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+ "PO-Revision-Date: 2012-07-03 02:59-0400\n"
+diff -urN iok-2.1.3.old/po/hne.po iok-2.1.3/po/hne.po
+--- iok-2.1.3.old/po/hne.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/hne.po	2014-01-14 10:29:01.561709444 +0530
+@@ -3,16 +3,15 @@
+ # This file is distributed under the same license as the PACKAGE package.
+ # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+ #
+-#, fuzzy
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+ "Language-Team: Chhattisgarhi <LL@li.org>\n"
+-"Language: \n"
++"Language: hne\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=utf-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+diff -urN iok-2.1.3.old/po/hu.po iok-2.1.3/po/hu.po
+--- iok-2.1.3.old/po/hu.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/hu.po	2014-01-14 10:28:53.449732458 +0530
+@@ -12,7 +12,7 @@
+ "Last-Translator: Zoltan Hoppar <hopparz@gmail.com>\n"
+ "Language-Team: Hungarian Fedora Translation Group <fedora-trans-hu@redhat."
+ "com>\n"
+-"Language: \n"
++"Language: hu\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=utf-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+diff -urN iok-2.1.3.old/po/ja.po iok-2.1.3/po/ja.po
+--- iok-2.1.3.old/po/ja.po	2014-01-14 10:26:31.443116655 +0530
++++ iok-2.1.3/po/ja.po	2014-01-14 10:27:05.808024290 +0530
+@@ -4,7 +4,7 @@
+ # Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>, 2009.
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2013-08-06 14:45+0530\n"
+ "PO-Revision-Date: 2013-09-10 05:55-0400\n"
+diff -urN iok-2.1.3.old/po/kn.po iok-2.1.3/po/kn.po
+--- iok-2.1.3.old/po/kn.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/kn.po	2014-01-14 10:27:05.810024284 +0530
+@@ -1,7 +1,7 @@
+ # shanky <shanky@fedoraproject.org>, 2012. #zanata
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+ "PO-Revision-Date: 2012-07-02 05:17-0400\n"
+diff -urN iok-2.1.3.old/po/ml.po iok-2.1.3/po/ml.po
+--- iok-2.1.3.old/po/ml.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/ml.po	2014-01-14 10:27:05.816024268 +0530
+@@ -1,7 +1,7 @@
+ # anipeter <anipeter@fedoraproject.org>, 2012. #zanata
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+ "PO-Revision-Date: 2012-07-02 04:26-0400\n"
+diff -urN iok-2.1.3.old/po/mni.po iok-2.1.3/po/mni.po
+--- iok-2.1.3.old/po/mni.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/mni.po	2014-01-14 10:28:45.771754253 +0530
+@@ -3,16 +3,15 @@
+ # This file is distributed under the same license as the PACKAGE package.
+ # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+ #
+-#, fuzzy
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+ "Language-Team: Manipuri <LL@li.org>\n"
+-"Language: \n"
++"Language: mni\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=utf-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+diff -urN iok-2.1.3.old/po/mr.po iok-2.1.3/po/mr.po
+--- iok-2.1.3.old/po/mr.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/mr.po	2014-01-14 10:27:05.820024257 +0530
+@@ -1,7 +1,7 @@
+ # sandeeps <sandeeps@fedoraproject.org>, 2012. #zanata
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+ "PO-Revision-Date: 2012-07-01 11:38-0400\n"
+diff -urN iok-2.1.3.old/po/nds.po iok-2.1.3/po/nds.po
+--- iok-2.1.3.old/po/nds.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/nds.po	2014-01-14 10:28:38.642774500 +0530
+@@ -11,7 +11,7 @@
+ "PO-Revision-Date: 2010-12-05 11:59+0100\n"
+ "Last-Translator: Nils-Christoph Fiedler <ncfiedler@gnome.org>\n"
+ "Language-Team: Low German <nds-lowgerman@lists.sourceforge.net>\n"
+-"Language: \n"
++"Language: nds\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=utf-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+diff -urN iok-2.1.3.old/po/or.po iok-2.1.3/po/or.po
+--- iok-2.1.3.old/po/or.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/or.po	2014-01-14 10:27:05.826024241 +0530
+@@ -1,7 +1,7 @@
+ # mgiri <mgiri@fedoraproject.org>, 2012. #zanata
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+ "PO-Revision-Date: 2012-07-05 03:31-0400\n"
+diff -urN iok-2.1.3.old/po/sa.po iok-2.1.3/po/sa.po
+--- iok-2.1.3.old/po/sa.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/sa.po	2014-01-14 10:28:32.683791432 +0530
+@@ -3,16 +3,15 @@
+ # This file is distributed under the same license as the PACKAGE package.
+ # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+ #
+-#, fuzzy
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+ "Language-Team: Sanskrit <LL@li.org>\n"
+-"Language: \n"
++"Language: sa\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=utf-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+diff -urN iok-2.1.3.old/po/sat.po iok-2.1.3/po/sat.po
+--- iok-2.1.3.old/po/sat.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/sat.po	2014-01-14 10:28:25.050811982 +0530
+@@ -3,16 +3,15 @@
+ # This file is distributed under the same license as the PACKAGE package.
+ # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+ #
+-#, fuzzy
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+ "Language-Team: Santali <LL@li.org>\n"
+-"Language: \n"
++"Language: sat\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=utf-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+diff -urN iok-2.1.3.old/po/sd.po iok-2.1.3/po/sd.po
+--- iok-2.1.3.old/po/sd.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/sd.po	2014-01-14 10:28:14.444840343 +0530
+@@ -3,16 +3,15 @@
+ # This file is distributed under the same license as the PACKAGE package.
+ # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+ #
+-#, fuzzy
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+ "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+ "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+ "Language-Team: Sindhi <LL@li.org>\n"
+-"Language: \n"
++"Language: sd\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=utf-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+diff -urN iok-2.1.3.old/po/te.po iok-2.1.3/po/te.po
+--- iok-2.1.3.old/po/te.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/te.po	2014-01-14 10:27:05.849024180 +0530
+@@ -1,7 +1,7 @@
+ # kkrothap <kkrothap@fedoraproject.org>, 2012. #zanata
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+ "PO-Revision-Date: 2012-07-05 04:11-0400\n"
+diff -urN iok-2.1.3.old/po/th.po iok-2.1.3/po/th.po
+--- iok-2.1.3.old/po/th.po	2012-07-09 10:08:33.000000000 +0530
++++ iok-2.1.3/po/th.po	2014-01-14 10:27:05.851024174 +0530
+@@ -4,7 +4,7 @@
+ # Manatsawin Hanmongkolchai <manatsawin@gmail.com>, 2009.
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+ "PO-Revision-Date: 2009-10-13 09:34+0700\n"
+diff -urN iok-2.1.3.old/po/zh_CN.po iok-2.1.3/po/zh_CN.po
+--- iok-2.1.3.old/po/zh_CN.po	2014-01-14 10:26:31.445116650 +0530
++++ iok-2.1.3/po/zh_CN.po	2014-01-14 10:27:05.854024166 +0530
+@@ -1,7 +1,7 @@
+ # Leah Liu <lliu@redhat.com>, 2013. #zanata
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2013-08-06 14:45+0530\n"
+ "PO-Revision-Date: 2013-11-04 10:11-0500\n"
+diff -urN iok-2.1.3.old/po/zh_TW.po iok-2.1.3/po/zh_TW.po
+--- iok-2.1.3.old/po/zh_TW.po	2014-01-14 10:26:31.445116650 +0530
++++ iok-2.1.3/po/zh_TW.po	2014-01-14 10:27:05.856024161 +0530
+@@ -1,7 +1,7 @@
+ # ccheng <ccheng@redhat.com>, 2013. #zanata
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2013-08-06 14:45+0530\n"
+ "PO-Revision-Date: 2013-12-06 01:24-0500\n"

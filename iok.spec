@@ -1,11 +1,13 @@
 Name:           iok
 Version:        2.1.3
-Release:        3%{?dist}
+Release:        6%{?dist}
 Summary:        Indic Onscreen Virtual Keyboard
 Group:          Applications/System
 License:        GPLv2+
 URL:            http://iok.sourceforge.net
 Source0:        https://fedorahosted.org/releases/i/o/iok/%{name}-%{version}.tar.gz
+Patch0:         %{name}-%{version}-translation_updates.patch
+Patch1:         %{name}-%{version}-some_po_header_updates.patch
 BuildRequires:  desktop-file-utils libXtst-devel
 BuildRequires:  gtk3-devel gettext libxml2-devel
 BuildRequires:  intltool unique3-devel
@@ -18,6 +20,8 @@ can even try to parse non-inscript keymaps and show them in iok.
 
 %prep
 %setup -q
+%patch0 -p2
+%patch1 -p1
 
 %build
 %configure
@@ -60,6 +64,15 @@ fi
 
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 2.1.3-6
+- Mass rebuild 2014-01-24
+
+* Tue Jan 14 2014 Parag Nemade <pnemade AT redhat DOT com>- 2.1.3-4
+- Resolves:rh#1030363 - [iok] Translations incomplete
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 2.1.3-4
+- Mass rebuild 2013-12-27
+
 * Fri Feb 08 2013 Parag Nemade <pnemade AT redhat DOT com>- 2.1.3-2
 - Remove vendor tag as per https://fedorahosted.org/fesco/ticket/1077
 

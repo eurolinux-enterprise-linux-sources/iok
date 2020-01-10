@@ -1,0 +1,3465 @@
+diff -urN a/iok-2.1.3/po/de.po b/iok-2.1.3/po/de.po
+--- a/iok-2.1.3/po/de.po	2013-12-06 13:01:07.336313341 +0530
++++ b/iok-2.1.3/po/de.po	2013-12-06 13:02:02.881809826 +0530
+@@ -1,23 +1,25 @@
+-# German translation of iok 
++# German translation of iok
+ # Copyright (C) 2008 iok
+ # This file is distributed under the same license as the iok package.
+ # Fabian Affolter <fab@fedoraproject.org>, 2009.
+ # Dominik Sandjaja <dominiksandjaja@fedoraproject.org>, 2009.
+-#
++# hpeters <hpeters@redhat.com>, 2013. #zanata
++# rgromans <rgromans@redhat.com>, 2013. #zanata
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+-"PO-Revision-Date: 2009-08-04 09:04+0100\n"
+-"Last-Translator: Fabian Affolter <fab@fedoraproject.org>\n"
++"PO-Revision-Date: 2013-09-22 08:46-0400\n"
++"Last-Translator: rgromans <rgromans@redhat.com>\n"
+ "Language-Team: German <fedora-trans-de@redhat.com>\n"
+-"Language: de\n"
+ "MIME-Version: 1.0\n"
+-"Content-Type: text/plain; charset=utf-8\n"
++"Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
++"Language: de\n"
+ "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+ "X-Poedit-Language: German\n"
++"X-Generator: Zanata 3.1.2\n"
+ 
+ #: ../iok.desktop.in.h:1
+ msgid "Indic Onscreen Keyboard"
+@@ -27,17 +29,21 @@
+ msgid "Enter Indic characters with a virtual keyboard"
+ msgstr "Indische Zeichen mit der virtuellen Tastatur eingeben"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author hpeters
+ #: ../src/interface.c:1987
+ msgid ""
+ "This keymap file does not map uniquely to a keyboard and therefore cannot be "
+ "displayed correctly"
+ msgstr ""
++"Diese Keymap-Datei verweist nicht eindeutig auf eine Tastatur und kann "
++"deshalb nicht korrekt dargestellt werden"
+ 
+ #: ../src/interface.c:3180
+ msgid "Select the language in which you want to write"
+ msgstr "Wählen Sie die Sprache, in der Sie schreiben wollen"
+ 
+-#: ../src/interface.c:3182 ../src/interface.c:10955
++#: ../src/interface.c:3182
++#: ../src/interface.c:10958
+ msgid "Change to English Keyboard"
+ msgstr "Zur englischen Tastatur wechseln"
+ 
+@@ -55,7 +61,8 @@
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:3291 ../src/interface.c:10447
++#: ../src/interface.c:3291
++#: ../src/interface.c:10450
+ msgid "Reassign"
+ msgstr "Neuzuweisung"
+ 
+@@ -71,54 +78,61 @@
+ msgid "Write to Keymap File"
+ msgstr "In Keymap-Datei schreiben"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author hpeters
+ #: ../src/interface.c:3655
+ msgid ""
+ "This application supports only for Inscript type keymaps therefore no custom "
+ "xkb keymaps can be created."
+ msgstr ""
++"Diese Applikation unterstützt nur Inscript-Keymaps, weshalb keine "
++"benutzerdefinierten xkb-Keymaps erstellt werden können."
+ 
+-#: ../src/interface.c:3681
++#: ../src/interface.c:3685
+ msgid ""
+ "This application supports saving the inscript keymaps using filename as "
+ "\"locale_code-custom_name-inscript2.mim\" only. If you are planning to "
+ "change the default keymap name then use only this pattern."
+ msgstr ""
++"Diese Applikation unterstützt das Speichern der inscript-Keymaps nur unter "
++"Verwendung des Dateinamens als \"locale_code-custom_name-inscript2.mim\". "
++"Falls Sie beabsichtigen, den standardmäßigen Keymap-Namen zu ändern, "
++"verwenden Sie nur dieses Format."
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10407
++#: ../src/interface.c:10410
+ msgid "Open"
+ msgstr "Öffnen"
+ 
+-#: ../src/interface.c:10408
++#: ../src/interface.c:10411
+ msgid "Open a Keymap that is not listed in a combobox"
+ msgstr "Keymap-Datei öffnen, die in keiner Combo-Box aufgelistet ist"
+ 
+-#: ../src/interface.c:10410
++#: ../src/interface.c:10413
+ msgid "Save"
+ msgstr "Speichern"
+ 
+-#: ../src/interface.c:10411
++#: ../src/interface.c:10414
+ msgid "Save current state of loaded keymap to a new keymap"
+ msgstr "Aktuellen Zustand der geladenen Keymap als neue Keymap speichern"
+ 
+-#: ../src/interface.c:10414
++#: ../src/interface.c:10417
+ msgid "Quit"
+ msgstr "Beenden"
+ 
+-#: ../src/interface.c:10416
++#: ../src/interface.c:10419
+ msgid "Close iok application"
+ msgstr "iok-Anwendung schließen"
+ 
+-#: ../src/interface.c:10449
++#: ../src/interface.c:10452
+ msgid "Reassign key value of some key to some other key"
+ msgstr "Neuzuweisung eines Tastenwerts zu einer anderen Taste"
+ 
+-#: ../src/interface.c:10451
++#: ../src/interface.c:10454
+ msgid "Swap"
+ msgstr "Wechsle"
+ 
+-#: ../src/interface.c:10453
++#: ../src/interface.c:10456
+ msgid "Swap key values between any 2 keys in loaded keymap"
+ msgstr ""
+ "Tastenwerte zwischen zwei beliebigen Tasten in der geladenen Keymap "
+@@ -126,56 +140,56 @@
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10473
++#: ../src/interface.c:10476
+ msgid "About"
+ msgstr "Über"
+ 
+-#: ../src/interface.c:10475
++#: ../src/interface.c:10478
+ msgid "About iok application"
+ msgstr "Über iok"
+ 
+-#: ../src/interface.c:10491
++#: ../src/interface.c:10494
+ msgid "Keymap"
+ msgstr "Tastenzuordnung"
+ 
+-#: ../src/interface.c:10494
++#: ../src/interface.c:10497
+ msgid "Keys"
+ msgstr "Tasten"
+ 
+-#: ../src/interface.c:10497
++#: ../src/interface.c:10500
+ msgid "Help"
+ msgstr "Hilfe"
+ 
+-#: ../src/interface.c:10682
++#: ../src/interface.c:10685
+ msgid "Backspace"
+ msgstr "Rücklauf"
+ 
+-#: ../src/interface.c:10699
++#: ../src/interface.c:10702
+ msgid "Tab"
+ msgstr "Tabulator "
+ 
+-#: ../src/interface.c:10792
++#: ../src/interface.c:10795
+ msgid "Caps"
+ msgstr "Feststelltaste"
+ 
+-#: ../src/interface.c:10863
++#: ../src/interface.c:10866
+ msgid "Enter"
+ msgstr "Enter "
+ 
+-#: ../src/interface.c:10879 ../src/interface.c:10944
++#: ../src/interface.c:10882
++#: ../src/interface.c:10947
+ msgid "Shift"
+ msgstr "Umschalttaste"
+ 
+-#: ../src/interface.c:10958
++#: ../src/interface.c:10961
+ msgid "Space"
+ msgstr "Leerschlag"
+ 
+-#: ../src/interface.c:10965
+-#, fuzzy
++#: ../src/interface.c:10968
+ msgid "Change to Extended layer Keyboard"
+-msgstr "Zur englischen Tastatur wechseln"
++msgstr "Zur Erweiterten Layer Tastatur wechseln"
+ 
+-#: ../src/interface.c:10971
++#: ../src/interface.c:10974
+ msgid ""
+ "Select the language in which you want to write. This list contains keymaps "
+ "in order as inscript then user defined then xkb and then any keymaps opened "
+@@ -186,371 +200,22 @@
+ "dann alle geöffneten Keymaps, die nicht in der Vorgabe-Liste sind"
+ 
+ #. TRANSLATORS: Replace this string with your names, one name per line.
+-#: ../src/interface.c:12541
++#: ../src/interface.c:12544
+ msgid "translator-credits"
+ msgstr ""
+ "Fabian Affolter <fab@fedoraproject.org>, 2009.\n"
+ "Dominik Sandjaja <dominiksandjaja@fedoraproject.org>, 2009."
+ 
+-#: ../src/interface.c:12547
++#: ../src/interface.c:12550
+ msgid "iok"
+ msgstr "iok"
+ 
+-#: ../src/interface.c:12548
++#: ../src/interface.c:12551
+ msgid "GPLv2 or later\n"
+ msgstr "GPLv2 oder später\n"
+ 
+-#: ../src/support.c:90 ../src/support.c:114
++#: ../src/support.c:90
++#: ../src/support.c:114
+ #, c-format
+ msgid "Couldn't find pixmap file: %s"
+ msgstr "Konnte pixmap-Datei nicht finden: %s"
+-
+-#~ msgid "to English"
+-#~ msgstr "nach Englisch"
+-
+-#, fuzzy
+-#~ msgid "English"
+-#~ msgstr "nach Englisch"
+-
+-#, fuzzy
+-#~ msgid "OpenMap"
+-#~ msgstr "OpenMap"
+-
+-#~ msgid "WriteMap"
+-#~ msgstr "SchreibeZuordnung"
+-
+-#~ msgid ""
+-#~ "~\n"
+-#~ "`"
+-#~ msgstr ""
+-#~ "~\n"
+-#~ "`"
+-
+-#~ msgid ""
+-#~ "!\n"
+-#~ "1"
+-#~ msgstr ""
+-#~ "!\n"
+-#~ "1"
+-
+-#~ msgid ""
+-#~ "@\n"
+-#~ "2"
+-#~ msgstr ""
+-#~ "@\n"
+-#~ "2"
+-
+-#~ msgid ""
+-#~ "#\n"
+-#~ "3"
+-#~ msgstr ""
+-#~ "#\n"
+-#~ "3"
+-
+-#~ msgid ""
+-#~ "$\n"
+-#~ "4"
+-#~ msgstr ""
+-#~ "$\n"
+-#~ "4"
+-
+-#~ msgid ""
+-#~ "%\n"
+-#~ "5"
+-#~ msgstr ""
+-#~ "%\n"
+-#~ "5"
+-
+-#~ msgid ""
+-#~ "^\n"
+-#~ "6"
+-#~ msgstr ""
+-#~ "^\n"
+-#~ "6"
+-
+-#~ msgid ""
+-#~ "&\n"
+-#~ "7"
+-#~ msgstr ""
+-#~ "&\n"
+-#~ "7"
+-
+-#~ msgid ""
+-#~ "*\n"
+-#~ "8"
+-#~ msgstr ""
+-#~ "*\n"
+-#~ "8"
+-
+-#~ msgid ""
+-#~ "(\n"
+-#~ "9"
+-#~ msgstr ""
+-#~ "(\n"
+-#~ "9"
+-
+-#~ msgid ""
+-#~ ")\n"
+-#~ "0"
+-#~ msgstr ""
+-#~ ")\n"
+-#~ "0"
+-
+-#~ msgid ""
+-#~ "_\n"
+-#~ "-"
+-#~ msgstr ""
+-#~ "_\n"
+-#~ "-"
+-
+-#~ msgid ""
+-#~ "+\n"
+-#~ "="
+-#~ msgstr ""
+-#~ "+\n"
+-#~ "="
+-
+-#~ msgid ""
+-#~ "Q\n"
+-#~ "q"
+-#~ msgstr ""
+-#~ "Q\n"
+-#~ "q"
+-
+-#~ msgid ""
+-#~ "W\n"
+-#~ "w"
+-#~ msgstr ""
+-#~ "W\n"
+-#~ "w"
+-
+-#~ msgid ""
+-#~ "E\n"
+-#~ "e"
+-#~ msgstr ""
+-#~ "E\n"
+-#~ "e"
+-
+-#~ msgid ""
+-#~ "R\n"
+-#~ "r"
+-#~ msgstr ""
+-#~ "R\n"
+-#~ "r"
+-
+-#~ msgid ""
+-#~ "T\n"
+-#~ "t"
+-#~ msgstr ""
+-#~ "T\n"
+-#~ "t"
+-
+-#~ msgid ""
+-#~ "Y\n"
+-#~ "y"
+-#~ msgstr ""
+-#~ "Y\n"
+-#~ "y"
+-
+-#~ msgid ""
+-#~ "U\n"
+-#~ "u"
+-#~ msgstr ""
+-#~ "U\n"
+-#~ "u"
+-
+-#~ msgid ""
+-#~ "I\n"
+-#~ "i"
+-#~ msgstr ""
+-#~ "I\n"
+-#~ "i"
+-
+-#~ msgid ""
+-#~ "O\n"
+-#~ "o"
+-#~ msgstr ""
+-#~ "O\n"
+-#~ "o"
+-
+-#~ msgid ""
+-#~ "P\n"
+-#~ "p"
+-#~ msgstr ""
+-#~ "P\n"
+-#~ "p"
+-
+-#~ msgid ""
+-#~ "{\n"
+-#~ "["
+-#~ msgstr ""
+-#~ "{\n"
+-#~ "["
+-
+-#~ msgid ""
+-#~ "}\n"
+-#~ "]"
+-#~ msgstr ""
+-#~ "}\n"
+-#~ "]"
+-
+-#~ msgid ""
+-#~ "|\n"
+-#~ "\\"
+-#~ msgstr ""
+-#~ "|\n"
+-#~ "\\"
+-
+-#~ msgid ""
+-#~ "A\n"
+-#~ "a"
+-#~ msgstr ""
+-#~ "A\n"
+-#~ "a"
+-
+-#~ msgid ""
+-#~ "S\n"
+-#~ "s"
+-#~ msgstr ""
+-#~ "S\n"
+-#~ "s"
+-
+-#~ msgid ""
+-#~ "D\n"
+-#~ "d"
+-#~ msgstr ""
+-#~ "D\n"
+-#~ "d"
+-
+-#~ msgid ""
+-#~ "F\n"
+-#~ "f"
+-#~ msgstr ""
+-#~ "F\n"
+-#~ "f"
+-
+-#~ msgid ""
+-#~ "G\n"
+-#~ "g"
+-#~ msgstr ""
+-#~ "G\n"
+-#~ "g"
+-
+-#~ msgid ""
+-#~ "H\n"
+-#~ "h"
+-#~ msgstr ""
+-#~ "H\n"
+-#~ "h"
+-
+-#~ msgid ""
+-#~ "J\n"
+-#~ "j"
+-#~ msgstr ""
+-#~ "J\n"
+-#~ "j"
+-
+-#~ msgid ""
+-#~ "K\n"
+-#~ "k"
+-#~ msgstr ""
+-#~ "K\n"
+-#~ "k"
+-
+-#~ msgid ""
+-#~ "L\n"
+-#~ "l"
+-#~ msgstr ""
+-#~ "L\n"
+-#~ "l"
+-
+-#~ msgid ""
+-#~ ":\n"
+-#~ ";"
+-#~ msgstr ""
+-#~ ":\n"
+-#~ ";"
+-
+-#~ msgid ""
+-#~ "\"\n"
+-#~ "'"
+-#~ msgstr ""
+-#~ "\"\n"
+-#~ "'"
+-
+-#~ msgid ""
+-#~ "Z\n"
+-#~ "z"
+-#~ msgstr ""
+-#~ "Z\n"
+-#~ "z"
+-
+-#~ msgid ""
+-#~ "X\n"
+-#~ "x"
+-#~ msgstr ""
+-#~ "X\n"
+-#~ "x"
+-
+-#~ msgid ""
+-#~ "C\n"
+-#~ "c"
+-#~ msgstr ""
+-#~ "C\n"
+-#~ "c"
+-
+-#~ msgid ""
+-#~ "V\n"
+-#~ "v"
+-#~ msgstr ""
+-#~ "V\n"
+-#~ "v"
+-
+-#~ msgid ""
+-#~ "B\n"
+-#~ "b"
+-#~ msgstr ""
+-#~ "B\n"
+-#~ "b"
+-
+-#~ msgid ""
+-#~ "N\n"
+-#~ "n"
+-#~ msgstr ""
+-#~ "N\n"
+-#~ "n"
+-
+-#~ msgid ""
+-#~ "M\n"
+-#~ "m"
+-#~ msgstr ""
+-#~ "M\n"
+-#~ "m"
+-
+-#~ msgid ""
+-#~ "<\n"
+-#~ ","
+-#~ msgstr ""
+-#~ "<\n"
+-#~ ","
+-
+-#~ msgid ""
+-#~ ">\n"
+-#~ "."
+-#~ msgstr ""
+-#~ ">\n"
+-#~ "."
+-
+-#~ msgid ""
+-#~ "?\n"
+-#~ "/"
+-#~ msgstr ""
+-#~ "?\n"
+-#~ "/"
+-
+-#, fuzzy
+-#~ msgid "swap_window"
+-#~ msgstr "swap_window"
+-
+-#~ msgid "Key 1"
+-#~ msgstr "Taste 1"
+diff -urN a/iok-2.1.3/po/es.po b/iok-2.1.3/po/es.po
+--- a/iok-2.1.3/po/es.po	2013-12-06 13:01:07.338313359 +0530
++++ b/iok-2.1.3/po/es.po	2013-12-06 13:02:02.882809835 +0530
+@@ -1,22 +1,24 @@
+ # SOME DESCRIPTIVE TITLE.
+ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+ # This file is distributed under the same license as the PACKAGE package.
+-#
++# 
+ # Translators:
+ # Héctor Daniel Cabrera <logan@fedoraproject.org>, 2011.
++# gguerrer <gguerrer@redhat.com>, 2013. #zanata
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: fedorahosted-org-svn-iok-po-iok.pot\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+-"PO-Revision-Date: 2011-03-23 13:37+0000\n"
+-"Last-Translator: logan <logan@fedoraproject.org>\n"
++"PO-Revision-Date: 2013-10-02 02:29-0400\n"
++"Last-Translator: gguerrer <gguerrer@redhat.com>\n"
+ "Language-Team: Spanish (Castilian) <trans-es@lists.fedoraproject.org>\n"
+-"Language: es\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
++"Language: es\n"
+ "Plural-Forms: nplurals=2; plural=(n != 1)\n"
++"X-Generator: Zanata 3.1.2\n"
+ 
+ #: ../iok.desktop.in.h:1
+ msgid "Indic Onscreen Keyboard"
+@@ -26,17 +28,21 @@
+ msgid "Enter Indic characters with a virtual keyboard"
+ msgstr "Ingrese caracteres índicos mediante un teclado virtual"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author gguerrer
+ #: ../src/interface.c:1987
+ msgid ""
+ "This keymap file does not map uniquely to a keyboard and therefore cannot be "
+ "displayed correctly"
+ msgstr ""
++"Este archivo de mapa de teclado no se asigna únicamente al teclado y por lo "
++"tanto no se puede desplegar correctamente"
+ 
+ #: ../src/interface.c:3180
+ msgid "Select the language in which you want to write"
+ msgstr "Elija el idioma con el que desea escribir"
+ 
+-#: ../src/interface.c:3182 ../src/interface.c:10955
++#: ../src/interface.c:3182
++#: ../src/interface.c:10958
+ msgid "Change to English Keyboard"
+ msgstr "Utilizar el teclado en inglés"
+ 
+@@ -54,7 +60,8 @@
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:3291 ../src/interface.c:10447
++#: ../src/interface.c:3291
++#: ../src/interface.c:10450
+ msgid "Reassign"
+ msgstr "Reasignar"
+ 
+@@ -70,54 +77,61 @@
+ msgid "Write to Keymap File"
+ msgstr "Modificar el archivo de mapa de teclado"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author gguerrer
+ #: ../src/interface.c:3655
+ msgid ""
+ "This application supports only for Inscript type keymaps therefore no custom "
+ "xkb keymaps can be created."
+ msgstr ""
++"La aplicación soporta únicamente mapas de teclado de tipo Inscript, por lo "
++"tanto no se pueden crear mapas de teclado xkb personalizados."
+ 
+-#: ../src/interface.c:3681
++#: ../src/interface.c:3685
+ msgid ""
+ "This application supports saving the inscript keymaps using filename as "
+ "\"locale_code-custom_name-inscript2.mim\" only. If you are planning to "
+ "change the default keymap name then use only this pattern."
+ msgstr ""
++"Esta aplicación soporta el almacenaje de mapas de teclado Inscript mediante "
++"el nombre de archivo \"locale_code-custom_name-inscript2.mim\". Si está "
++"planeando cambiar el campo del mapa de teclado predeterminado entonces "
++"utilice este patrón."
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10407
++#: ../src/interface.c:10410
+ msgid "Open"
+ msgstr "Abrir"
+ 
+-#: ../src/interface.c:10408
++#: ../src/interface.c:10411
+ msgid "Open a Keymap that is not listed in a combobox"
+ msgstr "Abrir un mapa de teclado que no se encuentre listado en un combobox"
+ 
+-#: ../src/interface.c:10410
++#: ../src/interface.c:10413
+ msgid "Save"
+ msgstr "Guardar"
+ 
+-#: ../src/interface.c:10411
++#: ../src/interface.c:10414
+ msgid "Save current state of loaded keymap to a new keymap"
+ msgstr "Guardar el estado actual del mapa de teclado cargado en uno nuevo"
+ 
+-#: ../src/interface.c:10414
++#: ../src/interface.c:10417
+ msgid "Quit"
+ msgstr "Salir"
+ 
+-#: ../src/interface.c:10416
++#: ../src/interface.c:10419
+ msgid "Close iok application"
+ msgstr "Cerrar la herramienta iok"
+ 
+-#: ../src/interface.c:10449
++#: ../src/interface.c:10452
+ msgid "Reassign key value of some key to some other key"
+ msgstr "Volver a asignar el valor de una tecla a cualquier otra tecla"
+ 
+-#: ../src/interface.c:10451
++#: ../src/interface.c:10454
+ msgid "Swap"
+ msgstr "Intercambiar"
+ 
+-#: ../src/interface.c:10453
++#: ../src/interface.c:10456
+ msgid "Swap key values between any 2 keys in loaded keymap"
+ msgstr ""
+ "Intercambiar los valores de dos teclas cualesquiera del mapa de teclado "
+@@ -125,56 +139,56 @@
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10473
++#: ../src/interface.c:10476
+ msgid "About"
+ msgstr "Acerca de"
+ 
+-#: ../src/interface.c:10475
++#: ../src/interface.c:10478
+ msgid "About iok application"
+ msgstr "Acerca de la herramienta iok"
+ 
+-#: ../src/interface.c:10491
++#: ../src/interface.c:10494
+ msgid "Keymap"
+ msgstr "Mapa de teclado"
+ 
+-#: ../src/interface.c:10494
++#: ../src/interface.c:10497
+ msgid "Keys"
+ msgstr "Teclas"
+ 
+-#: ../src/interface.c:10497
++#: ../src/interface.c:10500
+ msgid "Help"
+ msgstr "Ayuda"
+ 
+-#: ../src/interface.c:10682
++#: ../src/interface.c:10685
+ msgid "Backspace"
+ msgstr "Retroceso"
+ 
+-#: ../src/interface.c:10699
++#: ../src/interface.c:10702
+ msgid "Tab"
+ msgstr "Tab"
+ 
+-#: ../src/interface.c:10792
++#: ../src/interface.c:10795
+ msgid "Caps"
+ msgstr "Mayúsculas"
+ 
+-#: ../src/interface.c:10863
++#: ../src/interface.c:10866
+ msgid "Enter"
+ msgstr "Enter"
+ 
+-#: ../src/interface.c:10879 ../src/interface.c:10944
++#: ../src/interface.c:10882
++#: ../src/interface.c:10947
+ msgid "Shift"
+ msgstr "Shift"
+ 
+-#: ../src/interface.c:10958
++#: ../src/interface.c:10961
+ msgid "Space"
+ msgstr "Espacio"
+ 
+-#: ../src/interface.c:10965
+-#, fuzzy
++#: ../src/interface.c:10968
+ msgid "Change to Extended layer Keyboard"
+-msgstr "Utilizar el teclado en inglés"
++msgstr "Cambiar el teclado de capa extendida"
+ 
+-#: ../src/interface.c:10971
++#: ../src/interface.c:10974
+ msgid ""
+ "Select the language in which you want to write. This list contains keymaps "
+ "in order as inscript then user defined then xkb and then any keymaps opened "
+@@ -186,22 +200,20 @@
+ "de los predeterminados"
+ 
+ #. TRANSLATORS: Replace this string with your names, one name per line.
+-#: ../src/interface.c:12541
++#: ../src/interface.c:12544
+ msgid "translator-credits"
+ msgstr "Héctor Daniel Cabrera (logan@fedoraproject,org), 2011."
+ 
+-#: ../src/interface.c:12547
++#: ../src/interface.c:12550
+ msgid "iok"
+ msgstr "iok"
+ 
+-#: ../src/interface.c:12548
++#: ../src/interface.c:12551
+ msgid "GPLv2 or later\n"
+ msgstr "GPLv2 o posterior \n"
+ 
+-#: ../src/support.c:90 ../src/support.c:114
++#: ../src/support.c:90
++#: ../src/support.c:114
+ #, c-format
+ msgid "Couldn't find pixmap file: %s"
+ msgstr "No se ha podido hallar un archivo pixmap: %s"
+-
+-#~ msgid "English"
+-#~ msgstr "inglés"
+diff -urN a/iok-2.1.3/po/fr.po b/iok-2.1.3/po/fr.po
+--- a/iok-2.1.3/po/fr.po	2013-12-06 13:01:07.337313350 +0530
++++ b/iok-2.1.3/po/fr.po	2013-12-06 13:02:02.882809835 +0530
+@@ -1,21 +1,22 @@
+ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+ # This file is distributed under the same license as the PACKAGE package.
+-#
++# 
+ # Sebastien Natroll <sebastien@fedoraproject.org>, 2010.
++# Sam Friedmann <sfriedma@redhat.com>, 2013. #zanata
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: \n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+-"PO-Revision-Date: 2010-03-14 13:39+0100\n"
+-"Last-Translator: Sebastien Natroll <sebastien@fedoraproject.org>\n"
++"PO-Revision-Date: 2013-10-07 11:53-0400\n"
++"Last-Translator: Sam Friedmann <sfriedma@redhat.com>\n"
+ "Language-Team: French <trans-fr.lists.fedoraproject.org>\n"
+-"Language: fr\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"X-Generator: Lokalize 1.0\n"
++"Language: fr\n"
+ "Plural-Forms: nplurals=2; plural=(n > 1);\n"
++"X-Generator: Zanata 3.1.2\n"
+ 
+ #: ../iok.desktop.in.h:1
+ msgid "Indic Onscreen Keyboard"
+@@ -25,17 +26,21 @@
+ msgid "Enter Indic characters with a virtual keyboard"
+ msgstr "Entrer des caractères indiens avec un clavier virtuel"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author Sam Friedmann
+ #: ../src/interface.c:1987
+ msgid ""
+ "This keymap file does not map uniquely to a keyboard and therefore cannot be "
+ "displayed correctly"
+ msgstr ""
++"Ce fichier d'agencement de clavier ne cartographie pas uniquement un clavier "
++"et ne peut donc pas être affiché correctement"
+ 
+ #: ../src/interface.c:3180
+ msgid "Select the language in which you want to write"
+ msgstr "Sélectionnez la langue dans laquelle vous voulez écrire"
+ 
+-#: ../src/interface.c:3182 ../src/interface.c:10955
++#: ../src/interface.c:3182
++#: ../src/interface.c:10958
+ msgid "Change to English Keyboard"
+ msgstr "Basculer en clavier anglais"
+ 
+@@ -53,7 +58,8 @@
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:3291 ../src/interface.c:10447
++#: ../src/interface.c:3291
++#: ../src/interface.c:10450
+ msgid "Reassign"
+ msgstr "Réassigner"
+ 
+@@ -69,110 +75,119 @@
+ msgid "Write to Keymap File"
+ msgstr "Enregistrer dans le fichier d'agencement"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author Sam Friedmann
+ #: ../src/interface.c:3655
+ msgid ""
+ "This application supports only for Inscript type keymaps therefore no custom "
+ "xkb keymaps can be created."
+ msgstr ""
++"Cette application prend uniquement en charge les agencements de clavier de "
++"type Inscript, ainsi aucun agencement de clavier xkb personnalisé ne peut "
++"être créé."
+ 
+-#: ../src/interface.c:3681
++#: ../src/interface.c:3685
+ msgid ""
+ "This application supports saving the inscript keymaps using filename as "
+ "\"locale_code-custom_name-inscript2.mim\" only. If you are planning to "
+ "change the default keymap name then use only this pattern."
+ msgstr ""
++"Cette application prend en charge l'enregistrement des agencements de "
++"clavier Inscript en utilisant un nom de fichier comme « locale_code-"
++"custom_name-inscript2.mim » uniquement. Si vous planifiez de modifier le nom "
++"de l'agencement de clavier par défaut, alors veuillez utiliser ce schéma "
++"uniquement."
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10407
++#: ../src/interface.c:10410
+ msgid "Open"
+ msgstr "Ouvrir"
+ 
+-#: ../src/interface.c:10408
++#: ../src/interface.c:10411
+ msgid "Open a Keymap that is not listed in a combobox"
+ msgstr "Ouvrir un agencement qui n'est pas listé dans un combobox"
+ 
+-#: ../src/interface.c:10410
++#: ../src/interface.c:10413
+ msgid "Save"
+ msgstr "Sauvegarder"
+ 
+-#: ../src/interface.c:10411
++#: ../src/interface.c:10414
+ msgid "Save current state of loaded keymap to a new keymap"
+ msgstr ""
+ "Sauvegarder l'état actuel de l'agencement chargé dans un nouvel agencement"
+ 
+-#: ../src/interface.c:10414
++#: ../src/interface.c:10417
+ msgid "Quit"
+ msgstr "Quitter"
+ 
+-#: ../src/interface.c:10416
++#: ../src/interface.c:10419
+ msgid "Close iok application"
+ msgstr "Fermer l'application iok"
+ 
+-#: ../src/interface.c:10449
++#: ../src/interface.c:10452
+ msgid "Reassign key value of some key to some other key"
+ msgstr "Réassigner la valeur d'une certaine touche à une autre"
+ 
+-#: ../src/interface.c:10451
++#: ../src/interface.c:10454
+ msgid "Swap"
+ msgstr "Échanger"
+ 
+-#: ../src/interface.c:10453
++#: ../src/interface.c:10456
+ msgid "Swap key values between any 2 keys in loaded keymap"
+ msgstr "Échanger les valeurs entre 2 touches dans l'agencement chargé"
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10473
++#: ../src/interface.c:10476
+ msgid "About"
+ msgstr "À propos"
+ 
+-#: ../src/interface.c:10475
++#: ../src/interface.c:10478
+ msgid "About iok application"
+ msgstr "À propos de l'application iok"
+ 
+-#: ../src/interface.c:10491
++#: ../src/interface.c:10494
+ msgid "Keymap"
+ msgstr "Agencement"
+ 
+-#: ../src/interface.c:10494
++#: ../src/interface.c:10497
+ msgid "Keys"
+ msgstr "Touches"
+ 
+-#: ../src/interface.c:10497
++#: ../src/interface.c:10500
+ msgid "Help"
+ msgstr "Aide"
+ 
+-#: ../src/interface.c:10682
++#: ../src/interface.c:10685
+ msgid "Backspace"
+ msgstr "Retour"
+ 
+-#: ../src/interface.c:10699
++#: ../src/interface.c:10702
+ msgid "Tab"
+ msgstr "Tab"
+ 
+-#: ../src/interface.c:10792
++#: ../src/interface.c:10795
+ msgid "Caps"
+ msgstr "Verr. Maj."
+ 
+-#: ../src/interface.c:10863
++#: ../src/interface.c:10866
+ msgid "Enter"
+ msgstr "Entrée"
+ 
+-#: ../src/interface.c:10879 ../src/interface.c:10944
++#: ../src/interface.c:10882
++#: ../src/interface.c:10947
+ msgid "Shift"
+ msgstr "Maj."
+ 
+-#: ../src/interface.c:10958
++#: ../src/interface.c:10961
+ msgid "Space"
+ msgstr "Espace"
+ 
+-#: ../src/interface.c:10965
+-#, fuzzy
++#: ../src/interface.c:10968
+ msgid "Change to Extended layer Keyboard"
+-msgstr "Basculer en clavier anglais"
++msgstr "Basculer en clavier à couche étendue"
+ 
+-#: ../src/interface.c:10971
++#: ../src/interface.c:10974
+ msgid ""
+ "Select the language in which you want to write. This list contains keymaps "
+ "in order as inscript then user defined then xkb and then any keymaps opened "
+@@ -183,22 +198,20 @@
+ "les agencements ouverts non listés par défault."
+ 
+ #. TRANSLATORS: Replace this string with your names, one name per line.
+-#: ../src/interface.c:12541
++#: ../src/interface.c:12544
+ msgid "translator-credits"
+ msgstr "Sébastien Natroll <sebastien@fedoraproject.org>, 2010."
+ 
+-#: ../src/interface.c:12547
++#: ../src/interface.c:12550
+ msgid "iok"
+ msgstr "iok"
+ 
+-#: ../src/interface.c:12548
++#: ../src/interface.c:12551
+ msgid "GPLv2 or later\n"
+ msgstr "GPLv2 ou postérieur\n"
+ 
+-#: ../src/support.c:90 ../src/support.c:114
++#: ../src/support.c:90
++#: ../src/support.c:114
+ #, c-format
+ msgid "Couldn't find pixmap file: %s"
+ msgstr "Impossible de trouver le fichier pixmap : %s"
+-
+-#~ msgid "English"
+-#~ msgstr "anglais"
+diff -urN a/iok-2.1.3/po/it.po b/iok-2.1.3/po/it.po
+--- a/iok-2.1.3/po/it.po	2013-12-06 13:01:07.337313350 +0530
++++ b/iok-2.1.3/po/it.po	2013-12-06 13:02:02.882809835 +0530
+@@ -2,24 +2,25 @@
+ # Italian translation of iok.
+ # Copyright (C) 2009 Red Hat, Inc.
+ # This file is distributed under the same license as the iok package.
+-#
+-#
++# 
++# 
+ # Pierro Silvio <perplesso82@gmail.com>, 2009.
+ # mario_santagiuliana <mario at marionline.it>, 2010.
++# fvalen <fvalen@redhat.com>, 2013. #zanata
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: iok.trunk\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+-"PO-Revision-Date: 2010-03-24 01:28+0100\n"
+-"Last-Translator: mario_santagiuliana <mario at marionline.it>\n"
++"PO-Revision-Date: 2013-09-29 09:13-0400\n"
++"Last-Translator: fvalen <fvalen@redhat.com>\n"
+ "Language-Team: Italian <fedora-trans-it at redhat.com>\n"
+-"Language: \n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
++"Language: it\n"
+ "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+-"X-Generator: Lokalize 1.0\n"
++"X-Generator: Zanata 3.1.2\n"
+ 
+ #: ../iok.desktop.in.h:1
+ msgid "Indic Onscreen Keyboard"
+@@ -29,17 +30,21 @@
+ msgid "Enter Indic characters with a virtual keyboard"
+ msgstr "Inserisci caratteri indiani tramite tastiera virtuale"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author fvalen
+ #: ../src/interface.c:1987
+ msgid ""
+ "This keymap file does not map uniquely to a keyboard and therefore cannot be "
+ "displayed correctly"
+ msgstr ""
++"Questo keymap file non mappa solo su una tastiera e quindi non può essere "
++"visualizzato correttamente"
+ 
+ #: ../src/interface.c:3180
+ msgid "Select the language in which you want to write"
+ msgstr "Selezionare la lingua con cui si desidera scrivere"
+ 
+-#: ../src/interface.c:3182 ../src/interface.c:10955
++#: ../src/interface.c:3182
++#: ../src/interface.c:10958
+ msgid "Change to English Keyboard"
+ msgstr "Passa alla tastiera inglese"
+ 
+@@ -57,7 +62,8 @@
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:3291 ../src/interface.c:10447
++#: ../src/interface.c:3291
++#: ../src/interface.c:10450
+ msgid "Reassign"
+ msgstr "Riassegna"
+ 
+@@ -73,110 +79,117 @@
+ msgid "Write to Keymap File"
+ msgstr "Scrivi sul file di mappatura"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author fvalen
+ #: ../src/interface.c:3655
+ msgid ""
+ "This application supports only for Inscript type keymaps therefore no custom "
+ "xkb keymaps can be created."
+ msgstr ""
++"Questa applicazione supporta solo keymap di tipo iniscript per questo motivo "
++"non è possibile creare alcuntipo di keymap xkb personalizzato."
+ 
+-#: ../src/interface.c:3681
++#: ../src/interface.c:3685
+ msgid ""
+ "This application supports saving the inscript keymaps using filename as "
+ "\"locale_code-custom_name-inscript2.mim\" only. If you are planning to "
+ "change the default keymap name then use only this pattern."
+ msgstr ""
++"Questa applicazione supporta solo il salvataggio di keymap inscript "
++"utilizzando un filename simile a \"locale_code-custom_name-inscript2.mim\". "
++"Se desiderate modificare il nome del keymap predefinito usare solo questo "
++"formato."
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10407
++#: ../src/interface.c:10410
+ msgid "Open"
+ msgstr "Apri"
+ 
+-#: ../src/interface.c:10408
++#: ../src/interface.c:10411
+ msgid "Open a Keymap that is not listed in a combobox"
+ msgstr "Apri una mappatura che non è elencata in combobox"
+ 
+-#: ../src/interface.c:10410
++#: ../src/interface.c:10413
+ msgid "Save"
+ msgstr "Salva"
+ 
+-#: ../src/interface.c:10411
++#: ../src/interface.c:10414
+ msgid "Save current state of loaded keymap to a new keymap"
+ msgstr ""
+ "Salva lo stato corrente della mappatura caricata su una nuova mappatura"
+ 
+-#: ../src/interface.c:10414
++#: ../src/interface.c:10417
+ msgid "Quit"
+ msgstr "Esci"
+ 
+-#: ../src/interface.c:10416
++#: ../src/interface.c:10419
+ msgid "Close iok application"
+ msgstr "Chiudi l'applicazione iok"
+ 
+-#: ../src/interface.c:10449
++#: ../src/interface.c:10452
+ msgid "Reassign key value of some key to some other key"
+ msgstr "Riassegna il valore di alcuni tasti a altri tasti"
+ 
+-#: ../src/interface.c:10451
++#: ../src/interface.c:10454
+ msgid "Swap"
+ msgstr "Scambia"
+ 
+-#: ../src/interface.c:10453
++#: ../src/interface.c:10456
+ msgid "Swap key values between any 2 keys in loaded keymap"
+ msgstr "Scambia i valori fra due tasti nella mappatura caricata"
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10473
++#: ../src/interface.c:10476
+ msgid "About"
+ msgstr "Informazioni"
+ 
+-#: ../src/interface.c:10475
++#: ../src/interface.c:10478
+ msgid "About iok application"
+ msgstr "Informazioni su iok"
+ 
+-#: ../src/interface.c:10491
++#: ../src/interface.c:10494
+ msgid "Keymap"
+ msgstr "Mappatura tasti"
+ 
+-#: ../src/interface.c:10494
++#: ../src/interface.c:10497
+ msgid "Keys"
+ msgstr "Tasti"
+ 
+-#: ../src/interface.c:10497
++#: ../src/interface.c:10500
+ msgid "Help"
+ msgstr "Aiuto"
+ 
+-#: ../src/interface.c:10682
++#: ../src/interface.c:10685
+ msgid "Backspace"
+ msgstr "Backspace"
+ 
+-#: ../src/interface.c:10699
++#: ../src/interface.c:10702
+ msgid "Tab"
+ msgstr "Tab"
+ 
+-#: ../src/interface.c:10792
++#: ../src/interface.c:10795
+ msgid "Caps"
+ msgstr "Caps"
+ 
+-#: ../src/interface.c:10863
++#: ../src/interface.c:10866
+ msgid "Enter"
+ msgstr "Invio"
+ 
+-#: ../src/interface.c:10879 ../src/interface.c:10944
++#: ../src/interface.c:10882
++#: ../src/interface.c:10947
+ msgid "Shift"
+ msgstr "Maiusc"
+ 
+-#: ../src/interface.c:10958
++#: ../src/interface.c:10961
+ msgid "Space"
+ msgstr "Spazio"
+ 
+-#: ../src/interface.c:10965
+-#, fuzzy
++#: ../src/interface.c:10968
+ msgid "Change to Extended layer Keyboard"
+-msgstr "Passa alla tastiera inglese"
++msgstr "Passa alla tastiera con livello esteso"
+ 
+-#: ../src/interface.c:10971
++#: ../src/interface.c:10974
+ msgid ""
+ "Select the language in which you want to write. This list contains keymaps "
+ "in order as inscript then user defined then xkb and then any keymaps opened "
+@@ -187,26 +200,23 @@
+ "e poi qualsiasi mappatura aperta e che non è elencata in modo predefinito"
+ 
+ #. TRANSLATORS: Replace this string with your names, one name per line.
+-#: ../src/interface.c:12541
++#: ../src/interface.c:12544
+ msgid "translator-credits"
+ msgstr ""
+ "Pierro Silvio <perplesso82 gmail.com>, 2009.\n"
+ "Andrea La Fauci <andrea.lafauci@weproudlymanage.com>, 2010.\n"
+ "Francesco Tombolini <tombo@adamantio.net>, 2010."
+ 
+-#: ../src/interface.c:12547
++#: ../src/interface.c:12550
+ msgid "iok"
+ msgstr "iok"
+ 
+-#: ../src/interface.c:12548
++#: ../src/interface.c:12551
+ msgid "GPLv2 or later\n"
+ msgstr "GPLv2 o successiva\n"
+ 
+-#: ../src/support.c:90 ../src/support.c:114
++#: ../src/support.c:90
++#: ../src/support.c:114
+ #, c-format
+ msgid "Couldn't find pixmap file: %s"
+ msgstr "Impossibile trovare il file pixmap: %s"
+-
+-#, fuzzy
+-#~ msgid "English"
+-#~ msgstr "Inglese"
+diff -urN a/iok-2.1.3/po/ja.po b/iok-2.1.3/po/ja.po
+--- a/iok-2.1.3/po/ja.po	2013-12-06 13:01:07.338313359 +0530
++++ b/iok-2.1.3/po/ja.po	2013-12-06 13:02:02.882809835 +0530
+@@ -2,19 +2,20 @@
+ # Copyright (C) 2009
+ # This file is distributed under the same license as the PACKAGE package.
+ # Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>, 2009.
+-#
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: 1.0\n"
++"Project-Id-Version: PACKAGE VERSION\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2012-06-29 14:48+0530\n"
+-"PO-Revision-Date: 2009-09-21 16:27+0900\n"
+-"Last-Translator: Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>\n"
++"POT-Creation-Date: 2013-08-06 14:45+0530\n"
++"PO-Revision-Date: 2013-09-10 05:55-0400\n"
++"Last-Translator: khasida <khasida@fedoraproject.org>\n"
+ "Language-Team: Japanese <fedora-trans-ja@redhat.com>\n"
+-"Language: ja\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
++"Language: ja\n"
++"X-Generator: Zanata 3.1.2\n"
++"Plural-Forms: nplurals=1; plural=0\n"
+ 
+ #: ../iok.desktop.in.h:1
+ msgid "Indic Onscreen Keyboard"
+@@ -24,17 +25,19 @@
+ msgid "Enter Indic characters with a virtual keyboard"
+ msgstr "仮想キーボードで表意文字を入力してください"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author khashida
+ #: ../src/interface.c:1987
+ msgid ""
+ "This keymap file does not map uniquely to a keyboard and therefore cannot be "
+ "displayed correctly"
+-msgstr ""
++msgstr "このキー対応ファイルはキーボードに特有の対応するものではないため、正しく表示できません。"
+ 
+ #: ../src/interface.c:3180
+ msgid "Select the language in which you want to write"
+ msgstr "書きたい言語を選択してください"
+ 
+-#: ../src/interface.c:3182 ../src/interface.c:10955
++#: ../src/interface.c:3182
++#: ../src/interface.c:10958
+ msgid "Change to English Keyboard"
+ msgstr "英語キーボードへ変更する"
+ 
+@@ -52,7 +55,8 @@
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:3291 ../src/interface.c:10447
++#: ../src/interface.c:3291
++#: ../src/interface.c:10450
+ msgid "Reassign"
+ msgstr "再割当て"
+ 
+@@ -68,137 +72,134 @@
+ msgid "Write to Keymap File"
+ msgstr "キー対応ファイルに書く"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author khashida
+ #: ../src/interface.c:3655
+ msgid ""
+ "This application supports only for Inscript type keymaps therefore no custom "
+ "xkb keymaps can be created."
+-msgstr ""
++msgstr "このアプリケーションは、Inscript タイプのキー対応のみをサポートしますので、カスタムの xkb のキー対応は作成できません。"
+ 
+-#: ../src/interface.c:3681
++#: ../src/interface.c:3685
+ msgid ""
+ "This application supports saving the inscript keymaps using filename as "
+ "\"locale_code-custom_name-inscript2.mim\" only. If you are planning to "
+ "change the default keymap name then use only this pattern."
+ msgstr ""
++"このアプリケーションは、ファイル名を「locale_code-custom_name-inscript2.mim」として使用することでのみ "
++"inscript キー対応の保存をサポートします。デフォルトのキー対応名を変更する予定である場合は、このパターンだけを使用して下さい。"
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10407
++#: ../src/interface.c:10410
+ msgid "Open"
+ msgstr "開く"
+ 
+-#: ../src/interface.c:10408
++#: ../src/interface.c:10411
+ msgid "Open a Keymap that is not listed in a combobox"
+ msgstr "コンボボックスに表示されていないキー割当てファイルを開く"
+ 
+-#: ../src/interface.c:10410
++#: ../src/interface.c:10413
+ msgid "Save"
+ msgstr "保存する"
+ 
+-#: ../src/interface.c:10411
++#: ../src/interface.c:10414
+ msgid "Save current state of loaded keymap to a new keymap"
+ msgstr "ロードされた現在のキー対応表を新しいキー対応表に保存する"
+ 
+-#: ../src/interface.c:10414
++#: ../src/interface.c:10417
+ msgid "Quit"
+ msgstr "終了する"
+ 
+-#: ../src/interface.c:10416
++#: ../src/interface.c:10419
+ msgid "Close iok application"
+ msgstr "iok アプリケーションを閉じる"
+ 
+-#: ../src/interface.c:10449
++#: ../src/interface.c:10452
+ msgid "Reassign key value of some key to some other key"
+ msgstr "あるキーのキー値を他のキーに再割当てする"
+ 
+-#: ../src/interface.c:10451
++#: ../src/interface.c:10454
+ msgid "Swap"
+ msgstr "交換"
+ 
+-#: ../src/interface.c:10453
++#: ../src/interface.c:10456
+ msgid "Swap key values between any 2 keys in loaded keymap"
+ msgstr "ロードされたキー対応表の任意の 2 つのキーのキー値を交換する"
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10473
++#: ../src/interface.c:10476
+ msgid "About"
+ msgstr "バージョン情報"
+ 
+-#: ../src/interface.c:10475
++#: ../src/interface.c:10478
+ msgid "About iok application"
+ msgstr "iok アプリケーションのバージョン情報"
+ 
+-#: ../src/interface.c:10491
++#: ../src/interface.c:10494
+ msgid "Keymap"
+ msgstr "キー対応表"
+ 
+-#: ../src/interface.c:10494
++#: ../src/interface.c:10497
+ msgid "Keys"
+ msgstr "キー"
+ 
+-#: ../src/interface.c:10497
++#: ../src/interface.c:10500
+ msgid "Help"
+ msgstr "ヘルプ"
+ 
+-#: ../src/interface.c:10682
++#: ../src/interface.c:10685
+ msgid "Backspace"
+ msgstr "後退"
+ 
+-#: ../src/interface.c:10699
++#: ../src/interface.c:10702
+ msgid "Tab"
+ msgstr "タブ"
+ 
+-#: ../src/interface.c:10792
++#: ../src/interface.c:10795
+ msgid "Caps"
+ msgstr "大文字"
+ 
+-#: ../src/interface.c:10863
++#: ../src/interface.c:10866
+ msgid "Enter"
+ msgstr "入力"
+ 
+-#: ../src/interface.c:10879 ../src/interface.c:10944
++#: ../src/interface.c:10882
++#: ../src/interface.c:10947
+ msgid "Shift"
+ msgstr "シフト"
+ 
+-#: ../src/interface.c:10958
++#: ../src/interface.c:10961
+ msgid "Space"
+ msgstr "空白"
+ 
+-#: ../src/interface.c:10965
+-#, fuzzy
++#: ../src/interface.c:10968
+ msgid "Change to Extended layer Keyboard"
+-msgstr "英語キーボードへ変更する"
++msgstr "拡張レイヤーキーボードに変更"
+ 
+-#: ../src/interface.c:10971
++#: ../src/interface.c:10974
+ msgid ""
+ "Select the language in which you want to write. This list contains keymaps "
+ "in order as inscript then user defined then xkb and then any keymaps opened "
+ "that are not default listed"
+ msgstr ""
+-"書きたい言語を選択してください。この一覧はインスクリプトから、利用者定義、"
+-"xkb、省略時には表示されない開いたキー対応表の順にキー対応表を含んでいます"
++"書きたい言語を選択してください。この一覧はインスクリプトから、利用者定義、xkb、省略時には表示されない開いたキー対応表の順にキー対応表を含んでいます"
+ 
+ #. TRANSLATORS: Replace this string with your names, one name per line.
+-#: ../src/interface.c:12541
++#: ../src/interface.c:12544
+ msgid "translator-credits"
+ msgstr "日向原 龍一 <hyu_gabaru@yahoo.co.jp>, 2009"
+ 
+-#: ../src/interface.c:12547
++#: ../src/interface.c:12550
+ msgid "iok"
+ msgstr "iok"
+ 
+-#: ../src/interface.c:12548
++#: ../src/interface.c:12551
+ msgid "GPLv2 or later\n"
+ msgstr "GPLv2 以降\n"
+ 
+-#: ../src/support.c:90 ../src/support.c:114
++#: ../src/support.c:90
++#: ../src/support.c:114
+ #, c-format
+ msgid "Couldn't find pixmap file: %s"
+ msgstr "pixmap ファイルが見つけられません: %s"
+-
+-#~ msgid "to English"
+-#~ msgstr "英語に"
+-
+-#~ msgid "English"
+-#~ msgstr "英語"
+diff -urN a/iok-2.1.3/po/ko.po b/iok-2.1.3/po/ko.po
+--- a/iok-2.1.3/po/ko.po	2013-12-06 13:01:07.338313359 +0530
++++ b/iok-2.1.3/po/ko.po	2013-12-06 13:02:02.882809835 +0530
+@@ -1,21 +1,23 @@
+ # translation of iok.trunk.ko.po to Korean
+ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+ # This file is distributed under the same license as the PACKAGE package.
+-#
++# 
+ # Hyunsok Oh <hoh@redhat.com>, 2010.
++# eukim <eukim@redhat.com>, 2013. #zanata
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: iok.trunk.ko\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+-"PO-Revision-Date: 2010-03-31 15:28+1000\n"
+-"Last-Translator: Hyunsok Oh <hoh@redhat.com>\n"
++"PO-Revision-Date: 2013-09-27 01:42-0400\n"
++"Last-Translator: eukim <eukim@redhat.com>\n"
+ "Language-Team: Korean <ko@li.org>\n"
+-"Language: ko\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"X-Generator: KBabel 1.11.4\n"
++"Language: ko\n"
++"X-Generator: Zanata 3.1.2\n"
++"Plural-Forms: nplurals=1; plural=0\n"
+ 
+ #: ../iok.desktop.in.h:1
+ msgid "Indic Onscreen Keyboard"
+@@ -25,17 +27,19 @@
+ msgid "Enter Indic characters with a virtual keyboard"
+ msgstr "가상 키보드로 인도 문자를 입력하십시오"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author eukim
+ #: ../src/interface.c:1987
+ msgid ""
+ "This keymap file does not map uniquely to a keyboard and therefore cannot be "
+ "displayed correctly"
+-msgstr ""
++msgstr "이 키맵 파일은 키보드에 고유하게 매핑할 수 없으므로 올바르게 표시되지 않을 수 있습니다"
+ 
+ #: ../src/interface.c:3180
+ msgid "Select the language in which you want to write"
+ msgstr "작성할 언어를 선택하십시오"
+ 
+-#: ../src/interface.c:3182 ../src/interface.c:10955
++#: ../src/interface.c:3182
++#: ../src/interface.c:10958
+ msgid "Change to English Keyboard"
+ msgstr "영어 키보드로 변경하십시오"
+ 
+@@ -53,7 +57,8 @@
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:3291 ../src/interface.c:10447
++#: ../src/interface.c:3291
++#: ../src/interface.c:10450
+ msgid "Reassign"
+ msgstr "재할당"
+ 
+@@ -69,138 +74,135 @@
+ msgid "Write to Keymap File"
+ msgstr "키맵 파일을 쓰십시오"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author eukim
+ #: ../src/interface.c:3655
+ msgid ""
+ "This application supports only for Inscript type keymaps therefore no custom "
+ "xkb keymaps can be created."
+-msgstr ""
++msgstr "이 애플리케이션은 Inscript 유형 키맵 만을 지원하므로 사용자 설정 xkb 키맵을 생성할 수 없습니다."
+ 
+-#: ../src/interface.c:3681
++#: ../src/interface.c:3685
+ msgid ""
+ "This application supports saving the inscript keymaps using filename as "
+ "\"locale_code-custom_name-inscript2.mim\" only. If you are planning to "
+ "change the default keymap name then use only this pattern."
+ msgstr ""
++"이 애플리케이션은 \"locale_code-custom_name-inscript2.mim\"이라는 파일 이름만을 사용하여 inscript "
++"키맵 저장을 지원합니다. 디폴트 키맵 이름을 변경하고자 할 경우 이 패턴만을 사용합니다. "
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10407
++#: ../src/interface.c:10410
+ msgid "Open"
+ msgstr "열기"
+ 
+-#: ../src/interface.c:10408
++#: ../src/interface.c:10411
+ msgid "Open a Keymap that is not listed in a combobox"
+ msgstr "콤보박스에 표시되지 않은 키맵을 엽니다"
+ 
+-#: ../src/interface.c:10410
++#: ../src/interface.c:10413
+ msgid "Save"
+ msgstr "저장"
+ 
+-#: ../src/interface.c:10411
++#: ../src/interface.c:10414
+ msgid "Save current state of loaded keymap to a new keymap"
+ msgstr "읽어들인 키맵의 현재 상태를 새로운 키맵에 저장합니다"
+ 
+-#: ../src/interface.c:10414
++#: ../src/interface.c:10417
+ msgid "Quit"
+ msgstr "종료"
+ 
+-#: ../src/interface.c:10416
++#: ../src/interface.c:10419
+ msgid "Close iok application"
+ msgstr "iok 어플리케이션을 종료합니다"
+ 
+-#: ../src/interface.c:10449
++#: ../src/interface.c:10452
+ msgid "Reassign key value of some key to some other key"
+ msgstr "몇몇 키의 키값을 다른 키로 재할당합니다"
+ 
+-#: ../src/interface.c:10451
++#: ../src/interface.c:10454
+ msgid "Swap"
+ msgstr "바꾸기"
+ 
+-#: ../src/interface.c:10453
++#: ../src/interface.c:10456
+ msgid "Swap key values between any 2 keys in loaded keymap"
+ msgstr "읽어들인 키맵의 두 키의 키 값을 서로 바꿉니다"
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10473
++#: ../src/interface.c:10476
+ msgid "About"
+ msgstr "설명"
+ 
+-#: ../src/interface.c:10475
++#: ../src/interface.c:10478
+ msgid "About iok application"
+ msgstr "iok 어플리케이션에 대한 설명"
+ 
+-#: ../src/interface.c:10491
++#: ../src/interface.c:10494
+ msgid "Keymap"
+ msgstr "키맵"
+ 
+-#: ../src/interface.c:10494
++#: ../src/interface.c:10497
+ msgid "Keys"
+ msgstr "키"
+ 
+-#: ../src/interface.c:10497
++#: ../src/interface.c:10500
+ msgid "Help"
+ msgstr "도움말"
+ 
+-#: ../src/interface.c:10682
++#: ../src/interface.c:10685
+ msgid "Backspace"
+ msgstr "백스페이스"
+ 
+-#: ../src/interface.c:10699
++#: ../src/interface.c:10702
+ msgid "Tab"
+ msgstr "탭"
+ 
+-#: ../src/interface.c:10792
++#: ../src/interface.c:10795
+ msgid "Caps"
+ msgstr "Caps"
+ 
+-#: ../src/interface.c:10863
++#: ../src/interface.c:10866
+ msgid "Enter"
+ msgstr "엔터"
+ 
+-#: ../src/interface.c:10879 ../src/interface.c:10944
++#: ../src/interface.c:10882
++#: ../src/interface.c:10947
+ msgid "Shift"
+ msgstr "시프트"
+ 
+-#: ../src/interface.c:10958
++#: ../src/interface.c:10961
+ msgid "Space"
+ msgstr "스페이스"
+ 
+-#: ../src/interface.c:10965
+-#, fuzzy
++#: ../src/interface.c:10968
+ msgid "Change to Extended layer Keyboard"
+-msgstr "영어 키보드로 변경하십시오"
++msgstr "확장된 레이어 키보드로 변경합니다"
+ 
+-#: ../src/interface.c:10971
++#: ../src/interface.c:10974
+ msgid ""
+ "Select the language in which you want to write. This list contains keymaps "
+ "in order as inscript then user defined then xkb and then any keymaps opened "
+ "that are not default listed"
+ msgstr ""
+-"작성할 언어를 선택하십시오. 이 목록은 내부 키맵, 사용자 정의 키맵, xkb에 의"
+-"해 정의된 키맵, 그리고 디폴트 목록에 포함되지 않은 열려있는 모든 키맵의 순서"
+-"로 이루어져 있습니다."
++"작성할 언어를 선택하십시오. 이 목록은 내부 키맵, 사용자 정의 키맵, xkb에 의해 정의된 키맵, 그리고 디폴트 목록에 포함되지 않은 "
++"열려있는 모든 키맵의 순서로 이루어져 있습니다."
+ 
+ #. TRANSLATORS: Replace this string with your names, one name per line.
+-#: ../src/interface.c:12541
++#: ../src/interface.c:12544
+ msgid "translator-credits"
+ msgstr "오현석<hoh@redhat.com>"
+ 
+-#: ../src/interface.c:12547
++#: ../src/interface.c:12550
+ msgid "iok"
+ msgstr "iok"
+ 
+-#: ../src/interface.c:12548
++#: ../src/interface.c:12551
+ msgid "GPLv2 or later\n"
+ msgstr "GPLv2 또는 그 이후의 라이센스\n"
+ 
+-#: ../src/support.c:90 ../src/support.c:114
++#: ../src/support.c:90
++#: ../src/support.c:114
+ #, c-format
+ msgid "Couldn't find pixmap file: %s"
+ msgstr "pixmap 파일을 찾을 수 없습니다: %s"
+-
+-#~ msgid "to English"
+-#~ msgstr "영어"
+-
+-#~ msgid "English"
+-#~ msgstr "영어"
+diff -urN a/iok-2.1.3/po/pt_BR.po b/iok-2.1.3/po/pt_BR.po
+--- a/iok-2.1.3/po/pt_BR.po	2013-12-06 13:01:07.338313359 +0530
++++ b/iok-2.1.3/po/pt_BR.po	2013-12-06 13:02:02.882809835 +0530
+@@ -1,22 +1,23 @@
+ # Brazilian Portuguese translation of Iok.
+ # This file is distributed under the same license as the Iok package.
+ # Taylon Silmer <taylonsilva@gmail.com>, 2008, 2009.
+-#
++# gcintra <gcintra@redhat.com>, 2013. #zanata
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: Iok\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+-"PO-Revision-Date: 2009-09-14 14:31-0300\n"
+-"Last-Translator: Taylon <taylonsilva@gmail.com>\n"
++"PO-Revision-Date: 2013-09-30 08:36-0400\n"
++"Last-Translator: gcintra <gcintra@redhat.com>\n"
+ "Language-Team: Brazilian Portuguese <fedora-trans-pt_br@redhat.com>\n"
+-"Language: pt_BR\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
++"Language: pt-BR\n"
+ "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+-"X-Poedit-Language: Portuguese\n"
+ "X-Poedit-Country: BRAZIL\n"
++"X-Poedit-Language: Portuguese\n"
++"X-Generator: Zanata 3.1.2\n"
+ 
+ #: ../iok.desktop.in.h:1
+ msgid "Indic Onscreen Keyboard"
+@@ -26,17 +27,21 @@
+ msgid "Enter Indic characters with a virtual keyboard"
+ msgstr "Digite caracteres índicos com um teclado virtual"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author gcintra
+ #: ../src/interface.c:1987
+ msgid ""
+ "This keymap file does not map uniquely to a keyboard and therefore cannot be "
+ "displayed correctly"
+ msgstr ""
++"Este arquivo de keymap não mapeia unicamente em um teclado e portanto não "
++"pode ser exibido corretamente."
+ 
+ #: ../src/interface.c:3180
+ msgid "Select the language in which you want to write"
+ msgstr "Selecionar o idioma no qual você deseja escrever"
+ 
+-#: ../src/interface.c:3182 ../src/interface.c:10955
++#: ../src/interface.c:3182
++#: ../src/interface.c:10958
+ msgid "Change to English Keyboard"
+ msgstr "Altera para o teclado em inglês"
+ 
+@@ -54,7 +59,8 @@
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:3291 ../src/interface.c:10447
++#: ../src/interface.c:3291
++#: ../src/interface.c:10450
+ msgid "Reassign"
+ msgstr "Reatribuir"
+ 
+@@ -70,109 +76,116 @@
+ msgid "Write to Keymap File"
+ msgstr "Salva no arquivo de mapa de teclas"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author gcintra
+ #: ../src/interface.c:3655
+ msgid ""
+ "This application supports only for Inscript type keymaps therefore no custom "
+ "xkb keymaps can be created."
+ msgstr ""
++"Este aplicativo suporta somente keymaps de tipo Inscript portanto não pode "
++"ser criado nenhum keymap xkb padronizado."
+ 
+-#: ../src/interface.c:3681
++#: ../src/interface.c:3685
+ msgid ""
+ "This application supports saving the inscript keymaps using filename as "
+ "\"locale_code-custom_name-inscript2.mim\" only. If you are planning to "
+ "change the default keymap name then use only this pattern."
+ msgstr ""
++"Este aplicativo fornece suporte para salvar keymaps de inscript utilizando "
++"somente o nome de arquivo como \"locale_code-custom_name-inscript2.mim\". Se "
++"você estiver planejando mudar o nome do keymap padrão, utilize então somente "
++"este modelo."
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10407
++#: ../src/interface.c:10410
+ msgid "Open"
+ msgstr "Abrir"
+ 
+-#: ../src/interface.c:10408
++#: ../src/interface.c:10411
+ msgid "Open a Keymap that is not listed in a combobox"
+ msgstr "Abre um mapa de teclas que não está listado na caixa de seleção"
+ 
+-#: ../src/interface.c:10410
++#: ../src/interface.c:10413
+ msgid "Save"
+ msgstr "Salvar"
+ 
+-#: ../src/interface.c:10411
++#: ../src/interface.c:10414
+ msgid "Save current state of loaded keymap to a new keymap"
+ msgstr "Salva o estado atual do mapa de teclas carregado em um novo mapa"
+ 
+-#: ../src/interface.c:10414
++#: ../src/interface.c:10417
+ msgid "Quit"
+ msgstr "Sair"
+ 
+-#: ../src/interface.c:10416
++#: ../src/interface.c:10419
+ msgid "Close iok application"
+ msgstr "Fecha a aplicação iok"
+ 
+-#: ../src/interface.c:10449
++#: ../src/interface.c:10452
+ msgid "Reassign key value of some key to some other key"
+ msgstr "Reatribui o valor de alguma tecla para alguma outra tecla"
+ 
+-#: ../src/interface.c:10451
++#: ../src/interface.c:10454
+ msgid "Swap"
+ msgstr "Trocar"
+ 
+-#: ../src/interface.c:10453
++#: ../src/interface.c:10456
+ msgid "Swap key values between any 2 keys in loaded keymap"
+ msgstr "Troca o valor entre duas teclas no mapa de teclas carregado"
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10473
++#: ../src/interface.c:10476
+ msgid "About"
+ msgstr "Sobre"
+ 
+-#: ../src/interface.c:10475
++#: ../src/interface.c:10478
+ msgid "About iok application"
+ msgstr "Sobre a aplicação iok"
+ 
+-#: ../src/interface.c:10491
++#: ../src/interface.c:10494
+ msgid "Keymap"
+ msgstr "Mapa de teclas"
+ 
+-#: ../src/interface.c:10494
++#: ../src/interface.c:10497
+ msgid "Keys"
+ msgstr "Teclas"
+ 
+-#: ../src/interface.c:10497
++#: ../src/interface.c:10500
+ msgid "Help"
+ msgstr "Ajuda"
+ 
+-#: ../src/interface.c:10682
++#: ../src/interface.c:10685
+ msgid "Backspace"
+ msgstr "Backspace"
+ 
+-#: ../src/interface.c:10699
++#: ../src/interface.c:10702
+ msgid "Tab"
+ msgstr "Tab"
+ 
+-#: ../src/interface.c:10792
++#: ../src/interface.c:10795
+ msgid "Caps"
+ msgstr "Caps"
+ 
+-#: ../src/interface.c:10863
++#: ../src/interface.c:10866
+ msgid "Enter"
+ msgstr "Enter"
+ 
+-#: ../src/interface.c:10879 ../src/interface.c:10944
++#: ../src/interface.c:10882
++#: ../src/interface.c:10947
+ msgid "Shift"
+ msgstr "Shift"
+ 
+-#: ../src/interface.c:10958
++#: ../src/interface.c:10961
+ msgid "Space"
+ msgstr "Espaço"
+ 
+-#: ../src/interface.c:10965
+-#, fuzzy
++#: ../src/interface.c:10968
+ msgid "Change to Extended layer Keyboard"
+-msgstr "Altera para o teclado em inglês"
++msgstr "Altera para o teclado de camadas estendido."
+ 
+-#: ../src/interface.c:10971
++#: ../src/interface.c:10974
+ msgid ""
+ "Select the language in which you want to write. This list contains keymaps "
+ "in order as inscript then user defined then xkb and then any keymaps opened "
+@@ -184,367 +197,20 @@
+ "padrão."
+ 
+ #. TRANSLATORS: Replace this string with your names, one name per line.
+-#: ../src/interface.c:12541
++#: ../src/interface.c:12544
+ msgid "translator-credits"
+ msgstr "Taylon Silmer <taylonsilva@gmail.com>"
+ 
+-#: ../src/interface.c:12547
++#: ../src/interface.c:12550
+ msgid "iok"
+ msgstr "iok"
+ 
+-#: ../src/interface.c:12548
++#: ../src/interface.c:12551
+ msgid "GPLv2 or later\n"
+ msgstr "GPLv2 ou superior\n"
+ 
+-#: ../src/support.c:90 ../src/support.c:114
++#: ../src/support.c:90
++#: ../src/support.c:114
+ #, c-format
+ msgid "Couldn't find pixmap file: %s"
+ msgstr "Não foi possível encontrar o arquivo pixmap: %s"
+-
+-#~ msgid "to English"
+-#~ msgstr "Ir para inglês"
+-
+-#, fuzzy
+-#~ msgid "English"
+-#~ msgstr "Ir para inglês"
+-
+-#~ msgid "OpenMap"
+-#~ msgstr "AbrirMapeamento"
+-
+-#~ msgid "WriteMap"
+-#~ msgstr "SalvarMapeamento"
+-
+-#~ msgid ""
+-#~ "~\n"
+-#~ "`"
+-#~ msgstr ""
+-#~ "~\n"
+-#~ "`"
+-
+-#~ msgid ""
+-#~ "!\n"
+-#~ "1"
+-#~ msgstr ""
+-#~ "!\n"
+-#~ "1"
+-
+-#~ msgid ""
+-#~ "@\n"
+-#~ "2"
+-#~ msgstr ""
+-#~ "@\n"
+-#~ "2"
+-
+-#~ msgid ""
+-#~ "#\n"
+-#~ "3"
+-#~ msgstr ""
+-#~ "#\n"
+-#~ "3"
+-
+-#~ msgid ""
+-#~ "$\n"
+-#~ "4"
+-#~ msgstr ""
+-#~ "$\n"
+-#~ "4"
+-
+-#~ msgid ""
+-#~ "%\n"
+-#~ "5"
+-#~ msgstr ""
+-#~ "%\n"
+-#~ "5"
+-
+-#~ msgid ""
+-#~ "^\n"
+-#~ "6"
+-#~ msgstr ""
+-#~ "^\n"
+-#~ "6"
+-
+-#~ msgid ""
+-#~ "&\n"
+-#~ "7"
+-#~ msgstr ""
+-#~ "&\n"
+-#~ "7"
+-
+-#~ msgid ""
+-#~ "*\n"
+-#~ "8"
+-#~ msgstr ""
+-#~ "*\n"
+-#~ "8"
+-
+-#~ msgid ""
+-#~ "(\n"
+-#~ "9"
+-#~ msgstr ""
+-#~ "(\n"
+-#~ "9"
+-
+-#~ msgid ""
+-#~ ")\n"
+-#~ "0"
+-#~ msgstr ""
+-#~ ")\n"
+-#~ "0"
+-
+-#~ msgid ""
+-#~ "_\n"
+-#~ "-"
+-#~ msgstr ""
+-#~ "_\n"
+-#~ "-"
+-
+-#~ msgid ""
+-#~ "+\n"
+-#~ "="
+-#~ msgstr ""
+-#~ "+\n"
+-#~ "="
+-
+-#~ msgid ""
+-#~ "Q\n"
+-#~ "q"
+-#~ msgstr ""
+-#~ "Q\n"
+-#~ "q"
+-
+-#~ msgid ""
+-#~ "W\n"
+-#~ "w"
+-#~ msgstr ""
+-#~ "W\n"
+-#~ "w"
+-
+-#~ msgid ""
+-#~ "E\n"
+-#~ "e"
+-#~ msgstr ""
+-#~ "E\n"
+-#~ "e"
+-
+-#~ msgid ""
+-#~ "R\n"
+-#~ "r"
+-#~ msgstr ""
+-#~ "R\n"
+-#~ "r"
+-
+-#~ msgid ""
+-#~ "T\n"
+-#~ "t"
+-#~ msgstr ""
+-#~ "T\n"
+-#~ "t"
+-
+-#~ msgid ""
+-#~ "Y\n"
+-#~ "y"
+-#~ msgstr ""
+-#~ "Y\n"
+-#~ "y"
+-
+-#~ msgid ""
+-#~ "U\n"
+-#~ "u"
+-#~ msgstr ""
+-#~ "U\n"
+-#~ "u"
+-
+-#~ msgid ""
+-#~ "I\n"
+-#~ "i"
+-#~ msgstr ""
+-#~ "I\n"
+-#~ "i"
+-
+-#~ msgid ""
+-#~ "O\n"
+-#~ "o"
+-#~ msgstr ""
+-#~ "O\n"
+-#~ "o"
+-
+-#~ msgid ""
+-#~ "P\n"
+-#~ "p"
+-#~ msgstr ""
+-#~ "P\n"
+-#~ "p"
+-
+-#~ msgid ""
+-#~ "{\n"
+-#~ "["
+-#~ msgstr ""
+-#~ "{\n"
+-#~ "["
+-
+-#~ msgid ""
+-#~ "}\n"
+-#~ "]"
+-#~ msgstr ""
+-#~ "}\n"
+-#~ "]"
+-
+-#~ msgid ""
+-#~ "|\n"
+-#~ "\\"
+-#~ msgstr ""
+-#~ "|\n"
+-#~ "\\"
+-
+-#~ msgid ""
+-#~ "A\n"
+-#~ "a"
+-#~ msgstr ""
+-#~ "A\n"
+-#~ "a"
+-
+-#~ msgid ""
+-#~ "S\n"
+-#~ "s"
+-#~ msgstr ""
+-#~ "S\n"
+-#~ "s"
+-
+-#~ msgid ""
+-#~ "D\n"
+-#~ "d"
+-#~ msgstr ""
+-#~ "D\n"
+-#~ "d"
+-
+-#~ msgid ""
+-#~ "F\n"
+-#~ "f"
+-#~ msgstr ""
+-#~ "F\n"
+-#~ "f"
+-
+-#~ msgid ""
+-#~ "G\n"
+-#~ "g"
+-#~ msgstr ""
+-#~ "G\n"
+-#~ "g"
+-
+-#~ msgid ""
+-#~ "H\n"
+-#~ "h"
+-#~ msgstr ""
+-#~ "H\n"
+-#~ "h"
+-
+-#~ msgid ""
+-#~ "J\n"
+-#~ "j"
+-#~ msgstr ""
+-#~ "J\n"
+-#~ "j"
+-
+-#~ msgid ""
+-#~ "K\n"
+-#~ "k"
+-#~ msgstr ""
+-#~ "K\n"
+-#~ "k"
+-
+-#~ msgid ""
+-#~ "L\n"
+-#~ "l"
+-#~ msgstr ""
+-#~ "L\n"
+-#~ "l"
+-
+-#~ msgid ""
+-#~ ":\n"
+-#~ ";"
+-#~ msgstr ""
+-#~ ":\n"
+-#~ ";"
+-
+-#~ msgid ""
+-#~ "\"\n"
+-#~ "'"
+-#~ msgstr ""
+-#~ "\"\n"
+-#~ "'"
+-
+-#~ msgid ""
+-#~ "Z\n"
+-#~ "z"
+-#~ msgstr ""
+-#~ "Z\n"
+-#~ "z"
+-
+-#~ msgid ""
+-#~ "X\n"
+-#~ "x"
+-#~ msgstr ""
+-#~ "X\n"
+-#~ "x"
+-
+-#~ msgid ""
+-#~ "C\n"
+-#~ "c"
+-#~ msgstr ""
+-#~ "C\n"
+-#~ "c"
+-
+-#~ msgid ""
+-#~ "V\n"
+-#~ "v"
+-#~ msgstr ""
+-#~ "V\n"
+-#~ "v"
+-
+-#~ msgid ""
+-#~ "B\n"
+-#~ "b"
+-#~ msgstr ""
+-#~ "B\n"
+-#~ "b"
+-
+-#~ msgid ""
+-#~ "N\n"
+-#~ "n"
+-#~ msgstr ""
+-#~ "N\n"
+-#~ "n"
+-
+-#~ msgid ""
+-#~ "M\n"
+-#~ "m"
+-#~ msgstr ""
+-#~ "M\n"
+-#~ "m"
+-
+-#~ msgid ""
+-#~ "<\n"
+-#~ ","
+-#~ msgstr ""
+-#~ "<\n"
+-#~ ","
+-
+-#~ msgid ""
+-#~ ">\n"
+-#~ "."
+-#~ msgstr ""
+-#~ ">\n"
+-#~ "."
+-
+-#~ msgid ""
+-#~ "?\n"
+-#~ "/"
+-#~ msgstr ""
+-#~ "?\n"
+-#~ "/"
+-
+-#~ msgid "swap_window"
+-#~ msgstr "troca_janela"
+-
+-#~ msgid "Key 2"
+-#~ msgstr "Tecla 2"
+diff -urN a/iok-2.1.3/po/ru.po b/iok-2.1.3/po/ru.po
+--- a/iok-2.1.3/po/ru.po	2013-12-06 13:01:07.338313359 +0530
++++ b/iok-2.1.3/po/ru.po	2013-12-06 13:02:02.883809843 +0530
+@@ -1,44 +1,49 @@
+ # translation of ru.po to
+ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+ # This file is distributed under the same license as the PACKAGE package.
+-#
++# 
+ # Yulia Poyarkova <yulia.poyarkova@redhat.com>, 2009.
+ # Andrew Zaytsev <andzaytsev@gmail.com>, 2010
++# ypoyarko <ypoyarko@redhat.com>, 2013. #zanata
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: ru\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+-"PO-Revision-Date: 2009-08-25 13:57+0000\n"
+-"Last-Translator: Andrew Zaytsev <andzaytsev@gmail.com>\n"
++"PO-Revision-Date: 2013-09-24 12:16-0400\n"
++"Last-Translator: ypoyarko <ypoyarko@redhat.com>\n"
+ "Language-Team: \n"
+-"Language: \n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"X-Generator: KBabel 1.11.4\n"
++"Language: ru\n"
++"X-Generator: Zanata 3.1.2\n"
++"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
++"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+ 
+ #: ../iok.desktop.in.h:1
+ msgid "Indic Onscreen Keyboard"
+-msgstr "Индийская Экранная Клавиатура"
++msgstr "Индийская экранная клавиатура"
+ 
+ #: ../iok.desktop.in.h:2
+ msgid "Enter Indic characters with a virtual keyboard"
+-msgstr "Введите индийские символы с помощью виртуальной клавиатуры"
++msgstr "Используйте виртуальную клавиатуру для ввода индийских символов"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author ypoyarko
+ #: ../src/interface.c:1987
+ msgid ""
+ "This keymap file does not map uniquely to a keyboard and therefore cannot be "
+ "displayed correctly"
+-msgstr ""
++msgstr "Этот файл не соответствует клавиатуре и может быть показан неверно."
+ 
+ #: ../src/interface.c:3180
+ msgid "Select the language in which you want to write"
+-msgstr "Выберите язык на которым вы хотите писать"
++msgstr "Выберите язык набора"
+ 
+-#: ../src/interface.c:3182 ../src/interface.c:10955
++#: ../src/interface.c:3182
++#: ../src/interface.c:10958
+ msgid "Change to English Keyboard"
+-msgstr "Изменить на английскую клавиатуру"
++msgstr "Выбрать английский"
+ 
+ #: ../src/interface.c:3255
+ msgid "ReassignKey"
+@@ -54,7 +59,8 @@
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:3291 ../src/interface.c:10447
++#: ../src/interface.c:3291
++#: ../src/interface.c:10450
+ msgid "Reassign"
+ msgstr "Переназначить"
+ 
+@@ -70,138 +76,139 @@
+ msgid "Write to Keymap File"
+ msgstr "Записать в файл раскладки"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author ypoyarko
+ #: ../src/interface.c:3655
+ msgid ""
+ "This application supports only for Inscript type keymaps therefore no custom "
+ "xkb keymaps can be created."
+ msgstr ""
++"Эта программа поддерживает только раскладки Inscript. Создание "
++"дополнительных раскладок xkb не поддерживается."
+ 
+-#: ../src/interface.c:3681
++#: ../src/interface.c:3685
+ msgid ""
+ "This application supports saving the inscript keymaps using filename as "
+ "\"locale_code-custom_name-inscript2.mim\" only. If you are planning to "
+ "change the default keymap name then use only this pattern."
+ msgstr ""
++"Эта программа поддерживает сохранение раскладок Inscript в файлы "
++"\"locale_code-custom_name-inscript.mim\". В случае изменения имени "
++"стандартной раскладки, необходимо придерживаться этого формата."
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10407
++#: ../src/interface.c:10410
+ msgid "Open"
+ msgstr "Открыть"
+ 
+-#: ../src/interface.c:10408
++#: ../src/interface.c:10411
+ msgid "Open a Keymap that is not listed in a combobox"
+ msgstr "Открыть файл раскладки, которого нет в списке"
+ 
+-#: ../src/interface.c:10410
++#: ../src/interface.c:10413
+ msgid "Save"
+ msgstr "Сохранить"
+ 
+-#: ../src/interface.c:10411
++#: ../src/interface.c:10414
+ msgid "Save current state of loaded keymap to a new keymap"
+ msgstr "Сохранить текущее состояние загруженной раскладки в новую"
+ 
+-#: ../src/interface.c:10414
++#: ../src/interface.c:10417
+ msgid "Quit"
+ msgstr "Выход"
+ 
+-#: ../src/interface.c:10416
++#: ../src/interface.c:10419
+ msgid "Close iok application"
+-msgstr "Закрыть приложение iok"
++msgstr "Закрыть iok"
+ 
+-#: ../src/interface.c:10449
++#: ../src/interface.c:10452
+ msgid "Reassign key value of some key to some other key"
+-msgstr "Переназначить значение одной клавиши другой клавише"
++msgstr "Переназначить значение одной клавиши другой"
+ 
+-#: ../src/interface.c:10451
++#: ../src/interface.c:10454
+ msgid "Swap"
+ msgstr "Поменять местами"
+ 
+-#: ../src/interface.c:10453
++#: ../src/interface.c:10456
+ msgid "Swap key values between any 2 keys in loaded keymap"
+-msgstr "Поменять местами 2 клавишы на загруженной раскладке"
++msgstr "Поменять местами 2 клавиши на загруженной раскладке"
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10473
++#: ../src/interface.c:10476
+ msgid "About"
+-msgstr "О"
++msgstr "О программе"
+ 
+-#: ../src/interface.c:10475
++#: ../src/interface.c:10478
+ msgid "About iok application"
+ msgstr "О программе iok"
+ 
+-#: ../src/interface.c:10491
++#: ../src/interface.c:10494
+ msgid "Keymap"
+ msgstr "Раскладка"
+ 
+-#: ../src/interface.c:10494
++#: ../src/interface.c:10497
+ msgid "Keys"
+ msgstr "Клавиши"
+ 
+-#: ../src/interface.c:10497
++#: ../src/interface.c:10500
+ msgid "Help"
+-msgstr "Помощь"
++msgstr "Справка"
+ 
+-#: ../src/interface.c:10682
++#: ../src/interface.c:10685
+ msgid "Backspace"
+ msgstr "Backspace"
+ 
+-#: ../src/interface.c:10699
++#: ../src/interface.c:10702
+ msgid "Tab"
+ msgstr "Tab"
+ 
+-#: ../src/interface.c:10792
++#: ../src/interface.c:10795
+ msgid "Caps"
+ msgstr "Caps"
+ 
+-#: ../src/interface.c:10863
++#: ../src/interface.c:10866
+ msgid "Enter"
+ msgstr "Enter"
+ 
+-#: ../src/interface.c:10879 ../src/interface.c:10944
++#: ../src/interface.c:10882
++#: ../src/interface.c:10947
+ msgid "Shift"
+ msgstr "Shift"
+ 
+-#: ../src/interface.c:10958
++#: ../src/interface.c:10961
+ msgid "Space"
+ msgstr "Пробел"
+ 
+-#: ../src/interface.c:10965
+-#, fuzzy
++#: ../src/interface.c:10968
+ msgid "Change to Extended layer Keyboard"
+-msgstr "Изменить на английскую клавиатуру"
++msgstr "Выбрать расширенную раскладку"
+ 
+-#: ../src/interface.c:10971
++#: ../src/interface.c:10974
+ msgid ""
+ "Select the language in which you want to write. This list contains keymaps "
+ "in order as inscript then user defined then xkb and then any keymaps opened "
+ "that are not default listed"
+ msgstr ""
+-"Выберите язык на котором вы хотите писать. Этот список содержит раскладки в "
+-"порядке: inscript, затем определенные пользователем, затем xlb и затем любые "
+-"открытые раскладки которые по-умолчанию не в списке"
++"Выберите язык набора. Порядок в списке: Inscript, определенные "
++"пользователем, xlb и прочие открытые раскладки, которые не включены в список "
++"по умолчанию."
+ 
+ #. TRANSLATORS: Replace this string with your names, one name per line.
+-#: ../src/interface.c:12541
++#: ../src/interface.c:12544
+ msgid "translator-credits"
+-msgstr "translator-credits"
++msgstr "Yulia Poyarkova"
+ 
+-#: ../src/interface.c:12547
++#: ../src/interface.c:12550
+ msgid "iok"
+ msgstr "iok"
+ 
+-#: ../src/interface.c:12548
++#: ../src/interface.c:12551
+ msgid "GPLv2 or later\n"
+ msgstr "GPLv2 или позже\n"
+ 
+-#: ../src/support.c:90 ../src/support.c:114
++#: ../src/support.c:90
++#: ../src/support.c:114
+ #, c-format
+ msgid "Couldn't find pixmap file: %s"
+ msgstr "Невозможно найти файл карты элементов изображения: %s"
+-
+-#~ msgid "to English"
+-#~ msgstr "на английскую"
+-
+-#~ msgid "English"
+-#~ msgstr "английскую"
+diff -urN a/iok-2.1.3/po/ta.po b/iok-2.1.3/po/ta.po
+--- a/iok-2.1.3/po/ta.po	2013-12-06 13:01:07.337313350 +0530
++++ b/iok-2.1.3/po/ta.po	2013-12-06 13:02:02.883809843 +0530
+@@ -1,26 +1,27 @@
+ # translation of iok.trunk.ta.po to Tamil
+ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+ # This file is distributed under the same license as the PACKAGE package.
+-#
++# 
+ # I. Felix <ifelix@redhat.com>, 2009,2012.
++# shkumar <shkumar@redhat.com>, 2013. #zanata
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: iok.trunk.ta\n"
+ "Report-Msgid-Bugs-To: \n"
+ "POT-Creation-Date: 2012-06-29 14:48+0530\n"
+-"PO-Revision-Date: 2012-03-28 10:40+0530\n"
+-"Last-Translator: I. Felix <ifelix@redhat.com>\n"
++"PO-Revision-Date: 2013-11-11 10:14-0500\n"
++"Last-Translator: shkumar <shkumar@redhat.com>\n"
+ "Language-Team: Tamil <fedora-trans-ta@redhat.com>\n"
+-"Language: ta\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"X-Generator: KBabel 1.11.4\n"
++"Language: ta\n"
+ "Plural-Forms: nplurals=2; plural=(n!=1);\\n\n"
+ "\n"
+ "\n"
+ "\n"
+ "\n"
++"X-Generator: Zanata 3.1.2\n"
+ 
+ #: ../iok.desktop.in.h:1
+ msgid "Indic Onscreen Keyboard"
+@@ -30,17 +31,21 @@
+ msgid "Enter Indic characters with a virtual keyboard"
+ msgstr "இந்திய எழுத்துக்களை ஒரு மெய்நிகர் விசைப்பலகையுடன் உள்ளிடவும்"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author shkumar
+ #: ../src/interface.c:1987
+ msgid ""
+ "This keymap file does not map uniquely to a keyboard and therefore cannot be "
+ "displayed correctly"
+ msgstr ""
++"இந்த கீமேப்பிங் கோப்பு ஒரு விசைப்பலகைக்கு தனிப்பட்ட முறையில் மேப் "
++"செய்யவில்லை, ஆகவே அதை சரியாகக் காண்பிக்க முடியாது"
+ 
+ #: ../src/interface.c:3180
+ msgid "Select the language in which you want to write"
+ msgstr "நீங்கள் எழுதுவதற்கு எந்த மொழி வேண்டுமென தேர்ந்தெடுக்கவும்"
+ 
+-#: ../src/interface.c:3182 ../src/interface.c:10955
++#: ../src/interface.c:3182
++#: ../src/interface.c:10958
+ msgid "Change to English Keyboard"
+ msgstr "ஆங்கில விசைப்பலகைக்கு மாற்றவும்"
+ 
+@@ -58,7 +63,8 @@
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:3291 ../src/interface.c:10447
++#: ../src/interface.c:3291
++#: ../src/interface.c:10450
+ msgid "Reassign"
+ msgstr "மறுநியமம்"
+ 
+@@ -74,137 +80,141 @@
+ msgid "Write to Keymap File"
+ msgstr "கீமேப் கோப்பில் எழுது"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author shkumar
+ #: ../src/interface.c:3655
+ msgid ""
+ "This application supports only for Inscript type keymaps therefore no custom "
+ "xkb keymaps can be created."
+ msgstr ""
++"இந்தப் பயன்பாடு இன்ஸ்கிரிப்ட் வகை கீமேப்களை மட்டுமே ஆதரிக்கும், ஆகவே "
++"தனிப்பயன் xkb கீமேப்களை உருவாக்க முடியாது."
+ 
+-#: ../src/interface.c:3681
++#: ../src/interface.c:3685
+ msgid ""
+ "This application supports saving the inscript keymaps using filename as "
+ "\"locale_code-custom_name-inscript2.mim\" only. If you are planning to "
+ "change the default keymap name then use only this pattern."
+ msgstr ""
++"இந்தப் பயன்பாடு இன்ஸ்கிரிப்ட் கீமேப்களை \"locale_code-custom_name-inscript2."
++"mim\" போன்ற கோப்புப் பெயர்களைக் கொன்டு சேமிப்பதை மட்டுமே ஆதரிக்கும்.  "
++"இயல்புநிலையான கீமேப் பெயரை நீங்கள் மாற்ற நினைத்தால் அப்போது இந்த வடிவத்தை "
++"மட்டும் பயன்படுத்தவும்."
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10407
++#: ../src/interface.c:10410
+ msgid "Open"
+ msgstr "திற"
+ 
+-#: ../src/interface.c:10408
++#: ../src/interface.c:10411
+ msgid "Open a Keymap that is not listed in a combobox"
+ msgstr "காம்போ பெட்டியில் பட்டியலிடப்படாத ஒரு கீமேப்பை திற"
+ 
+-#: ../src/interface.c:10410
++#: ../src/interface.c:10413
+ msgid "Save"
+ msgstr "சேமி"
+ 
+-#: ../src/interface.c:10411
++#: ../src/interface.c:10414
+ msgid "Save current state of loaded keymap to a new keymap"
+ msgstr "ஏற்றப்பட்ட நடப்பு நிலை கீமேப்பை புதிய கீமேப்பால் சேமி"
+ 
+-#: ../src/interface.c:10414
++#: ../src/interface.c:10417
+ msgid "Quit"
+ msgstr "வெளியேறு"
+ 
+-#: ../src/interface.c:10416
++#: ../src/interface.c:10419
+ msgid "Close iok application"
+ msgstr "iok பயன்பாட்டை மூடவும்"
+ 
+-#: ../src/interface.c:10449
++#: ../src/interface.c:10452
+ msgid "Reassign key value of some key to some other key"
+ msgstr "சில விசையின் விசை மதிப்பை வேறு சிர விசைக்கு மீண்டும் ஒதுக்கு"
+ 
+-#: ../src/interface.c:10451
++#: ../src/interface.c:10454
+ msgid "Swap"
+ msgstr "துடைத்தல்"
+ 
+-#: ../src/interface.c:10453
++#: ../src/interface.c:10456
+ msgid "Swap key values between any 2 keys in loaded keymap"
+-msgstr "ஏற்றப்பட்ட கீமேப்பிலும் எந்த 2 விசைகளுக்கிடையேயும் மாற்று விசை மதிப்புகள்"
++msgstr ""
++"ஏற்றப்பட்ட கீமேப்பிலும் எந்த 2 விசைகளுக்கிடையேயும் மாற்று விசை மதிப்புகள்"
+ 
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10473
++#: ../src/interface.c:10476
+ msgid "About"
+ msgstr "பற்றி"
+ 
+-#: ../src/interface.c:10475
++#: ../src/interface.c:10478
+ msgid "About iok application"
+ msgstr "iok பயன்பாடு பற்றி"
+ 
+-#: ../src/interface.c:10491
++#: ../src/interface.c:10494
+ msgid "Keymap"
+ msgstr "கீமேப்"
+ 
+-#: ../src/interface.c:10494
++#: ../src/interface.c:10497
+ msgid "Keys"
+ msgstr "விசைகள்"
+ 
+-#: ../src/interface.c:10497
++#: ../src/interface.c:10500
+ msgid "Help"
+ msgstr "உதவி"
+ 
+-#: ../src/interface.c:10682
++#: ../src/interface.c:10685
+ msgid "Backspace"
+ msgstr "Backspace"
+ 
+-#: ../src/interface.c:10699
++#: ../src/interface.c:10702
+ msgid "Tab"
+ msgstr "Tab"
+ 
+-#: ../src/interface.c:10792
++#: ../src/interface.c:10795
+ msgid "Caps"
+ msgstr "Caps "
+ 
+-#: ../src/interface.c:10863
++#: ../src/interface.c:10866
+ msgid "Enter"
+ msgstr "Enter"
+ 
+-#: ../src/interface.c:10879 ../src/interface.c:10944
++#: ../src/interface.c:10882
++#: ../src/interface.c:10947
+ msgid "Shift"
+ msgstr "Shift"
+ 
+-#: ../src/interface.c:10958
++#: ../src/interface.c:10961
+ msgid "Space"
+ msgstr "இடைவெளி"
+ 
+-#: ../src/interface.c:10965
++#: ../src/interface.c:10968
+ msgid "Change to Extended layer Keyboard"
+ msgstr "விரிவாக்கப்பட்ட அடுக்கு விசைப்பலகைக்கு மாற்றவும்"
+ 
+-#: ../src/interface.c:10971
++#: ../src/interface.c:10974
+ msgid ""
+ "Select the language in which you want to write. This list contains keymaps "
+ "in order as inscript then user defined then xkb and then any keymaps opened "
+ "that are not default listed"
+ msgstr ""
+-"நீங்கள் எழுத வேண்டிய மொழியை தேர்ந்தெடுக்கவும். இந்த பட்டியல் கீமேப்களின் வரிசையை இன்ஸ்கிரிப்ட் "
+-"பின் பயனர் குறிப்பிடும் xkb என கொண்டிருக்கும் பின் திறக்கப்பட்ட கீமேப்கள் முன்னிருப்பாக "
+-"பட்டியலிடப்படாது"
++"நீங்கள் எழுத வேண்டிய மொழியை தேர்ந்தெடுக்கவும். இந்த பட்டியல் கீமேப்களின் "
++"வரிசையை இன்ஸ்கிரிப்ட் பின் பயனர் குறிப்பிடும் xkb என கொண்டிருக்கும் பின் "
++"திறக்கப்பட்ட கீமேப்கள் முன்னிருப்பாக பட்டியலிடப்படாது"
+ 
+ #. TRANSLATORS: Replace this string with your names, one name per line.
+-#: ../src/interface.c:12541
++#: ../src/interface.c:12544
+ msgid "translator-credits"
+ msgstr "I. Felix <ifelix@redhat.com>"
+ 
+-#: ../src/interface.c:12547
++#: ../src/interface.c:12550
+ msgid "iok"
+ msgstr "iok"
+ 
+-#: ../src/interface.c:12548
++#: ../src/interface.c:12551
+ msgid "GPLv2 or later\n"
+ msgstr "GPLv2 அல்லது பின்னர்\n"
+ 
+-#: ../src/support.c:90 ../src/support.c:114
++#: ../src/support.c:90
++#: ../src/support.c:114
+ #, c-format
+ msgid "Couldn't find pixmap file: %s"
+ msgstr "pixmap கோப்பினை காண முடியவில்லை: %s"
+-
+-#~ msgid "to English"
+-#~ msgstr "ஆங்கிலத்திற்கு"
+-
+-#~ msgid "English"
+-#~ msgstr "ஆங்கிலம்"
+diff -urN a/iok-2.1.3/po/zh_CN.po b/iok-2.1.3/po/zh_CN.po
+--- a/iok-2.1.3/po/zh_CN.po	2013-12-06 13:01:07.337313350 +0530
++++ b/iok-2.1.3/po/zh_CN.po	2013-12-06 13:02:02.883809843 +0530
+@@ -1,211 +1,239 @@
+-# translation of iok.trunk.po to Simplified Chinese
+-# CHAI Zhenhua<watter1985@163.com>, 2009.
+-# Leah Liu <lliu@redhat.com>, 2009.
+-# Chinese(Simplified) translation of iok
+-# Copyright (C) 2008 iok
+-# This file is distributed under the same license as the iok package.
++# Leah Liu <lliu@redhat.com>, 2013. #zanata
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: iok.trunk\n"
++"Project-Id-Version: PACKAGE VERSION\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2012-06-29 14:48+0530\n"
+-"PO-Revision-Date: 2009-12-08 09:07+1000\n"
++"POT-Creation-Date: 2013-08-06 14:45+0530\n"
++"PO-Revision-Date: 2013-11-04 10:11-0500\n"
+ "Last-Translator: Leah Liu <lliu@redhat.com>\n"
+-"Language-Team: Simplified Chinese <zh@li.org>\n"
+-"Language: \n"
++"Language-Team: Chinese (Simplified Han)\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"X-Poedit-Language: Chinese\n"
+-"X-Poedit-Country: CHINA\n"
+-"X-Poedit-SourceCharset: utf-8\n"
+-"X-Generator: KBabel 1.11.4\n"
++"Language: zh-Hans\n"
++"X-Generator: Zanata 3.1.2\n"
++"Plural-Forms: nplurals=1; plural=0\n"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #: ../iok.desktop.in.h:1
+ msgid "Indic Onscreen Keyboard"
+ msgstr "印度语屏幕键盘"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #: ../iok.desktop.in.h:2
+ msgid "Enter Indic characters with a virtual keyboard"
+ msgstr "在虚拟键盘中输入印度语字符"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author Leah Liu
+ #: ../src/interface.c:1987
+ msgid ""
+ "This keymap file does not map uniquely to a keyboard and therefore cannot be "
+ "displayed correctly"
+-msgstr ""
++msgstr "这个按键映射文件与键盘并不完全匹配，因此无法正常显示。"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #: ../src/interface.c:3180
+ msgid "Select the language in which you want to write"
+ msgstr "请选择您书写使用的语言"
+ 
+-#: ../src/interface.c:3182 ../src/interface.c:10955
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:3182
++#: ../src/interface.c:10958
+ msgid "Change to English Keyboard"
+ msgstr "更改至英文键盘"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #: ../src/interface.c:3255
+ msgid "ReassignKey"
+ msgstr "重设按键"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #: ../src/interface.c:3265
+ msgid "Reassign Keyvalue of Key"
+ msgstr "将键"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #: ../src/interface.c:3276
+ msgid "to another Key"
+ msgstr "置换到"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:3291 ../src/interface.c:10447
++#: ../src/interface.c:3291
++#: ../src/interface.c:10450
+ msgid "Reassign"
+ msgstr "重设"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #: ../src/interface.c:3295
+ msgid "Cancel"
+ msgstr "取消"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #: ../src/interface.c:3586
+ msgid "Open Keymap File"
+ msgstr "打开 Keymap 文件"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #: ../src/interface.c:3636
+ msgid "Write to Keymap File"
+ msgstr "写入 Keymap 文件"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author Leah Liu
+ #: ../src/interface.c:3655
+ msgid ""
+ "This application supports only for Inscript type keymaps therefore no custom "
+ "xkb keymaps can be created."
+-msgstr ""
++msgstr "这个应用程序只支持 Inscript 类型按键映射，因此无法生成自定义 xkb 按键映射。"
+ 
+-#: ../src/interface.c:3681
++#: ../src/interface.c:3685
+ msgid ""
+ "This application supports saving the inscript keymaps using filename as "
+ "\"locale_code-custom_name-inscript2.mim\" only. If you are planning to "
+ "change the default keymap name then use only this pattern."
+ msgstr ""
++"这个应用程序只支持使用文件名 \"locale_code-custom_name-inscript2.mim\" 保存 inscript "
++"按键映射。如果您要更改默认的按键映射名称，那么请只使用这一种模式。"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10407
++#: ../src/interface.c:10410
+ msgid "Open"
+ msgstr "打开"
+ 
+-#: ../src/interface.c:10408
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10411
+ msgid "Open a Keymap that is not listed in a combobox"
+ msgstr "打开没有列在 combobox 中的 Keymap"
+ 
+-#: ../src/interface.c:10410
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10413
+ msgid "Save"
+ msgstr "保存"
+ 
+-#: ../src/interface.c:10411
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10414
+ msgid "Save current state of loaded keymap to a new keymap"
+ msgstr "将目前载入的 keymap 状态保存到一个新的 keymap"
+ 
+-#: ../src/interface.c:10414
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10417
+ msgid "Quit"
+ msgstr "退出"
+ 
+-#: ../src/interface.c:10416
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10419
+ msgid "Close iok application"
+ msgstr "关闭 iok 程序"
+ 
+-#: ../src/interface.c:10449
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10452
+ msgid "Reassign key value of some key to some other key"
+ msgstr "将一些键的键值重新分配给其它键"
+ 
+-#: ../src/interface.c:10451
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10454
+ msgid "Swap"
+ msgstr "交换"
+ 
+-#: ../src/interface.c:10453
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10456
+ msgid "Swap key values between any 2 keys in loaded keymap"
+ msgstr "在载入的 keymap 中交换任意两个键的键值"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10473
++#: ../src/interface.c:10476
+ msgid "About"
+ msgstr "关于"
+ 
+-#: ../src/interface.c:10475
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10478
+ msgid "About iok application"
+ msgstr "关于 iok 程序"
+ 
+-#: ../src/interface.c:10491
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10494
+ msgid "Keymap"
+ msgstr "Keymap"
+ 
+-#: ../src/interface.c:10494
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10497
+ msgid "Keys"
+ msgstr "键"
+ 
+-#: ../src/interface.c:10497
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10500
+ msgid "Help"
+ msgstr "帮助"
+ 
+-#: ../src/interface.c:10682
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10685
+ msgid "Backspace"
+ msgstr "Backspace"
+ 
+-#: ../src/interface.c:10699
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10702
+ msgid "Tab"
+ msgstr "Tab"
+ 
+-#: ../src/interface.c:10792
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10795
+ msgid "Caps"
+ msgstr "Caps"
+ 
+-#: ../src/interface.c:10863
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10866
+ msgid "Enter"
+ msgstr "Enter"
+ 
+-#: ../src/interface.c:10879 ../src/interface.c:10944
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10882
++#: ../src/interface.c:10947
+ msgid "Shift"
+ msgstr "Shift"
+ 
+-#: ../src/interface.c:10958
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10961
+ msgid "Space"
+ msgstr "空格"
+ 
+-#: ../src/interface.c:10965
+-#, fuzzy
++#: ../src/interface.c:10968
+ msgid "Change to Extended layer Keyboard"
+-msgstr "更改至英文键盘"
++msgstr "切换至扩展层键盘"
+ 
+-#: ../src/interface.c:10971
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10974
+ msgid ""
+ "Select the language in which you want to write. This list contains keymaps "
+ "in order as inscript then user defined then xkb and then any keymaps opened "
+ "that are not default listed"
+ msgstr ""
+-"请选择书写语言。这个列表包含的 keymap 顺序是 inscript，然后是用户定义的，然后"
+-"是 xkb，然后是非默认列出但打开的所有 keymap"
++"请选择书写语言。这个列表包含的 keymap 顺序是 inscript，然后是用户定义的，然后是 xkb，然后是非默认列出但打开的所有 keymap"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #. TRANSLATORS: Replace this string with your names, one name per line.
+-#: ../src/interface.c:12541
++#: ../src/interface.c:12544
+ msgid "translator-credits"
+-msgstr ""
+-"译者:\n"
++msgstr "译者:\n"
+ "        柴振华<watter1985@163.com>"
+ 
+-#: ../src/interface.c:12547
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:12550
+ msgid "iok"
+ msgstr "iok"
+ 
+-#: ../src/interface.c:12548
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:12551
+ msgid "GPLv2 or later\n"
+ msgstr "GPLv2 或更新\n"
+ 
+-#: ../src/support.c:90 ../src/support.c:114
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/support.c:90
++#: ../src/support.c:114
+ #, c-format
+ msgid "Couldn't find pixmap file: %s"
+ msgstr "无法找到图像映射文件: %s"
+-
+-#~ msgid "to English"
+-#~ msgstr "英语"
+-
+-#~ msgid "English"
+-#~ msgstr "英语"
+diff -urN a/iok-2.1.3/po/zh_TW.po b/iok-2.1.3/po/zh_TW.po
+--- a/iok-2.1.3/po/zh_TW.po	2013-12-06 13:01:07.336313341 +0530
++++ b/iok-2.1.3/po/zh_TW.po	2013-12-06 13:02:02.883809843 +0530
+@@ -1,208 +1,238 @@
+-# translation of iok.trunk.zh_TW.po to Traditional Chinese
+-# Terry Chuang <tchuang@redhat.com>, 2009.
+-# Chinese(Traditional) translation of iok
+-# Copyright (C) 2008 iok
+-# This file is distributed under the same license as the iok package.
++# ccheng <ccheng@redhat.com>, 2013. #zanata
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: iok.trunk.zh_TW\n"
++"Project-Id-Version: PACKAGE VERSION\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2012-06-29 14:48+0530\n"
+-"PO-Revision-Date: 2009-12-11 11:54+1000\n"
+-"Last-Translator: Terry Chuang <tchuang@redhat.com>\n"
+-"Language-Team: Traditional Chinese <zh@li.org>\n"
+-"Language: \n"
++"POT-Creation-Date: 2013-08-06 14:45+0530\n"
++"PO-Revision-Date: 2013-12-06 01:24-0500\n"
++"Last-Translator: ccheng <ccheng@redhat.com>\n"
++"Language-Team: Chinese (Traditional Han)\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"X-Poedit-Language: Chinese\n"
+-"X-Poedit-Country: TAIWAN\n"
+-"X-Poedit-SourceCharset: utf-8\n"
+-"X-Generator: KBabel 1.11.4\n"
++"Language: zh-Hant\n"
++"X-Generator: Zanata 3.1.2\n"
++"Plural-Forms: nplurals=1; plural=0\n"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #: ../iok.desktop.in.h:1
+ msgid "Indic Onscreen Keyboard"
+ msgstr "印度語螢幕鍵盤"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #: ../iok.desktop.in.h:2
+ msgid "Enter Indic characters with a virtual keyboard"
+ msgstr "以虛擬鍵盤輸入印度語字元"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author ccheng
+ #: ../src/interface.c:1987
+ msgid ""
+ "This keymap file does not map uniquely to a keyboard and therefore cannot be "
+ "displayed correctly"
+-msgstr ""
++msgstr "此按鍵對應檔並沒有特別對應到一組鍵盤，因此無法正確顯示"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #: ../src/interface.c:3180
+ msgid "Select the language in which you want to write"
+ msgstr "請選擇您希望使用的語言"
+ 
+-#: ../src/interface.c:3182 ../src/interface.c:10955
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:3182
++#: ../src/interface.c:10958
+ msgid "Change to English Keyboard"
+ msgstr "更換為英文鍵盤"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #: ../src/interface.c:3255
+ msgid "ReassignKey"
+ msgstr "重設鍵值"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #: ../src/interface.c:3265
+ msgid "Reassign Keyvalue of Key"
+ msgstr "重設按鍵的鍵值"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #: ../src/interface.c:3276
+ msgid "to another Key"
+ msgstr "重設為另一個按鍵"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:3291 ../src/interface.c:10447
++#: ../src/interface.c:3291
++#: ../src/interface.c:10450
+ msgid "Reassign"
+ msgstr "重設"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #: ../src/interface.c:3295
+ msgid "Cancel"
+ msgstr "取消"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #: ../src/interface.c:3586
+ msgid "Open Keymap File"
+ msgstr "開啟 keymap 檔案"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #: ../src/interface.c:3636
+ msgid "Write to Keymap File"
+ msgstr "寫入 Keymap 檔案"
+ 
++# translation auto-copied from project iok, version 6.4, document iok, author ccheng
+ #: ../src/interface.c:3655
+ msgid ""
+ "This application supports only for Inscript type keymaps therefore no custom "
+ "xkb keymaps can be created."
+-msgstr ""
++msgstr "此應用程式僅支援 Inscript 類型的鍵盤對應，因此不能自行建立 xkb 按鍵對應。"
+ 
+-#: ../src/interface.c:3681
++#: ../src/interface.c:3685
+ msgid ""
+ "This application supports saving the inscript keymaps using filename as "
+ "\"locale_code-custom_name-inscript2.mim\" only. If you are planning to "
+ "change the default keymap name then use only this pattern."
+ msgstr ""
++"這程式僅支援使用「locale_code-custom_name-inscript2.mim」檔名儲存 inscript "
++"鍵盤對應。如果您計畫變更預設的鍵盤對應，請使用此格式。"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10407
++#: ../src/interface.c:10410
+ msgid "Open"
+ msgstr "開啟"
+ 
+-#: ../src/interface.c:10408
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10411
+ msgid "Open a Keymap that is not listed in a combobox"
+ msgstr "開啟一個未列在 combobox 中的 Keymap"
+ 
+-#: ../src/interface.c:10410
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10413
+ msgid "Save"
+ msgstr "儲存"
+ 
+-#: ../src/interface.c:10411
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10414
+ msgid "Save current state of loaded keymap to a new keymap"
+ msgstr "將目前載入的 keymap 狀態儲存至一個新的 keymap"
+ 
+-#: ../src/interface.c:10414
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10417
+ msgid "Quit"
+ msgstr "退出"
+ 
+-#: ../src/interface.c:10416
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10419
+ msgid "Close iok application"
+ msgstr "關閉 iok 應用程式"
+ 
+-#: ../src/interface.c:10449
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10452
+ msgid "Reassign key value of some key to some other key"
+ msgstr "將某些按鍵的鍵值重設為其它鍵"
+ 
+-#: ../src/interface.c:10451
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10454
+ msgid "Swap"
+ msgstr "交換"
+ 
+-#: ../src/interface.c:10453
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10456
+ msgid "Swap key values between any 2 keys in loaded keymap"
+ msgstr "將載入的 keymap 中的任意兩個按鍵的鍵值互換"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #. Don't need to show menus
+ #. Create the menu items
+-#: ../src/interface.c:10473
++#: ../src/interface.c:10476
+ msgid "About"
+ msgstr "相關資訊"
+ 
+-#: ../src/interface.c:10475
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10478
+ msgid "About iok application"
+ msgstr "iok 應用程式的相關資訊"
+ 
+-#: ../src/interface.c:10491
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10494
+ msgid "Keymap"
+ msgstr "Keymap"
+ 
+-#: ../src/interface.c:10494
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10497
+ msgid "Keys"
+ msgstr "按鍵"
+ 
+-#: ../src/interface.c:10497
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10500
+ msgid "Help"
+ msgstr "協助"
+ 
+-#: ../src/interface.c:10682
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10685
+ msgid "Backspace"
+ msgstr "Backspace"
+ 
+-#: ../src/interface.c:10699
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10702
+ msgid "Tab"
+ msgstr "Tab"
+ 
+-#: ../src/interface.c:10792
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10795
+ msgid "Caps"
+ msgstr "Caps"
+ 
+-#: ../src/interface.c:10863
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10866
+ msgid "Enter"
+ msgstr "Enter"
+ 
+-#: ../src/interface.c:10879 ../src/interface.c:10944
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10882
++#: ../src/interface.c:10947
+ msgid "Shift"
+ msgstr "Shift"
+ 
+-#: ../src/interface.c:10958
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10961
+ msgid "Space"
+ msgstr "空白鍵"
+ 
+-#: ../src/interface.c:10965
+-#, fuzzy
++#: ../src/interface.c:10968
+ msgid "Change to Extended layer Keyboard"
+-msgstr "更換為英文鍵盤"
++msgstr "變更延伸層的鍵盤"
+ 
+-#: ../src/interface.c:10971
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:10974
+ msgid ""
+ "Select the language in which you want to write. This list contains keymaps "
+ "in order as inscript then user defined then xkb and then any keymaps opened "
+ "that are not default listed"
+ msgstr ""
+-"請選擇您欲使用的語言。此清單包含了 keymap，順序為 inscript、使用者定義、xkb，"
+-"然後則是所有非預設列出而卻開啟的 keymap"
++"請選擇您欲使用的語言。此清單包含了 keymap，順序為 inscript、使用者定義、xkb，然後則是所有非預設列出而卻開啟的 keymap"
+ 
++# translation auto-copied from project iok, version 6.4, document iok
+ #. TRANSLATORS: Replace this string with your names, one name per line.
+-#: ../src/interface.c:12541
++#: ../src/interface.c:12544
+ msgid "translator-credits"
+ msgstr "譯者姓名：莊佳儒（tchuang@redhat.com）"
+ 
+-#: ../src/interface.c:12547
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:12550
+ msgid "iok"
+ msgstr "iok"
+ 
+-#: ../src/interface.c:12548
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/interface.c:12551
+ msgid "GPLv2 or later\n"
+ msgstr "GPLv2 或更新\n"
+ 
+-#: ../src/support.c:90 ../src/support.c:114
++# translation auto-copied from project iok, version 6.4, document iok
++#: ../src/support.c:90
++#: ../src/support.c:114
+ #, c-format
+ msgid "Couldn't find pixmap file: %s"
+ msgstr "找不到 pixmap 檔案：%s"
+-
+-#~ msgid "to English"
+-#~ msgstr "英語"
+-
+-#~ msgid "English"
+-#~ msgstr "英語"
