@@ -1,0 +1,202 @@
+# kkrothap <kkrothap@fedoraproject.org>, 2012. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-29 14:48+0530\n"
+"PO-Revision-Date: 2012-07-05 04:11-0400\n"
+"Last-Translator: kkrothap <kkrothap@fedoraproject.org>\n"
+"Language-Team: Telugu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: te\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Zanata 1.6.1\n"
+
+#: ../iok.desktop.in.h:1
+msgid "Indic Onscreen Keyboard"
+msgstr "ఇండిక్ ఆన్‌స్క్రీన్ కీబోర్డు"
+
+#: ../iok.desktop.in.h:2
+msgid "Enter Indic characters with a virtual keyboard"
+msgstr "వర్చ్యువల్ కీబోర్డుతో యిండిక్ అక్షరములను ప్రవేశపెట్టుము"
+
+#: ../src/interface.c:1987
+msgid ""
+"This keymap file does not map uniquely to a keyboard and therefore cannot be"
+" displayed correctly"
+msgstr ""
+"ఈ కీమాప్ ఫైలు యూనిక్‌గా కీబోర్డునకు మాప్ కాలేదు కనుక సరిగా ప్రదర్శించబడలేదు"
+
+#: ../src/interface.c:3180
+msgid "Select the language in which you want to write"
+msgstr "మీరు ఏ భాషనందు వ్రాయాలని అనుకొనుచున్నారో ఆ భాషను యెంపికచేయుము"
+
+#: ../src/interface.c:3182 ../src/interface.c:10955
+msgid "Change to English Keyboard"
+msgstr "ఇంగ్లీషు కీబోర్డునకు మారుము"
+
+#: ../src/interface.c:3255
+msgid "ReassignKey"
+msgstr "మరలాపెట్టినకీ"
+
+#: ../src/interface.c:3265
+msgid "Reassign Keyvalue of Key"
+msgstr "కీ యొక్క కీవిలువను మరలాపెట్టుము"
+
+#: ../src/interface.c:3276
+msgid "to another Key"
+msgstr "వేరొక కీ నకు"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:3291 ../src/interface.c:10447
+msgid "Reassign"
+msgstr "మరలాపెట్టుము"
+
+#: ../src/interface.c:3295
+msgid "Cancel"
+msgstr "రద్దుచేయి"
+
+#: ../src/interface.c:3586
+msgid "Open Keymap File"
+msgstr "కీమాప్ దస్త్రమును తెరువుము"
+
+#: ../src/interface.c:3636
+msgid "Write to Keymap File"
+msgstr "కీమాప్ దస్త్రమునకు వ్రాయుము"
+
+#: ../src/interface.c:3655
+msgid ""
+"This application supports only for Inscript type keymaps therefore no custom"
+" xkb keymaps can be created."
+msgstr ""
+"ఈ అనువర్తనం ఇన్‌స్క్రిప్ట్ రకపు కీమాప్స్ కొరకు మాత్రమే తోడ్పాటునిచ్చును కనుక"
+" మలచుకొనిన xkb కీమాప్స్ సృష్టించబడలేదు."
+
+#: ../src/interface.c:3681
+msgid ""
+"This application supports saving the inscript keymaps using filename as "
+"\"locale_code-custom_name-inscript2.mim\" only. If you are planning to "
+"change the default keymap name then use only this pattern."
+msgstr ""
+"ఈ అనువర్తనము అనునది యిన్‌స్క్రిప్ట్ కీమాప్సును \"locale_code-custom_name-"
+"inscript2.mim\" పేరుతో మాత్రమే దాయుటకు తోడ్పాటునిస్తుంది. మీరు అప్రమే కీమాప్"
+" పేరును మార్చవలెనని అనుకుంటే యీ తీరునే వుపయోగించండి."
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:10407
+msgid "Open"
+msgstr "తెరువుము"
+
+#: ../src/interface.c:10408
+msgid "Open a Keymap that is not listed in a combobox"
+msgstr "కాంబోపెట్టె నందు జాబితాచేయని కీమాప్‌ను తెరువుము"
+
+#: ../src/interface.c:10410
+msgid "Save"
+msgstr "దాయి"
+
+#: ../src/interface.c:10411
+msgid "Save current state of loaded keymap to a new keymap"
+msgstr "లోడైన కీమాప్ యొక్క ప్రస్తుత స్థితిని కొత్త కీమాప్‌కు దాయుము"
+
+#: ../src/interface.c:10414
+msgid "Quit"
+msgstr "నిష్క్రమించుము"
+
+#: ../src/interface.c:10416
+msgid "Close iok application"
+msgstr "iok అనువర్తనమును మూయుము"
+
+#: ../src/interface.c:10449
+msgid "Reassign key value of some key to some other key"
+msgstr "ఒక కీ యొక్క కీ విలువను మరియొక కీకు మరలాపెట్టుము"
+
+#: ../src/interface.c:10451
+msgid "Swap"
+msgstr "అటుదిటు మార్చు"
+
+#: ../src/interface.c:10453
+msgid "Swap key values between any 2 keys in loaded keymap"
+msgstr "లోడైన కీమాప్ నందు ఏవైనా రెండు కీల కీవిలువలను అటుదిటు మార్చుము"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:10473
+msgid "About"
+msgstr "గురించి"
+
+#: ../src/interface.c:10475
+msgid "About iok application"
+msgstr "iok అనువర్తనము గురించి"
+
+#: ../src/interface.c:10491
+msgid "Keymap"
+msgstr "కీమాప్"
+
+#: ../src/interface.c:10494
+msgid "Keys"
+msgstr "కీలు"
+
+#: ../src/interface.c:10497
+msgid "Help"
+msgstr "సహాయము"
+
+#: ../src/interface.c:10682
+msgid "Backspace"
+msgstr "Backspace"
+
+#: ../src/interface.c:10699
+msgid "Tab"
+msgstr "Tab"
+
+#: ../src/interface.c:10792
+msgid "Caps"
+msgstr "Caps"
+
+#: ../src/interface.c:10863
+msgid "Enter"
+msgstr "Enter"
+
+#: ../src/interface.c:10879 ../src/interface.c:10944
+msgid "Shift"
+msgstr "Shift"
+
+#: ../src/interface.c:10958
+msgid "Space"
+msgstr "Space"
+
+#: ../src/interface.c:10965
+msgid "Change to Extended layer Keyboard"
+msgstr "విస్తరిత లేయర్ కీబోర్డునకు మారు"
+
+#: ../src/interface.c:10971
+msgid ""
+"Select the language in which you want to write. This list contains keymaps "
+"in order as inscript then user defined then xkb and then any keymaps opened "
+"that are not default listed"
+msgstr ""
+"మీరు వ్రాయాలని అనుకొనుచున్న భాషను యెంపికచేయుము. ఈ జాబితా కీ మాప్‌లను ఈ "
+"క్రమంలో కలిగివుంటుంది inscript తరువాత వినియోగదారి మలచిన తరువాత xkb తరువాత "
+"అప్రమేయంగా జాబితాకాక తెరువబడిన కీమాప్‌లు"
+
+#. TRANSLATORS: Replace this string with your names, one name per line.
+#: ../src/interface.c:12541
+msgid "translator-credits"
+msgstr "కృష్ణబాబు కె <kkrothap@redhat.com> 2009."
+
+#: ../src/interface.c:12547
+msgid "iok"
+msgstr "iok"
+
+#: ../src/interface.c:12548
+msgid "GPLv2 or later\n"
+msgstr "GPLv2 లేదా తరువాతి\n"
+
+#: ../src/support.c:90 ../src/support.c:114
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "pixmap దస్త్రమును కనుగొనలేక పోయింది: %s"

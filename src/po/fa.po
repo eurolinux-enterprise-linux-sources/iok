@@ -1,0 +1,207 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-29 14:48+0530\n"
+"PO-Revision-Date: 2010-08-20 23:41+0330\n"
+"Last-Translator: Mostafa <info@mostafadaneshvar.com>\n"
+"Language-Team: Persian <trans-fa@lists.fedoraproject.org>\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Persian\n"
+"X-Poedit-Country: Iran\n"
+
+#: ../iok.desktop.in.h:1
+msgid "Indic Onscreen Keyboard"
+msgstr "صفحه‌کلید روی صفحه‌نمایش Indic "
+
+#: ../iok.desktop.in.h:2
+msgid "Enter Indic characters with a virtual keyboard"
+msgstr "وارد کردن نویسه های Indic با صفحه کلید مجازی"
+
+#: ../src/interface.c:1987
+msgid ""
+"This keymap file does not map uniquely to a keyboard and therefore cannot be "
+"displayed correctly"
+msgstr ""
+
+#: ../src/interface.c:3180
+msgid "Select the language in which you want to write"
+msgstr "انتخاب زبانی که می خواهید بنویسید"
+
+#: ../src/interface.c:3182 ../src/interface.c:10955
+msgid "Change to English Keyboard"
+msgstr "تغییر به صفحه کلید انگلیسی"
+
+#: ../src/interface.c:3255
+msgid "ReassignKey"
+msgstr "بازانتساب‌کلید"
+
+#: ../src/interface.c:3265
+msgid "Reassign Keyvalue of Key"
+msgstr "تنظیمات مقدار کلید"
+
+#: ../src/interface.c:3276
+msgid "to another Key"
+msgstr "به کلید دیگر"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:3291 ../src/interface.c:10447
+msgid "Reassign"
+msgstr "انتساب مجدد"
+
+#: ../src/interface.c:3295
+msgid "Cancel"
+msgstr "انصراف"
+
+#: ../src/interface.c:3586
+msgid "Open Keymap File"
+msgstr "بازکردن فایل نقشه‌کلید"
+
+#: ../src/interface.c:3636
+msgid "Write to Keymap File"
+msgstr "نوشتن بر روی فایل نقشه‌کلید"
+
+#: ../src/interface.c:3655
+msgid ""
+"This application supports only for Inscript type keymaps therefore no custom "
+"xkb keymaps can be created."
+msgstr ""
+
+#: ../src/interface.c:3681
+msgid ""
+"This application supports saving the inscript keymaps using filename as "
+"\"locale_code-custom_name-inscript2.mim\" only. If you are planning to "
+"change the default keymap name then use only this pattern."
+msgstr ""
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:10407
+msgid "Open"
+msgstr "باز"
+
+#: ../src/interface.c:10408
+msgid "Open a Keymap that is not listed in a combobox"
+msgstr "بازکردن نقشه‌کلیدی که در چندگزینه های ذیل موجود نیست"
+
+#: ../src/interface.c:10410
+msgid "Save"
+msgstr "ذخیره"
+
+#: ../src/interface.c:10411
+msgid "Save current state of loaded keymap to a new keymap"
+msgstr "ذخیره حالت کنونی نقشه‌کلید بارگذاری شده به نقشه کلید جدید"
+
+#: ../src/interface.c:10414
+msgid "Quit"
+msgstr "خروج"
+
+#: ../src/interface.c:10416
+msgid "Close iok application"
+msgstr "بستن برنامه  iok "
+
+#: ../src/interface.c:10449
+msgid "Reassign key value of some key to some other key"
+msgstr "بازنشانی مقدار برخی از کلید های به کلید دیگر"
+
+#: ../src/interface.c:10451
+msgid "Swap"
+msgstr "حافظهٔ مبادله"
+
+#: ../src/interface.c:10453
+msgid "Swap key values between any 2 keys in loaded keymap"
+msgstr "جا به جایی مقادیر کلیدهای بین دو کلید بارگذاری شده در نقشه کلید"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:10473
+msgid "About"
+msgstr "درباره"
+
+#: ../src/interface.c:10475
+msgid "About iok application"
+msgstr "دربارهٔ  برنامه  iok "
+
+#: ../src/interface.c:10491
+msgid "Keymap"
+msgstr "نقشه‌کلید "
+
+#: ../src/interface.c:10494
+msgid "Keys"
+msgstr "کلیدها"
+
+#: ../src/interface.c:10497
+msgid "Help"
+msgstr "کمک"
+
+#: ../src/interface.c:10682
+msgid "Backspace"
+msgstr "پس‌بر"
+
+#: ../src/interface.c:10699
+msgid "Tab"
+msgstr "جهش"
+
+#: ../src/interface.c:10792
+msgid "Caps"
+msgstr "قفل"
+
+#: ../src/interface.c:10863
+msgid "Enter"
+msgstr "ورود"
+
+#: ../src/interface.c:10879 ../src/interface.c:10944
+msgid "Shift"
+msgstr "تبدیل"
+
+#: ../src/interface.c:10958
+msgid "Space"
+msgstr "فاصله"
+
+#: ../src/interface.c:10965
+#, fuzzy
+msgid "Change to Extended layer Keyboard"
+msgstr "تغییر به صفحه کلید انگلیسی"
+
+#: ../src/interface.c:10971
+msgid ""
+"Select the language in which you want to write. This list contains keymaps "
+"in order as inscript then user defined then xkb and then any keymaps opened "
+"that are not default listed"
+msgstr ""
+"انتخاب زبانی که می خواهید بنویسید. این لیستی است که شامل نقشه‌کلیدهای است که "
+"inscript موجود است و سپس کاربر تعریف شده ها و سپس xkb و سپس هر نقشه کلیدی که "
+"باز شده و به طور پیشفرض لیست نشده است."
+
+#. TRANSLATORS: Replace this string with your names, one name per line.
+#: ../src/interface.c:12541
+msgid "translator-credits"
+msgstr "مترجم‌ها"
+
+#: ../src/interface.c:12547
+msgid "iok"
+msgstr "ای‌او‌کی(iok)"
+
+#: ../src/interface.c:12548
+msgid "GPLv2 or later\n"
+msgstr "جی‌پی‌ال۲ یا بعدی\n"
+
+#: ../src/support.c:90 ../src/support.c:114
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "پرونده‌ی pixmap پیدا نشد:: %s"
+
+#~ msgid "to English"
+#~ msgstr "به انگلیسی"
+
+#~ msgid "English"
+#~ msgstr "انگلیسی"

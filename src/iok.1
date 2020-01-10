@@ -1,0 +1,75 @@
+.TH IOK 1 "March 12, 2012"
+.SH NAME
+\fBiok\fR\- Indic Onscreen Keyboard
+.SH SYNOPSIS
+.B iok
+.RB [ \-a ]
+.RB [ \-h ]
+.RB [ \-d 
+.IR 1 ]
+.RB [ \-n
+.IR LANGCODE ]
+.SH DESCRIPTION
+.PP
+    Indic Onscreen Keyboard currently shows Inscript and Inscript2 keymaps for
+22 official Indian languages. The languages are Assamese, Bengali, Bodo, Dogri,
+Gujarati, Hindi, Kannada, Kokani, Maithili, Malayalam, Manipuri, Marathi,
+Nepali, Oriya, Punjabi, Sanskrit, Santali, Sindhi, Tamil, Telugu. 
+    The iok application runs in default and advanced mode. In default mode, iok
+starts by loading Inscript2 keymap of the current locale. If keymap is not
+installed or available then iok shows keymap list in the default mode. User can 
+then select any keymap from keymap list if he want to write using it.
+     In the advanced mode, iok allows to open non-supported keymaps. If keymap
+can be parsed by iok then it will be showed in iok UI otherwise it will show 
+error message that iok can't load this keymap. Advanced mode also allows to
+create custom keymap by either swapping or re-assigning character mappings in 
+the existing loaded keymap in iok.
+     Another feature iok supports is Drag and Drop. This will allow user to swap
+character mappings using mouse.
+     The keymap list shows Inscript and Inscript2 keymaps from location
+/usr/share/m17n and ~/.m17n.d path.  
+.PP
+
+To start iok in normal mode from console, use following command
+iok
+
+To start iok in advanced mode from console, use following command
+iok -a
+
+To start iok in any supported Inscript2 keymap (say in Marathi) use following command
+iok -n mr
+
+As Inscript2 keymap naming also uses language script code for some languages, command to open those keymaps is like this
+iok -n pa-guru
+where pa is a isocode name for the Punjabi language and guru is a language script code name in which keymap is written.
+
+To use Drag and Drop feature of iok, start iok from console as
+iok -d 1
+The Draft version of Inscript2 keymaps are available at https://fedorahosted.org/inscript2/
+
+This project is available at http://fedorahosted.org/iok/ or http://iok.sourceforge.net
+
+.SH OPTIONS
+.TP
+.BI \-a
+It shows the menus and combo box in iok UI
+.TP
+.BI \-h
+It show the help
+.TP
+.BI \-d " 1"
+This will enable Drag and Drop feature only for the single iok invocation. Otherwise
+iok has disabled Drag and Drop by default.
+.TP
+.BI \-n  " LANGCODE"
+In the place of LANGCODE,you need to specify a particular language code.
+Shows iok UI for that particular language. This will also requires language 
+script  code.
+e.g. for Bodo, Dogri, Kokani, Nepali, Sindhi use its langcode and "-deva"
+as a language script code.
+
+To start iok using Kokani keymap, run "iok -n kok-deva"
+.PP
+.SH AUTHOR
+Suji A <suji87.msc@gmail.com> , Parag <pnemade@fedoraproject.org>
+.PP

@@ -1,0 +1,12 @@
+
+The iok application now supports Inscript2 keymap. Keymap parser is now re-written to support Inscript and Inscript2 standard. iok now uses Inscript2 as a default standard. 
+
+To start iok in any supported Inscript2 keymap (say in Marathi) use following command
+iok -n mr
+
+As inscript2 keymap naming also uses scriptcode for some languages, command to open those keymaps is like this
+iok -n pa-guru
+
+where pa is isocode name for the language and guru is script code name in which keymap is written.
+
+See README.old and manpage of  iok for more information.

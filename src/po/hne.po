@@ -1,0 +1,199 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-29 14:48+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Chhattisgarhi <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../iok.desktop.in.h:1
+msgid "Indic Onscreen Keyboard"
+msgstr "इंडिक ऑनस्क्रीन कुंजीपट"
+
+#: ../iok.desktop.in.h:2
+msgid "Enter Indic characters with a virtual keyboard"
+msgstr "वर्चुअल कुंजीपट से भारतीय वर्ण दाखिल करें"
+
+#: ../src/interface.c:1987
+msgid ""
+"This keymap file does not map uniquely to a keyboard and therefore cannot be "
+"displayed correctly"
+msgstr ""
+
+#: ../src/interface.c:3180
+msgid "Select the language in which you want to write"
+msgstr "वह भाषा चुनें जिसमें आप लिखना चाहते हैं"
+
+#: ../src/interface.c:3182 ../src/interface.c:10955
+msgid "Change to English Keyboard"
+msgstr "अंग्रेजी कुंजीपट में बदलें"
+
+#: ../src/interface.c:3255
+msgid "ReassignKey"
+msgstr "कुंजी फिर नियत करें"
+
+#: ../src/interface.c:3265
+msgid "Reassign Keyvalue of Key"
+msgstr "कुंजी का कुंजीमान फिर नियत करें"
+
+#: ../src/interface.c:3276
+msgid "to another Key"
+msgstr "किसी दूसरे कुंजी में"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:3291 ../src/interface.c:10447
+msgid "Reassign"
+msgstr "फिर नियत करें"
+
+#: ../src/interface.c:3295
+msgid "Cancel"
+msgstr "रद्द करें"
+
+#: ../src/interface.c:3586
+msgid "Open Keymap File"
+msgstr "कुंजी मैप फाइल खोलें"
+
+#: ../src/interface.c:3636
+msgid "Write to Keymap File"
+msgstr "कुंजीमैप फाइल में लिखें"
+
+#: ../src/interface.c:3655
+msgid ""
+"This application supports only for Inscript type keymaps therefore no custom "
+"xkb keymaps can be created."
+msgstr ""
+
+#: ../src/interface.c:3681
+msgid ""
+"This application supports saving the inscript keymaps using filename as "
+"\"locale_code-custom_name-inscript2.mim\" only. If you are planning to "
+"change the default keymap name then use only this pattern."
+msgstr ""
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:10407
+msgid "Open"
+msgstr "खोलें"
+
+#: ../src/interface.c:10408
+msgid "Open a Keymap that is not listed in a combobox"
+msgstr "कोई कुंजी मानचित्र खोलें जो कि कोंबो बॉक्स में सूचीबद्ध नहीं है"
+
+#: ../src/interface.c:10410
+msgid "Save"
+msgstr "सहेजें"
+
+#: ../src/interface.c:10411
+msgid "Save current state of loaded keymap to a new keymap"
+msgstr "किसी नये कुंजी मानचित्र में लोड किए कुंजीमानचित्र की मौजूदा स्थिति सहेजें"
+
+#: ../src/interface.c:10414
+msgid "Quit"
+msgstr "बाहर"
+
+#: ../src/interface.c:10416
+msgid "Close iok application"
+msgstr "iok अनुप्रयोग चुनें"
+
+#: ../src/interface.c:10449
+msgid "Reassign key value of some key to some other key"
+msgstr "कुछ दूसरे कुंजी में कुछ कुंजी के कुंजी मान फिर नियत करें"
+
+#: ../src/interface.c:10451
+msgid "Swap"
+msgstr "स्वैप करें"
+
+#: ../src/interface.c:10453
+msgid "Swap key values between any 2 keys in loaded keymap"
+msgstr "किसी 2 कुंजी के बीच लोडेड कुंजीमानचित्र में कुंजी मान स्वैप करें"
+
+#. Don't need to show menus
+#. Create the menu items
+#: ../src/interface.c:10473
+msgid "About"
+msgstr "परिचय"
+
+#: ../src/interface.c:10475
+msgid "About iok application"
+msgstr "iok अनुप्रयोग का परिचय"
+
+#: ../src/interface.c:10491
+msgid "Keymap"
+msgstr "कुंजी मानचित्र"
+
+#: ../src/interface.c:10494
+msgid "Keys"
+msgstr "कुंजी"
+
+#: ../src/interface.c:10497
+msgid "Help"
+msgstr "मदद"
+
+#: ../src/interface.c:10682
+msgid "Backspace"
+msgstr "Backspace"
+
+#: ../src/interface.c:10699
+msgid "Tab"
+msgstr "Tab"
+
+#: ../src/interface.c:10792
+msgid "Caps"
+msgstr "Caps"
+
+#: ../src/interface.c:10863
+msgid "Enter"
+msgstr "Enter"
+
+#: ../src/interface.c:10879 ../src/interface.c:10944
+msgid "Shift"
+msgstr "Shift"
+
+#: ../src/interface.c:10958
+msgid "Space"
+msgstr "Space"
+
+#: ../src/interface.c:10965
+msgid "Change to Extended layer Keyboard"
+msgstr "विस्तारित लेयर कुंजीपट में बदलें"
+
+#: ../src/interface.c:10971
+msgid ""
+"Select the language in which you want to write. This list contains keymaps "
+"in order as inscript then user defined then xkb and then any keymaps opened "
+"that are not default listed"
+msgstr ""
+"वह भाषा चुनें जिसमें आप लिखना चाहते हैं. यह सूची inscript रूप में कुंजीमानचित्र समाहित करती "
+"है बनिस्पत xkb पर परिभाषित के अलावा और कुंजी मानचित्र खुला है जो कि तयशुदा रूप से "
+"सूचीबद्ध नहीं है"
+
+#. TRANSLATORS: Replace this string with your names, one name per line.
+#: ../src/interface.c:12541
+msgid "translator-credits"
+msgstr ""
+
+#: ../src/interface.c:12547
+msgid "iok"
+msgstr ""
+
+#: ../src/interface.c:12548
+msgid "GPLv2 or later\n"
+msgstr ""
+
+#: ../src/support.c:90 ../src/support.c:114
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr ""
